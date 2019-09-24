@@ -18,55 +18,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 
-class EchoRunnable implements Runnable{
-	// 가지고 있어야 하는 field
-	Socket socket;		// 클라이언트와 연결된 소켓
-	BufferedReader br;	// 입력을 위한 스트림
-	PrintWriter out;	// 출력을 위한 스트림
-	
-	public EchoRunnable(Socket socket) {
-		super();
-		this.socket = socket;
-		try {
-			this.br = new BufferedReader(
-					new InputStreamReader(socket.getInputStream()));
-			this.out = new PrintWriter(socket.getOutputStream());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
 
-	@Override
-	public void run() {
-		// 클라이언트와 echo처리 구현
-		// 클라이언트가 문자열을 보내면 해당 문자열을 받아서
-		// 다시 클라이언트에게 전달.
-		// 한번하고 종료하는게 아니라 클라이언트가 "/EXIT/"라는 
-		// 문자열을 보낼 때까지 지속.
-		String line = "";
-		try {
-			while((line = br.readLine()) != null) {
-				if(Thread.currentThread().isInterrupted()) {
-					break;
-				}
-				// 소켓의 접속이 끊기면 소켓에서는 null값을 보낸다.
-				if(line.equals("/EXIT/")) {
-					break;	// 가장 근접한 loop를 탈출!
-				}else {
-					out.println(line);
-					out.flush();
-				}
-			}
-			// 자원 반날
-			out.close();
-			br.close();
-			socket.close();
-			
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-}
 public class server extends Application{
 	
 	TextArea textarea;
@@ -81,6 +33,56 @@ public class server extends Application{
 		Platform.runLater(()->{
 			textarea.appendText(msg + "\n");
 		});
+	}
+	class EchoRunnable implements Runnable{
+		// 가지고 있어야 하는 field
+		Socket socket;		// 클라이언트와 연결된 소켓
+		BufferedReader br;	// 입력을 위한 스트림
+		PrintWriter out;	// 출력을 위한 스트림
+		
+		public EchoRunnable(Socket socket) {
+			super();
+			this.socket = socket;
+			try {
+				this.br = new BufferedReader(
+						new InputStreamReader(socket.getInputStream()));
+				this.out = new PrintWriter(socket.getOutputStream());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+
+		@Override
+		public void run() {
+			// 클라이언트와 echo처리 구현
+			// 클라이언트가 문자열을 보내면 해당 문자열을 받아서
+			// 다시 클라이언트에게 전달.
+			// 한번하고 종료하는게 아니라 클라이언트가 "/EXIT/"라는 
+			// 문자열을 보낼 때까지 지속.
+			String line = "";
+			try {
+				while((line = br.readLine()) != null) {
+					if(Thread.currentThread().isInterrupted()) {
+						break;
+					}
+					// 소켓의 접속이 끊기면 소켓에서는 null값을 보낸다.
+					if(line.equals("/EXIT/")) {
+						break;	// 가장 근접한 loop를 탈출!
+					}else {
+						PrintMsg(line);
+						out.println(line);
+						out.flush();
+					}
+				}
+				// 자원 반날
+				out.close();
+				br.close();
+				socket.close();
+				
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 	@Override
 	public void start(Stage primaryStage) throws Exception {
