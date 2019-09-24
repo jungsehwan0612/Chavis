@@ -1,0 +1,55 @@
+package com.chavis.biz.user;
+
+import java.util.Locale;
+
+import javax.annotation.Resource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.stereotype.Service;
+
+@Service("userservice")
+public class userServiceImpl implements userService {
+
+	@Resource(name = "mybatis")
+	userDAO dao;
+	
+	@Autowired
+	ApplicationContext context;
+	
+	public userServiceImpl() {	}
+	public userServiceImpl(userDAO dao) {
+		this.dao = dao;
+	}
+	public userDAO getDao() {
+		return dao;
+	}
+	public void setDao(userDAO dao) {
+		this.dao = dao;
+	}
+	@Override
+	public userVO login(String client_id, String password) {
+		String msg = "";
+		userVO vo = null;
+		try {
+			vo = dao.login(client_id, password);
+			
+			if (vo != null) {
+				msg = context.getMessage("login.success", new Object[] { vo.getClientName() }, Locale.KOREA);
+			} else {
+				msg = context.getMessage("login.fail", new Object[] { client_id }, Locale.KOREA);
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		System.out.println(msg);
+		return vo;
+	}
+
+	@Override
+	public userVO getUser(String client_id) {
+		return dao.getUser(client_id);
+	}
+	
+	
+}
