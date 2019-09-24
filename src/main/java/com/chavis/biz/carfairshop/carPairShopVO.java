@@ -1,15 +1,15 @@
 package com.chavis.biz.carfairshop;
 
-public class carFairShopVO {
+public class carPairShopVO {
 	private String bodyShopId;
 	private String address;
 	private String latitude;
 	private String longitude;
 
-	public carFairShopVO() {
+	public carPairShopVO() {
 	}
 
-	public carFairShopVO(String bodyShopId, String address, String latitude, String longitude) {
+	public carPairShopVO(String bodyShopId, String address, String latitude, String longitude) {
 		super();
 		this.bodyShopId = bodyShopId;
 		this.address = address;
@@ -74,7 +74,7 @@ public class carFairShopVO {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		carFairShopVO other = (carFairShopVO) obj;
+		carPairShopVO other = (carPairShopVO) obj;
 		if (address == null) {
 			if (other.address != null)
 				return false;
