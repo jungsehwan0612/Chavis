@@ -107,7 +107,7 @@ public class server extends Application{
 			// 서버는 다시 다른 클라이언트의 접속을 기다린다!
 			Runnable runnable = () ->{
 				try {
-					server = new ServerSocket(7777);
+					server = new ServerSocket(6767);
 					PrintMsg("Echo 서버 기동!!");
 					while(true) {
 						PrintMsg("클라이언트 접속 대기");
