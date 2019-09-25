@@ -14,7 +14,7 @@ import com.chavis.biz.user.vo.userVO;
 @Service("userservice")
 public class userServiceImpl implements userService {
 
-	@Resource(name = "mybatis")
+	@Resource(name = "usermybatis")
 	userDAO dao;
 	
 	@Autowired

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 import com.chavis.biz.user.vo.userVO;
 
-@Component("mybatis")
+@Component("usermybatis")
 public class userDAO_MyBatis implements userDAO{
 
 	@Autowired
