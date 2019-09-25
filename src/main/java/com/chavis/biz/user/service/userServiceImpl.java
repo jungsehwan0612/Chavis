@@ -1,4 +1,4 @@
-package com.chavis.biz.user;
+package com.chavis.biz.user.service;
 
 import java.util.Locale;
 
@@ -7,6 +7,9 @@ import javax.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
+
+import com.chavis.biz.user.dao.userDAO;
+import com.chavis.biz.user.vo.userVO;
 
 @Service("userservice")
 public class userServiceImpl implements userService {

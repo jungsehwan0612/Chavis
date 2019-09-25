@@ -1,4 +1,4 @@
-package com.chavis.biz.carfairshop;
+package com.chavis.biz.carpairshop.vo;
 
 public class carPairShopVO {
 	private String bodyShopId;

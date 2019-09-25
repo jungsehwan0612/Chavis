@@ -1,4 +1,4 @@
-package com.chavis.biz.reserve;
+package com.chavis.biz.reserve.vo;
 
 public class reserveVO {
 	private String reserveId;

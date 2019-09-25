@@ -1,8 +1,10 @@
-package com.chavis.biz.user;
+package com.chavis.biz.user.dao;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import com.chavis.biz.user.vo.userVO;
 
 @Component("mybatis")
 public class userDAO_MyBatis implements userDAO{
