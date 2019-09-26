@@ -1,4 +1,4 @@
-package com.chavis.biz.conrollers;
+package com.chavis.biz.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.chavis.biz.user.service.userService;
-import com.chavis.biz.user.vo.userVO;
+import com.chavis.biz.user.service.UserService;
+import com.chavis.biz.user.vo.UserVO;
 
 @Controller
 public class UserController {
 	@Autowired
-	userService service;
+	UserService service;
 	
 	@RequestMapping(value = "/user/join.do", method = RequestMethod.GET)
 	public String addJoin() {	
@@ -25,7 +25,6 @@ public class UserController {
 	@RequestMapping("/user/list.do")
 	public ModelAndView getUserList() {
 		ModelAndView view = new ModelAndView();
-		
 		view.addObject("users", service.getUserList());
 		view.setViewName("user/user_list");
 		return view;
@@ -53,7 +52,7 @@ public class UserController {
 		return view;
 	}
 	@RequestMapping("/user/update.do")
-	public ModelAndView update(@ModelAttribute("user") userVO vo) {
+	public ModelAndView update(@ModelAttribute("user") UserVO vo) {
 		ModelAndView view = new ModelAndView();
 		service.updateUser(vo);
 		view.addObject("user", service.getUser(vo.getClientId()));
