@@ -8,6 +8,4 @@ public interface reserveDAO {
 	int addReserve(reserveVO reserve);
 	
 	reserveVO getReserveId(String reserveId);
-	
-	List<reserveVO> getReservations
 }

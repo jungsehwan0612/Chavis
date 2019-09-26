@@ -1,60 +1,60 @@
 package com.chavis.biz.user.vo;
 
 public class userVO {
-	private String clientNum;
-	private String clientName;
-	private String carType;
-	private String carId;
+	private String client_num;
+	private String client_name;
+	private String car_type;
+	private String car_id;
 	private String tel;
-	private String clientId;
+	private String client_id;
 	private String password;
 	
 	public userVO() {
 		super();
 	}
 
-	public userVO(String clientNum, String clientName, String carType, String carId, String tel, String clientId,
-			String password) {
+	public userVO(String client_num, String client_name, String car_type, 
+			String car_id, String tel, String client_id, String password) {
 		super();
-		this.clientNum = clientNum;
-		this.clientName = clientName;
-		this.carType = carType;
-		this.carId = carId;
+		this.client_num = client_num;
+		this.client_name = client_name;
+		this.car_type = car_type;
+		this.car_id = car_id;
 		this.tel = tel;
-		this.clientId = clientId;
+		this.client_id = client_id;
 		this.password = password;
 	}
 
 	public String getClientNum() {
-		return clientNum;
+		return client_num;
 	}
 
-	public void setClientNum(String clientNum) {
-		this.clientNum = clientNum;
+	public void setClientNum(String client_num) {
+		this.client_num = client_num;
 	}
 
 	public String getClientName() {
-		return clientName;
+		return client_name;
 	}
 
-	public void setClientName(String clientName) {
-		this.clientName = clientName;
+	public void setClientName(String client_name) {
+		this.client_name = client_name;
 	}
 
 	public String getCarType() {
-		return carType;
+		return car_type;
 	}
 
-	public void setCarType(String carType) {
-		this.carType = carType;
+	public void setCarType(String car_type) {
+		this.car_type = car_type;
 	}
 
 	public String getCarId() {
-		return carId;
+		return car_id;
 	}
 
-	public void setCarId(String carId) {
-		this.carId = carId;
+	public void setCarId(String car_id) {
+		this.car_id = car_id;
 	}
 
 	public String getTel() {
@@ -66,11 +66,11 @@ public class userVO {
 	}
 
 	public String getClientId() {
-		return clientId;
+		return client_id;
 	}
 
-	public void setClientId(String clientId) {
-		this.clientId = clientId;
+	public void setClientId(String client_id) {
+		this.client_id = client_id;
 	}
 
 	public String getPassword() {
@@ -83,19 +83,19 @@ public class userVO {
 
 	@Override
 	public String toString() {
-		return "userVO [clientNum=" + clientNum + ", clientName=" + clientName + ", carType=" + carType + ", carId="
-				+ carId + ", tel=" + tel + ", clientId=" + clientId + ", password=" + password + "]";
+		return "userVO [client_num=" + client_num + ", client_name=" + client_name + ", car_type=" + car_type
+				+ ", car_id=" + car_id + ", tel=" + tel + ", client_id=" + client_id + ", password=" + password + "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((carId == null) ? 0 : carId.hashCode());
-		result = prime * result + ((carType == null) ? 0 : carType.hashCode());
-		result = prime * result + ((clientId == null) ? 0 : clientId.hashCode());
-		result = prime * result + ((clientName == null) ? 0 : clientName.hashCode());
-		result = prime * result + ((clientNum == null) ? 0 : clientNum.hashCode());
+		result = prime * result + ((car_id == null) ? 0 : car_id.hashCode());
+		result = prime * result + ((car_type == null) ? 0 : car_type.hashCode());
+		result = prime * result + ((client_id == null) ? 0 : client_id.hashCode());
+		result = prime * result + ((client_name == null) ? 0 : client_name.hashCode());
+		result = prime * result + ((client_num == null) ? 0 : client_num.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((tel == null) ? 0 : tel.hashCode());
 		return result;
@@ -110,30 +110,30 @@ public class userVO {
 		if (getClass() != obj.getClass())
 			return false;
 		userVO other = (userVO) obj;
-		if (carId == null) {
-			if (other.carId != null)
+		if (car_id == null) {
+			if (other.car_id != null)
 				return false;
-		} else if (!carId.equals(other.carId))
+		} else if (!car_id.equals(other.car_id))
 			return false;
-		if (carType == null) {
-			if (other.carType != null)
+		if (car_type == null) {
+			if (other.car_type != null)
 				return false;
-		} else if (!carType.equals(other.carType))
+		} else if (!car_type.equals(other.car_type))
 			return false;
-		if (clientId == null) {
-			if (other.clientId != null)
+		if (client_id == null) {
+			if (other.client_id != null)
 				return false;
-		} else if (!clientId.equals(other.clientId))
+		} else if (!client_id.equals(other.client_id))
 			return false;
-		if (clientName == null) {
-			if (other.clientName != null)
+		if (client_name == null) {
+			if (other.client_name != null)
 				return false;
-		} else if (!clientName.equals(other.clientName))
+		} else if (!client_name.equals(other.client_name))
 			return false;
-		if (clientNum == null) {
-			if (other.clientNum != null)
+		if (client_num == null) {
+			if (other.client_num != null)
 				return false;
-		} else if (!clientNum.equals(other.clientNum))
+		} else if (!client_num.equals(other.client_num))
 			return false;
 		if (password == null) {
 			if (other.password != null)

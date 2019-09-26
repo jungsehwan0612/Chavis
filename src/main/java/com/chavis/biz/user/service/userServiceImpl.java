@@ -1,5 +1,6 @@
 package com.chavis.biz.user.service;
 
+import java.util.List;
 import java.util.Locale;
 
 import javax.annotation.Resource;
@@ -14,13 +15,15 @@ import com.chavis.biz.user.vo.userVO;
 @Service("userservice")
 public class userServiceImpl implements userService {
 
-	@Resource(name = "usermybatis")
+	@Resource(name="usermybatis")
 	userDAO dao;
 	
 	@Autowired
 	ApplicationContext context;
 	
-	public userServiceImpl() {	}
+	public userServiceImpl() {
+		System.out.println("userServiceImpl 호출");
+	}
 	public userServiceImpl(userDAO dao) {
 		this.dao = dao;
 	}
@@ -52,6 +55,22 @@ public class userServiceImpl implements userService {
 	@Override
 	public userVO getUser(String client_id) {
 		return dao.getUser(client_id);
+	}
+	@Override
+	public int addUser(userVO user) {
+		return dao.addUser(user);
+	}
+	@Override
+	public int updateUser(userVO user) {
+		return dao.updateUser(user);
+	}
+	@Override
+	public int removeUser(String client_id) {
+		return dao.removeUser(client_id);
+	}
+	@Override
+	public List<userVO> getUserList() {
+		return dao.getUserList();
 	}
 	
 	

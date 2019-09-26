@@ -3,9 +3,10 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-	<!-- <typeAliases> <typeAlias type="spring.biz.user.vo.UserVO" alias="uservo" 
-		/> </typeAliases> -->
+	<typeAliases>
+		<typeAlias type="com.chavis.biz.user.vo.userVO" alias="uservo"/>
+	</typeAliases>
 	<mappers>
-		<mapper class="mappers.UserMapper" />
+		<mapper resource="mappers/user_mapper.xml" />
 	</mappers>
 </configuration>
