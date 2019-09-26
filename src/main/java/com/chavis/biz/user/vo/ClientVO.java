@@ -1,6 +1,6 @@
 package com.chavis.biz.user.vo;
 
-public class userVO {
+public class ClientVO {
 	private String client_num;
 	private String client_name;
 	private String car_type;
@@ -9,11 +9,11 @@ public class userVO {
 	private String client_id;
 	private String password;
 	
-	public userVO() {
+	public ClientVO() {
 		super();
 	}
 
-	public userVO(String client_num, String client_name, String car_type, 
+	public ClientVO(String client_num, String client_name, String car_type, 
 			String car_id, String tel, String client_id, String password) {
 		super();
 		this.client_num = client_num;
@@ -109,7 +109,7 @@ public class userVO {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		userVO other = (userVO) obj;
+		ClientVO other = (ClientVO) obj;
 		if (car_id == null) {
 			if (other.car_id != null)
 				return false;

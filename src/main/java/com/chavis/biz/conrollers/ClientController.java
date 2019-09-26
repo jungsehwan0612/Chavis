@@ -13,26 +13,26 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.chavis.biz.user.service.userService;
-import com.chavis.biz.user.vo.userVO;
+import com.chavis.biz.user.service.ClientService;
+import com.chavis.biz.user.vo.ClientVO;
 
 @Controller
-public class UserController {
+public class ClientController {
 	@Autowired
-	userService service;
+	ClientService service;
 	
-	@RequestMapping(value = "/user/join.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/Client/join.do", method = RequestMethod.GET)
 	public String addJoin() {	
-		return "user/user_join";
+		return "Client/Client_join";
 	}
 	
 	@RequestMapping(value = "/login.do",method = RequestMethod.POST)
-	public String loginProc(userVO vo,HttpServletRequest request) throws Exception {
+	public String loginProc(ClientVO vo,HttpServletRequest request) throws Exception {
 		
-		userVO user = service.login(vo.getClientId(), vo.getPassword());
-		if(user != null) {
-			request.getSession().setAttribute("User", user);
-			request.getSession().setAttribute("login", user);
+		ClientVO Client = service.login(vo.getClientId(), vo.getPassword());
+		if(Client != null) {
+			request.getSession().setAttribute("Client", Client);
+			request.getSession().setAttribute("login", Client);
 			
 			return "redirect:index.do";
 		}else {
@@ -53,51 +53,51 @@ public class UserController {
 		return "redirect:login.do";
 	}
 	
-	@RequestMapping("/user/list.do")
-	public ModelAndView getUserList() {
+	@RequestMapping("/Client/list.do")
+	public ModelAndView getClientList() {
 		ModelAndView view = new ModelAndView();
 		
-		view.addObject("users", service.getUserList());
-		view.setViewName("user/user_list");
+		view.addObject("Clients", service.getClientList());
+		view.setViewName("Client/Client_list");
 		return view;
 	}
 
-	@RequestMapping("/user/view.do")
+	@RequestMapping("/Client/view.do")
 	public ModelAndView getView(@RequestParam("client_id") String client_id) {
 		ModelAndView view = new ModelAndView();
 		
-		view.addObject("user", service.getUser(client_id));
-		view.setViewName("user/user_view");
+		view.addObject("Client", service.getClient(client_id));
+		view.setViewName("Client/Client_view");
 		return view;
 	}
 	
-	@RequestMapping("/user/remove.do")
-	public String deleteUserProc(@RequestParam("client_id") String client_id) {
-		service.removeUser(client_id);
+	@RequestMapping("/Client/remove.do")
+	public String deleteClientProc(@RequestParam("client_id") String client_id) {
+		service.removeClient(client_id);
 		return "redirect:./list.do";
 	}
 	
-	@RequestMapping("/user/modify.do")
+	@RequestMapping("/Client/modify.do")
 	public ModelAndView getModifyView(@RequestParam("client_id") String client_id) {
 		ModelAndView view = new ModelAndView();
 		
-		view.addObject("user", service.getUser(client_id));
-		view.setViewName("user/user_modify");
+		view.addObject("Client", service.getClient(client_id));
+		view.setViewName("Client/Client_modify");
 		return view;
 	}
 	
-	@RequestMapping("/user/update.do")
-	public ModelAndView update(@ModelAttribute("user") userVO vo) {
+	@RequestMapping("/Client/update.do")
+	public ModelAndView update(@ModelAttribute("Client") ClientVO vo) {
 		ModelAndView view = new ModelAndView();
-		service.updateUser(vo);
-		view.addObject("user", service.getUser(vo.getClientId()));
-		view.setViewName("user/user_view");
+		service.updateClient(vo);
+		view.addObject("Client", service.getClient(vo.getClientId()));
+		view.setViewName("Client/Client_view");
 		return view;
 	}
 
 	@ExceptionHandler(Exception.class)
 	public String Ex(Exception exception,Model model) {
-		// UserController 예외발생시 호출됨
+		// ClientController 예외발생시 호출됨
 		model.addAttribute("exception", exception);
 		return "error";
 	}

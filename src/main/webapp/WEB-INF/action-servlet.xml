@@ -9,7 +9,7 @@
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
 
 	<context:annotation-config />
-	<context:component-scan base-package="web.controller" />
+	<context:component-scan base-package="com.chavis.biz.controller" />
 	<mvc:annotation-driven /><!-- mvc에서 애노테이션 설정 -->
 	
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
