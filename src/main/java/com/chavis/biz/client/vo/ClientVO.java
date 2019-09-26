@@ -1,4 +1,4 @@
-package com.chavis.biz.user.vo;
+package com.chavis.biz.client.vo;
 
 public class ClientVO {
 	private String client_num;

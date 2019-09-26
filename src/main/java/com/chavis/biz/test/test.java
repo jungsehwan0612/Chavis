@@ -3,8 +3,8 @@ package com.chavis.biz.test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.chavis.biz.user.service.ClientService;
-import com.chavis.biz.user.vo.ClientVO;
+import com.chavis.biz.client.service.ClientService;
+import com.chavis.biz.client.vo.ClientVO;
 
 
 public class test {
@@ -14,27 +14,27 @@ public class test {
 		@SuppressWarnings("resource")
 		ApplicationContext context = new ClassPathXmlApplicationContext(config);
 		
-		UserService userService = (UserService) context.getBean("userservice");
-		UserVO user = new UserVO();
-		user.setClientNum("2");
-		user.setCarId("11가1111");
-		user.setCarType("pororo");
-		user.setClientId("test01");
-		user.setClientName("테스트");
-		user.setPassword("1234");
-		user.setTel("010-1234-5678");
+		ClientService clientService = (ClientService) context.getBean("userservice");
+		ClientVO client = new ClientVO();
+		client.setClientNum("2");
+		client.setCarId("11가1111");
+		client.setCarType("pororo");
+		client.setClientId("test01");
+		client.setClientName("테스트");
+		client.setPassword("1234");
+		client.setTel("010-1234-5678");
 		
-		userService.addUser(user);	
+		clientService.addClient(client);	
 		
 //		for(userVO user:userService.getUserList())
 //			System.out.println(user);
 		
-		System.out.println(userService.getUser("test01"));
+		System.out.println(clientService.getClient("test01"));
 		
-		UserVO u2 = new UserVO();
+		ClientVO u2 = new ClientVO();
 		u2.setClientId("test01");
 		u2.setTel("010-9876-5432");
-		userService.updateUser(u2);
+		clientService.updateClient(u2);
 		
 //		userService.removeUser("test01");
 		
