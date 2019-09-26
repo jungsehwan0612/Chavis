@@ -27,7 +27,7 @@
 	</select>
 	
 	<update id="updateuser" parameterType="uservo">
-		update client set tel=#{tel} where car_type =#{client_id}
+		update client set tel=#{tel} where client_id =#{client_id}
 	</update>
 	
 	<update id="removeuser">
