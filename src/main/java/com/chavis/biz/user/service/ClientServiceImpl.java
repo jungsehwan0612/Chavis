@@ -9,34 +9,34 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
-import com.chavis.biz.user.dao.UserDAO;
-import com.chavis.biz.user.vo.UserVO;
+import com.chavis.biz.user.dao.ClientDAO;
+import com.chavis.biz.user.vo.ClientVO;
 
 @Service("userservice")
-public class UserServiceImpl implements UserService {
+public class ClientServiceImpl implements ClientService {
 
 	@Resource(name="usermybatis")
-	UserDAO dao;
+	ClientDAO dao;
 	
 	@Autowired
 	ApplicationContext context;
 	
-	public UserServiceImpl() {
+	public ClientServiceImpl() {
 		System.out.println("userServiceImpl 호출");
 	}
-	public UserServiceImpl(UserDAO dao) {
+	public ClientServiceImpl(ClientDAO dao) {
 		this.dao = dao;
 	}
-	public UserDAO getDao() {
+	public ClientDAO getDao() {
 		return dao;
 	}
-	public void setDao(UserDAO dao) {
+	public void setDao(ClientDAO dao) {
 		this.dao = dao;
 	}
 	@Override
-	public UserVO login(String client_id, String password) {
+	public ClientVO login(String client_id, String password) {
 		String msg = "";
-		UserVO vo = null;
+		ClientVO vo = null;
 		try {
 			vo = dao.login(client_id, password);
 			
@@ -53,23 +53,25 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public UserVO getUser(String client_id) {
-		return dao.getUser(client_id);
+	public ClientVO getClient(String client_id) {
+		return dao.getClient(client_id);
 	}
 	@Override
-	public int addUser(UserVO user) {
-		return dao.addUser(user);
+	public int addClient(ClientVO user) {
+		return dao.addClient(user);
 	}
 	@Override
-	public int updateUser(UserVO user) {
-		return dao.updateUser(user);
+	public int updateClient(ClientVO user) {
+		return dao.updateClient(user);
 	}
 	@Override
-	public int removeUser(String client_id) {
-		return dao.removeUser(client_id);
+	public int removeClient(String client_id) {
+		return dao.removeClient(client_id);
 	}
 	@Override
-	public List<UserVO> getUserList() {
-		return dao.getUserList();
-	}	
+	public List<ClientVO> getClientList() {
+		return dao.getClientList();
+	}
+	
+	
 }

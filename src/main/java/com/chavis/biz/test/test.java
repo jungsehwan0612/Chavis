@@ -3,8 +3,8 @@ package com.chavis.biz.test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.chavis.biz.user.service.UserService;
-import com.chavis.biz.user.vo.UserVO;
+import com.chavis.biz.user.service.ClientService;
+import com.chavis.biz.user.vo.ClientVO;
 
 
 public class test {
