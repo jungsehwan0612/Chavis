@@ -35,7 +35,7 @@ public class test {
 		u2.setTel("010-9876-5432");
 		userService.updateUser(u2);
 		
-//		userService.removeUser("test01");
+		userService.removeUser("test01");
 		
 	}
 }
