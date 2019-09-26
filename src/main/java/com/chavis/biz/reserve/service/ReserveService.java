@@ -1,5 +1,5 @@
 package com.chavis.biz.reserve.service;
 
-public interface reserveService {
+public interface ReserveService {
 
 }

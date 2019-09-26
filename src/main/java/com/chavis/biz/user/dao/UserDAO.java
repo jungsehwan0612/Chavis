@@ -2,18 +2,18 @@ package com.chavis.biz.user.dao;
 
 import java.util.List;
 
-import com.chavis.biz.user.vo.userVO;
+import com.chavis.biz.user.vo.UserVO;
 
-public interface userDAO {
-	userVO login(String client_id, String password);
+public interface UserDAO {
+	UserVO login(String client_id, String password);
 
-	userVO getUser(String client_id);
+	UserVO getUser(String client_id);
 	
-	List<userVO> getUserList();
+	List<UserVO> getUserList();
 	
-	int addUser(userVO user);
+	int addUser(UserVO user);
 	
-	int updateUser(userVO user);
+	int updateUser(UserVO user);
 	
 	int removeUser(String client_id);	
 }

@@ -1,6 +1,6 @@
 package com.chavis.biz.car.vo;
 
-public class carVO {
+public class CarVO {
 	private String carId;
 	private String tireDistance;
 	private String wiperDistance;
@@ -8,10 +8,10 @@ public class carVO {
 	private String engineOilLeft;
 	private String distance;
 	
-	public carVO() {
+	public CarVO() {
 	}
 	
-	public carVO(String carId, String tireDistance, String wiperDistance, String coolerLeft, String engineOilLeft,
+	public CarVO(String carId, String tireDistance, String wiperDistance, String coolerLeft, String engineOilLeft,
 			String distance) {
 		super();
 		this.carId = carId;
@@ -97,7 +97,7 @@ public class carVO {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		carVO other = (carVO) obj;
+		CarVO other = (CarVO) obj;
 		if (carId == null) {
 			if (other.carId != null)
 				return false;

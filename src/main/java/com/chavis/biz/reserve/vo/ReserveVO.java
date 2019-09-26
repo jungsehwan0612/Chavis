@@ -1,6 +1,6 @@
 package com.chavis.biz.reserve.vo;
 
-public class reserveVO {
+public class ReserveVO {
 	private String reserveId;
 	private String clientId;
 	private String key;
@@ -9,11 +9,11 @@ public class reserveVO {
 	private String repairTime;
 	private String bodyshopId;
 	
-	public reserveVO() {
+	public ReserveVO() {
 		super();
 	}
 
-	public reserveVO(String reserveId, String clientId, String key, String reserveTime, String keyExpireTime,
+	public ReserveVO(String reserveId, String clientId, String key, String reserveTime, String keyExpireTime,
 			String repairTime, String bodyshopId) {
 		super();
 		this.reserveId = reserveId;
@@ -110,7 +110,7 @@ public class reserveVO {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		reserveVO other = (reserveVO) obj;
+		ReserveVO other = (ReserveVO) obj;
 		if (bodyshopId == null) {
 			if (other.bodyshopId != null)
 				return false;

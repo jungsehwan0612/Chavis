@@ -6,21 +6,21 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.chavis.biz.user.vo.userVO;
+import com.chavis.biz.user.vo.UserVO;
 
 @Component("usermybatis")
-public class userDAO_MyBatis implements userDAO{
+public class UserDAO_MyBatis implements UserDAO{
 
 	@Autowired
 	SqlSession sqlSession = null;
 	
-	public userDAO_MyBatis() {
+	public UserDAO_MyBatis() {
 		System.out.println("userDAO_MyBatis 호출");
 	}
 	
 	@Override
-	public userVO login(String client_id, String password) {
-		userVO vo = new userVO();
+	public UserVO login(String client_id, String password) {
+		UserVO vo = new UserVO();
 		vo.setClientId(client_id);
 		vo.setPassword(password);
 		
@@ -28,22 +28,22 @@ public class userDAO_MyBatis implements userDAO{
 	}
 
 	@Override
-	public userVO getUser(String client_id) {
+	public UserVO getUser(String client_id) {
 		return sqlSession.selectOne("userMapper.getuser", client_id);
 	}
 
 	@Override
-	public List<userVO> getUserList() {
+	public List<UserVO> getUserList() {
 		return sqlSession.selectList("userMapper.listuser");
 	}
 
 	@Override
-	public int addUser(userVO user) {
+	public int addUser(UserVO user) {
 		return sqlSession.insert("userMapper.adduser", user);
 	}
 
 	@Override
-	public int updateUser(userVO user) {
+	public int updateUser(UserVO user) {
 		return sqlSession.update("userMapper.updateuser", user);
 	}
 

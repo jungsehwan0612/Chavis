@@ -1,5 +1,5 @@
 package com.chavis.biz.reserve.dao;
 
-public class reserveDAO_mybatis {
+public class ReserveDAO_mybatis {
 
 }

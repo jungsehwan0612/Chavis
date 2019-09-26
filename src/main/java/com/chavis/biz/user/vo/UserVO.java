@@ -1,6 +1,6 @@
 package com.chavis.biz.user.vo;
 
-public class userVO {
+public class UserVO {
 	private String client_num;
 	private String client_name;
 	private String car_type;
@@ -9,11 +9,11 @@ public class userVO {
 	private String client_id;
 	private String password;
 	
-	public userVO() {
+	public UserVO() {
 		super();
 	}
 
-	public userVO(String client_num, String client_name, String car_type, 
+	public UserVO(String client_num, String client_name, String car_type, 
 			String car_id, String tel, String client_id, String password) {
 		super();
 		this.client_num = client_num;
@@ -83,7 +83,7 @@ public class userVO {
 
 	@Override
 	public String toString() {
-		return "userVO [client_num=" + client_num + ", client_name=" + client_name + ", car_type=" + car_type
+		return "UserVO [client_num=" + client_num + ", client_name=" + client_name + ", car_type=" + car_type
 				+ ", car_id=" + car_id + ", tel=" + tel + ", client_id=" + client_id + ", password=" + password + "]";
 	}
 
@@ -109,7 +109,7 @@ public class userVO {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		userVO other = (userVO) obj;
+		UserVO other = (UserVO) obj;
 		if (car_id == null) {
 			if (other.car_id != null)
 				return false;

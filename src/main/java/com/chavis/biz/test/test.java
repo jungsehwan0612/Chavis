@@ -3,18 +3,19 @@ package com.chavis.biz.test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.chavis.biz.user.service.userService;
-import com.chavis.biz.user.vo.userVO;
+import com.chavis.biz.user.service.UserService;
+import com.chavis.biz.user.vo.UserVO;
 
 
 public class test {
 	public static void main(String[] args) throws Exception {
 		
 		String[] config = { "applicationContext.xml" };
+		@SuppressWarnings("resource")
 		ApplicationContext context = new ClassPathXmlApplicationContext(config);
 		
-		userService userService = (userService) context.getBean("userservice");
-		userVO user = new userVO();
+		UserService userService = (UserService) context.getBean("userservice");
+		UserVO user = new UserVO();
 		user.setClientNum("2");
 		user.setCarId("11가1111");
 		user.setCarType("pororo");
@@ -30,7 +31,7 @@ public class test {
 		
 		System.out.println(userService.getUser("test01"));
 		
-		userVO u2 = new userVO();
+		UserVO u2 = new UserVO();
 		u2.setClientId("test01");
 		u2.setTel("010-9876-5432");
 		userService.updateUser(u2);

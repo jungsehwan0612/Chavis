@@ -1,5 +1,5 @@
 package com.chavis.biz.car.service;
 
-public class carServiceImpl {
+public class CarServiceImpl {
 
 }

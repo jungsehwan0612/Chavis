@@ -1,11 +1,9 @@
 package com.chavis.biz.reserve.dao;
 
-import java.awt.List;
+import com.chavis.biz.reserve.vo.ReserveVO;
 
-import com.chavis.biz.reserve.vo.reserveVO;
-
-public interface reserveDAO {
-	int addReserve(reserveVO reserve);
+public interface ReserveDAO {
+	int addReserve(ReserveVO reserve);
 	
-	reserveVO getReserveId(String reserveId);
+	ReserveVO getReserveId(String reserveId);
 }

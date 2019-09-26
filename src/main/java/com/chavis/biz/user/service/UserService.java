@@ -2,18 +2,18 @@ package com.chavis.biz.user.service;
 
 import java.util.List;
 
-import com.chavis.biz.user.vo.userVO;
+import com.chavis.biz.user.vo.UserVO;
 
-public interface userService {
-	userVO login(String client_id, String password);
+public interface UserService {
+	UserVO login(String client_id, String password);
 	
-	userVO getUser(String client_id);
+	UserVO getUser(String client_id);
 	
-	int addUser(userVO user);
+	int addUser(UserVO user);
 	
-	int updateUser(userVO user);
+	int updateUser(UserVO user);
 	
 	int removeUser(String client_id);
 	
-	List<userVO> getUserList();
+	List<UserVO> getUserList();
 }

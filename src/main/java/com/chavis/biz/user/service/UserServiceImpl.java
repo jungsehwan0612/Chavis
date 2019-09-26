@@ -9,34 +9,34 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
-import com.chavis.biz.user.dao.userDAO;
-import com.chavis.biz.user.vo.userVO;
+import com.chavis.biz.user.dao.UserDAO;
+import com.chavis.biz.user.vo.UserVO;
 
 @Service("userservice")
-public class userServiceImpl implements userService {
+public class UserServiceImpl implements UserService {
 
 	@Resource(name="usermybatis")
-	userDAO dao;
+	UserDAO dao;
 	
 	@Autowired
 	ApplicationContext context;
 	
-	public userServiceImpl() {
+	public UserServiceImpl() {
 		System.out.println("userServiceImpl 호출");
 	}
-	public userServiceImpl(userDAO dao) {
+	public UserServiceImpl(UserDAO dao) {
 		this.dao = dao;
 	}
-	public userDAO getDao() {
+	public UserDAO getDao() {
 		return dao;
 	}
-	public void setDao(userDAO dao) {
+	public void setDao(UserDAO dao) {
 		this.dao = dao;
 	}
 	@Override
-	public userVO login(String client_id, String password) {
+	public UserVO login(String client_id, String password) {
 		String msg = "";
-		userVO vo = null;
+		UserVO vo = null;
 		try {
 			vo = dao.login(client_id, password);
 			
@@ -53,15 +53,15 @@ public class userServiceImpl implements userService {
 	}
 
 	@Override
-	public userVO getUser(String client_id) {
+	public UserVO getUser(String client_id) {
 		return dao.getUser(client_id);
 	}
 	@Override
-	public int addUser(userVO user) {
+	public int addUser(UserVO user) {
 		return dao.addUser(user);
 	}
 	@Override
-	public int updateUser(userVO user) {
+	public int updateUser(UserVO user) {
 		return dao.updateUser(user);
 	}
 	@Override
@@ -69,9 +69,7 @@ public class userServiceImpl implements userService {
 		return dao.removeUser(client_id);
 	}
 	@Override
-	public List<userVO> getUserList() {
+	public List<UserVO> getUserList() {
 		return dao.getUserList();
-	}
-	
-	
+	}	
 }

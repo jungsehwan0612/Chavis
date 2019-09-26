@@ -1,5 +1,5 @@
-package com.chavis.biz.carpairshop.service;
+package com.chavis.biz.carbodyshop.service;
 
-public class carpairshopServiceImpl {
+public class CarBodyshopServiceImpl {
 
 }

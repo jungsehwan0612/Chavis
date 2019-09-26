@@ -1,5 +1,5 @@
 package com.chavis.biz.car.service;
 
-public interface carService {
+public class CarService {
 
 }
