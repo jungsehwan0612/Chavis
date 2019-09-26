@@ -14,18 +14,28 @@ public class test {
 		ApplicationContext context = new ClassPathXmlApplicationContext(config);
 		
 		userService userService = (userService) context.getBean("userservice");
-		userVO user = new userVO();
-		user.setClientNum("1");
-		user.setCarId("11가1111");
-		user.setCarType("pororo");
-		user.setClientId("test01");
-		user.setClientName("테스트");
-		user.setPassword("1234");
-		user.setTel("010-1234-5678");
+//		userVO user = new userVO();
+//		user.setClientNum("2");
+//		user.setCarId("11가1111");
+//		user.setCarType("pororo");
+//		user.setClientId("test01");
+//		user.setClientName("테스트");
+//		user.setPassword("1234");
+//		user.setTel("010-1234-5678");
+//		
+//		userService.addUser(user);	
 		
-		userService.addUser(user);	
+//		for(userVO user:userService.getUserList())
+//			System.out.println(user);
 		
+		System.out.println(userService.getUser("test01"));
 		
-		System.out.println(userService.getUserList());
+//		userVO u2 = new userVO();
+//		u2.setClientId("test01");
+//		u2.setTel("010-9876-5432");
+//		userService.updateUser(u2);
+		
+		userService.removeUser("test01");
+		
 	}
 }
