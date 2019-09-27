@@ -14,9 +14,9 @@ public class test {
 		@SuppressWarnings("resource")
 		ApplicationContext context = new ClassPathXmlApplicationContext(config);
 		
-		ClientService clientService = (ClientService) context.getBean("userservice");
+		ClientService clientService = (ClientService) context.getBean("clientservice");
 		ClientVO client = new ClientVO();
-		client.setClientNum("2");
+		client.setClientNum("4");
 		client.setCarId("11가1111");
 		client.setCarType("pororo");
 		client.setClientId("test01");
@@ -26,8 +26,8 @@ public class test {
 		
 		clientService.addClient(client);	
 		
-//		for(userVO user:userService.getUserList())
-//			System.out.println(user);
+//		for(clientVO client:clientService.getclientList())
+//			System.out.println(client);
 		
 		System.out.println(clientService.getClient("test01"));
 		
@@ -36,7 +36,7 @@ public class test {
 		u2.setTel("010-9876-5432");
 		clientService.updateClient(u2);
 		
-//		userService.removeUser("test01");
+//		clientService.removeclient("test01");
 		
 	}
 }

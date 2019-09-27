@@ -2,35 +2,35 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="userMapper">
+<mapper namespace="clientMapper">
 
-	<select id="login" parameterType="com.chavis.biz.user.vo.userVO"
-		resultType="uservo">
+	<select id="login" parameterType="com.chavis.biz.client.vo.ClientVO"
+		resultType="clientvo">
 		select * from client
 		where client_id=#{password} and
 		password = #{password}
 	</select>
 
-	<select id="getuser" resultType="uservo">
+	<select id="getclient" resultType="clientvo">
 		select * from client where
 		client_id = #{client_id}
 	</select>
 
-	<insert id="adduser" parameterType="uservo">
+	<insert id="addclient" parameterType="clientvo">
 				insert into client (client_num, client_name, car_type, car_id, tel, client_id, password)
 				values (#{client_num}, #{client_name}, #{car_type}, #{car_id},
 				#{tel}, #{client_id}, #{password})
 	</insert>
 
-	<select id="listuser" resultType="uservo">
+	<select id="listclient" resultType="clientvo">
 		select * from client order by client_num desc
 	</select>
 	
-	<update id="updateuser" parameterType="uservo">
+	<update id="updateclient" parameterType="clientvo">
 		update client set tel=#{tel} where client_id =#{client_id}
 	</update>
 	
-	<update id="removeuser">
+	<update id="removeclient">
 		delete from client where client_id = #{client_id}
 	</update>
 </mapper>

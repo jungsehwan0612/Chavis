@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 import com.chavis.biz.client.vo.ClientVO;
 
-@Component("usermybatis")
+@Component("clientmybatis")
 public class ClientDAO_MyBatis implements ClientDAO{
 
 	@Autowired
@@ -23,27 +23,27 @@ public class ClientDAO_MyBatis implements ClientDAO{
 		vo.setClientId(client_id);
 		vo.setPassword(password);
 		
-		return sqlSession.selectOne("userMapper.login", vo);
+		return sqlSession.selectOne("clientMapper.login", vo);
 	}
 
 	public ClientVO getClient(String client_id) {
-		return sqlSession.selectOne("userMapper.getuser", client_id);
+		return sqlSession.selectOne("clientMapper.getclient", client_id);
 	}
 
 	public List<ClientVO> getClientList() {
-		return sqlSession.selectList("userMapper.listuser");
+		return sqlSession.selectList("clientMapper.listclient");
 	}
 
-	public int addClient(ClientVO user) {
-		return sqlSession.insert("userMapper.adduser", user);
+	public int addClient(ClientVO client) {
+		return sqlSession.insert("clientMapper.addclient", client);
 	}
 
-	public int updateClient(ClientVO user) {
-		return sqlSession.update("userMapper.updateuser", user);
+	public int updateClient(ClientVO client) {
+		return sqlSession.update("clientMapper.updateclient", client);
 	}
 
 	public int removeClient(String client_id) {
-		return sqlSession.update("userMapper.removeuser", client_id);
+		return sqlSession.update("clientMapper.removeclient", client_id);
 	}
 	
 }

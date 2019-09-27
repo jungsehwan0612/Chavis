@@ -12,17 +12,17 @@ import org.springframework.stereotype.Service;
 import com.chavis.biz.client.dao.ClientDAO;
 import com.chavis.biz.client.vo.ClientVO;
 
-@Service("userservice")
+@Service("clientservice")
 public class ClientServiceImpl implements ClientService {
 
-	@Resource(name = "usermybatis")
+	@Resource(name = "clientmybatis")
 	ClientDAO dao;
 
 	@Autowired
 	ApplicationContext context;
 
 	public ClientServiceImpl() {
-		System.out.println("userServiceImpl 호출");
+		System.out.println("clientServiceImpl 호출");
 	}
 
 	public ClientServiceImpl(ClientDAO dao) {
@@ -59,12 +59,12 @@ public class ClientServiceImpl implements ClientService {
 		return dao.getClient(client_id);
 	}
 
-	public int addClient(ClientVO user) {
-		return dao.addClient(user);
+	public int addClient(ClientVO client) {
+		return dao.addClient(client);
 	}
 
-	public int updateClient(ClientVO user) {
-		return dao.updateClient(user);
+	public int updateClient(ClientVO client) {
+		return dao.updateClient(client);
 	}
 
 	public int removeClient(String client_id) {
