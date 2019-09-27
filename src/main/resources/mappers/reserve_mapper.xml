@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="reservationMapper">
+
+    <!-- CREATE -->
+	<insert id="addReserve" parameterType="ReserveVO">
+			INSERT INTO RESERVATION (RESERVE_ID, CLIENT_ID, KEY, RESERVE_TIME, KEY_EXPIRE_TIME, REPAIR_TIME, BODYSHOP_ID)
+				VALUES (#{RESERVE_ID}, #{CLIENT_ID}, #{KEY}, #{RESERVE_TIME},
+				#{KEY_EXPIRE_TIME}, #{REPAIR_TIME}, #{BODYSHOP_ID})
+	</insert>
+    <!-- READ -->
+	<select id="getReserve" resultType="ReserveVO">
+		SELECT * FROM RESERVATION WHERE
+		RESERVE_ID = #{RESERVE_ID}
+	</select>
+
+
+	<select id="listReserve" resultType="ReserveVO">
+		SELECT * FROM RESERVATION ORDER BY RESERVE_ID DESC
+	</select>
+	<!-- UPDATE -->
+	<update id="updateReserve" parameterType="ReserveVO">
+		UPDATE RESERVATION SET KEY=#{KEY} where RESERVE_ID =#{RESERVE_ID}
+	</update>
+	<!-- DELETE -->
+	<delete id="removeReserve">
+		DELETE FROM RESERVATION WHERE RESERVE_ID = #{RESERVE_ID}
+	</delete>
+</mapper>

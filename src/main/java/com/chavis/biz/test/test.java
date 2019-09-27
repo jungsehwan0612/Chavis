@@ -6,7 +6,6 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.chavis.biz.client.service.ClientService;
 import com.chavis.biz.client.vo.ClientVO;
 
-
 public class test {
 	public static void main(String[] args) throws Exception {
 		

@@ -5,8 +5,10 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="com.chavis.biz.client.vo.ClientVO" alias="clientvo"/>
+		<typeAlias type="com.chavis.biz.reserve.vo.ReserveVO" alias="ReserveVO"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mappers/client_mapper.xml" />
+		<mapper resource="mappers/reserve_mapper.xml" />
 	</mappers>
 </configuration>
