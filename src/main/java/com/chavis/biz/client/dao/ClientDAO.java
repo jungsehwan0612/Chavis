@@ -1,6 +1,7 @@
 package com.chavis.biz.client.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.chavis.biz.client.vo.ClientVO;
 
@@ -16,4 +17,6 @@ public interface ClientDAO {
 	int updateClient(ClientVO user);
 	
 	int removeClient(String client_id);
+	
+	List<ClientVO> selectClientList(Map<String, Object> param);
 }

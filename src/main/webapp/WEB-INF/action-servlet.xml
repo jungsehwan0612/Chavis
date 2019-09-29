@@ -10,12 +10,17 @@
 
 	<context:annotation-config />
 	<context:component-scan base-package="com.chavis.biz.controllers" />
-	<mvc:annotation-driven /><!-- mvc에서 애노테이션 설정 -->
-	
+	<mvc:annotation-driven><!-- mvc에서 애노테이션 설정 -->
+		<mvc:message-converters>
+			<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"
+			p:supportedMediaTypes="application/json"></bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/view/"></property>
 		<property name="suffix" value=".jsp"></property>
 	</bean>
+	
 	
 	<!-- locale정보관리 -->
 	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver">

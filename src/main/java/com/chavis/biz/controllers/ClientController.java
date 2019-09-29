@@ -1,5 +1,9 @@
 package com.chavis.biz.controllers;
 
+
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -8,9 +12,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.chavis.biz.client.service.ClientService;
@@ -53,28 +59,20 @@ public class ClientController {
 		return "redirect:login.do";
 	}
 	
-	@RequestMapping("/Client/list.do")
-	public ModelAndView getClientList() {
-		ModelAndView view = new ModelAndView();
-		
-		view.addObject("Clients", service.getClientList());
-		view.setViewName("Client/Client_list");
-		return view;
+	@RequestMapping(value="/Client/list.do")
+	public @ResponseBody List<ClientVO> getClientList(){
+		return service.getClientList();
 	}
 
-	@RequestMapping("/Client/view.do")
-	public ModelAndView getView(@RequestParam("client_id") String client_id) {
-		ModelAndView view = new ModelAndView();
-		
-		view.addObject("Client", service.getClient(client_id));
-		view.setViewName("Client/Client_view");
-		return view;
+	@RequestMapping(value="/Client/view.do", method=RequestMethod.POST)
+	public @ResponseBody ClientVO getClient(@RequestParam("client_id") String client_id) {
+		return service.getClient(client_id);
 	}
 	
-	@RequestMapping("/Client/remove.do")
-	public String deleteClientProc(@RequestParam("client_id") String client_id) {
-		service.removeClient(client_id);
-		return "redirect:./list.do";
+	
+	@RequestMapping(value="/Client/remove.do", method=RequestMethod.POST)
+	public @ResponseBody int removeClient(@RequestParam("client_id") String client_id) {
+		return service.removeClient(client_id);
 	}
 	
 	@RequestMapping("/Client/modify.do")
@@ -100,5 +98,10 @@ public class ClientController {
 		// ClientController 예외발생시 호출됨
 		model.addAttribute("exception", exception);
 		return "error";
+	}
+	
+	@RequestMapping(value="/Client/clientlist", method = RequestMethod.POST)
+	public @ResponseBody List<ClientVO> selectClientList(@RequestBody Map<String, Object> param){
+		return service.selectClientList(param);
 	}
 }

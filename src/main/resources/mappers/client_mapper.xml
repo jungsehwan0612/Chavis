@@ -33,4 +33,17 @@
 	<update id="removeclient">
 		delete from client where client_id = #{client_id}
 	</update>
+	
+	<select id="selectClientList" parameterType="map" resultType="clientvo">
+		select * 
+		  from (
+				select ROWNUM AS rnum, A.* from client A
+		 <where>
+		 	<if test="client_id != null and client_id != ''">client_id = #{client_id}</if>
+		 	<if test="client_name != null and client_name != ''">client_name like '%' ||  #{client_name} || '%' </if>
+		 </where>
+		 ) T 
+		 <!-- < 부등호를 사용하기 위해서는 cdata를 이용해야함 -->
+		 WHERE T.rnum >= #{startIndex} and T.rnum <![CDATA[<]]> #{lastIndex}
+	</select>
 </mapper>

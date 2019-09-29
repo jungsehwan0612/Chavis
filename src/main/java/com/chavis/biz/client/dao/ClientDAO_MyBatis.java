@@ -1,6 +1,7 @@
 package com.chavis.biz.client.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +45,11 @@ public class ClientDAO_MyBatis implements ClientDAO{
 
 	public int removeClient(String client_id) {
 		return sqlSession.update("clientMapper.removeclient", client_id);
+	}
+
+	@Override
+	public List<ClientVO> selectClientList(Map<String, Object> param) {
+		return sqlSession.selectList("clientMapper.selectClientList", param);
 	}
 	
 }

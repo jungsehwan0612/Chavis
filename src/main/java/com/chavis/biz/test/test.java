@@ -14,27 +14,27 @@ public class test {
 		ApplicationContext context = new ClassPathXmlApplicationContext(config);
 		
 		ClientService clientService = (ClientService) context.getBean("clientservice");
-		ClientVO client = new ClientVO();
-		client.setClientNum("4");
-		client.setCarId("11가1111");
-		client.setCarType("pororo");
-		client.setClientId("test01");
-		client.setClientName("테스트");
-		client.setPassword("1234");
-		client.setTel("010-1234-5678");
+//		ClientVO client = new ClientVO();
+//		client.setClientNum("4");
+//		client.setCarId("11가1111");
+//		client.setCarType("pororo");
+//		client.setClientId("test01");
+//		client.setClientName("테스트");
+//		client.setPassword("1234");
+//		client.setTel("010-1234-5678");
+//		
+//		clientService.addClient(client);	
 		
-		clientService.addClient(client);	
+		for(ClientVO client:clientService.getClientList())
+			System.out.println(client);
 		
-//		for(clientVO client:clientService.getclientList())
-//			System.out.println(client);
-		
-		System.out.println(clientService.getClient("test01"));
-		
-		ClientVO u2 = new ClientVO();
-		u2.setClientId("test01");
-		u2.setTel("010-9876-5432");
-		clientService.updateClient(u2);
-		
+//		System.out.println(clientService.getClient("test01"));
+//		
+//		ClientVO u2 = new ClientVO();
+//		u2.setClientId("test01");
+//		u2.setTel("010-9876-5432");
+//		clientService.updateClient(u2);
+//		
 //		clientService.removeclient("test01");
 		
 	}
