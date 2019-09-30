@@ -21,7 +21,7 @@ public class ClientDAO_MyBatis implements ClientDAO{
 	
 	public ClientVO login(String client_id, String password) {
 		ClientVO vo = new ClientVO();
-		vo.setClientId(client_id);
+		vo.setClient_id(client_id);
 		vo.setPassword(password);
 		
 		return sqlSession.selectOne("clientMapper.login", vo);

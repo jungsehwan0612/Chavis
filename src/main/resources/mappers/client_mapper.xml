@@ -23,7 +23,7 @@
 	</insert>
 
 	<select id="listclient" resultType="clientvo">
-		select * from client order by client_num desc
+		select * from client order by to_number(client_num) asc
 	</select>
 	
 	<update id="updateclient" parameterType="clientvo">

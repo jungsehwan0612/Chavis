@@ -45,7 +45,7 @@ public class ClientServiceImpl implements ClientService {
 			vo = dao.login(client_id, password);
 
 			if (vo != null) {
-				msg = context.getMessage("login.success", new Object[] { vo.getClientName() }, Locale.KOREA);
+				msg = context.getMessage("login.success", new Object[] { vo.getClient_name() }, Locale.KOREA);
 			} else {
 				msg = context.getMessage("login.fail", new Object[] { client_id }, Locale.KOREA);
 			}

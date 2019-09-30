@@ -10,7 +10,7 @@ public class test {
 	public static void main(String[] args) throws Exception {
 		
 		String[] config = { "applicationContext.xml" };
-		@SuppressWarnings("resource")
+//		@SuppressWarnings("resource")
 		ApplicationContext context = new ClassPathXmlApplicationContext(config);
 		
 		ClientService clientService = (ClientService) context.getBean("clientservice");
@@ -24,11 +24,11 @@ public class test {
 //		client.setTel("010-1234-5678");
 //		
 //		clientService.addClient(client);	
-		
+//		
 		for(ClientVO client:clientService.getClientList())
 			System.out.println(client);
 		
-//		System.out.println(clientService.getClient("test01"));
+		System.out.println(clientService.getClient("test01"));
 //		
 //		ClientVO u2 = new ClientVO();
 //		u2.setClientId("test01");

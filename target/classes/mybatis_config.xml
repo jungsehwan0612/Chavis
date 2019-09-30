@@ -3,12 +3,15 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+
 	<typeAliases>
-		<typeAlias type="com.chavis.biz.client.vo.ClientVO" alias="clientvo"/>
-		<typeAlias type="com.chavis.biz.reserve.vo.ReserveVO" alias="ReserveVO"/>
+		<typeAlias type="com.chavis.biz.client.vo.ClientVO"
+			alias="clientvo" />
+		<typeAlias type="com.chavis.biz.reserve.vo.ReserveVO"
+			alias="ReserveVO" />
 	</typeAliases>
 	<mappers>
-		<mapper resource="mappers/client_mapper.xml" />
-		<mapper resource="mappers/reserve_mapper.xml" />
+		<mapper resource="./mappers/client_mapper.xml" />
+		<mapper resource="./mappers/reserve_mapper.xml" />
 	</mappers>
 </configuration>

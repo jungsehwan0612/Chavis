@@ -1,6 +1,5 @@
 package com.chavis.biz.controllers;
 
-
 import java.util.List;
 import java.util.Map;
 
@@ -8,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -34,9 +32,9 @@ public class ClientController {
 	}
 	
 	@RequestMapping(value = "/login.do",method = RequestMethod.POST)
-	public String loginProc(ClientVO vo,HttpServletRequest request) throws Exception {
+	public String loginProc(ClientVO vo, HttpServletRequest request) throws Exception {
 		
-		ClientVO Client = service.login(vo.getClientId(), vo.getPassword());
+		ClientVO Client = service.login(vo.getClient_id(), vo.getPassword());
 		if(Client != null) {
 			request.getSession().setAttribute("Client", Client);
 			request.getSession().setAttribute("login", Client);
@@ -60,6 +58,7 @@ public class ClientController {
 		return "redirect:login.do";
 	}
 	
+	// 완료
 	@RequestMapping(value="/Client/list.do")
 	public @ResponseBody List<ClientVO> getClientList(){
 		return service.getClientList();
@@ -89,7 +88,7 @@ public class ClientController {
 	public ModelAndView update(@ModelAttribute("Client") ClientVO vo) {
 		ModelAndView view = new ModelAndView();
 		service.updateClient(vo);
-		view.addObject("Client", service.getClient(vo.getClientId()));
+		view.addObject("Client", service.getClient(vo.getClient_id()));
 		view.setViewName("Client/Client_view");
 		return view;
 	}

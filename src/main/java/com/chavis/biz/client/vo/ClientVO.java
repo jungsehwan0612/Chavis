@@ -25,35 +25,35 @@ public class ClientVO {
 		this.password = password;
 	}
 
-	public String getClientNum() {
+	public String getClient_num() {
 		return client_num;
 	}
 
-	public void setClientNum(String client_num) {
+	public void setClient_num(String client_num) {
 		this.client_num = client_num;
 	}
 
-	public String getClientName() {
+	public String getClient_name() {
 		return client_name;
 	}
 
-	public void setClientName(String client_name) {
+	public void setClient_name(String client_name) {
 		this.client_name = client_name;
 	}
 
-	public String getCarType() {
+	public String getCar_type() {
 		return car_type;
 	}
 
-	public void setCarType(String car_type) {
+	public void setCar_type(String car_type) {
 		this.car_type = car_type;
 	}
 
-	public String getCarId() {
+	public String getCar_id() {
 		return car_id;
 	}
 
-	public void setCarId(String car_id) {
+	public void setCar_id(String car_id) {
 		this.car_id = car_id;
 	}
 
@@ -65,11 +65,11 @@ public class ClientVO {
 		this.tel = tel;
 	}
 
-	public String getClientId() {
+	public String getClient_id() {
 		return client_id;
 	}
 
-	public void setClientId(String client_id) {
+	public void setClient_id(String client_id) {
 		this.client_id = client_id;
 	}
 
