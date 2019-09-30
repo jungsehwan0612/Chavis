@@ -8,10 +8,10 @@ public interface ReserveDAO {
 	// Create
 	int addReserve(ReserveVO reserve);
 	// Read
-	ReserveVO getReserve(String reserveID);
+	ReserveVO getReserve(String reserve_id);
 	List<ReserveVO> getReserveList();
 	// Update
-	int updateReserve(ReserveVO reserve);
+	int updateReserve(ReserveVO reserve_id);
 	// Delete
-	int removeReserve(String reserveID);
+	int removeReserve(String reserve_id);
 }

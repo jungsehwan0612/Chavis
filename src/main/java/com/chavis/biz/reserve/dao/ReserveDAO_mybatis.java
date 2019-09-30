@@ -16,27 +16,27 @@ public class ReserveDAO_mybatis implements ReserveDAO {
 
     @Override
     public int addReserve(ReserveVO reserve) {
-        return sqlSession.insert("reserveMapper.addreserve",reserve);
+        return sqlSession.insert("reserveMapper.addReserve",reserve);
     }
 
     @Override
-    public ReserveVO getReserve(String reserveID) {
-        return sqlSession.selectOne("reserveMapper.getreserve", reserveID);
+    public ReserveVO getReserve(String reserve_id) {
+        return sqlSession.selectOne("reserveMapper.getReserve", reserve_id);
     }
 
     @Override
     public List<ReserveVO> getReserveList() {
-        return sqlSession.selectList("reserveMapper.listreserve");
+        return sqlSession.selectList("reserveMapper.listReserve");
     }
 
     @Override
     public int updateReserve(ReserveVO reserve) {
-        return sqlSession.update("reserveMapper.updatereserve", reserve);
+        return sqlSession.update("reserveMapper.updateReserve", reserve);
     }
 
     @Override
-    public int removeReserve(String reserveID) {
-        return sqlSession.delete("reserveMapper.removeclient", reserveID);
+    public int removeReserve(String reserve_id) {
+        return sqlSession.delete("reserveMapper.removeReserve", reserve_id);
     }
 
 }

@@ -1,44 +1,44 @@
 package com.chavis.biz.reserve.vo;
 
 public class ReserveVO {
-	private String reserveId;
-	private String clientId;
+	private String reserve_id;
+	private String client_id;
 	private String key;
-	private String reserveTime;
-	private String keyExpireTime;
-	private String repairTime;
-	private String bodyshopId;
+	private String reserve_time;
+	private String key_expire_time;
+	private String repair_time;
+	private String bodyshop_id;
 	
 	public ReserveVO() {
 		super();
 	}
 
-	public ReserveVO(String reserveId, String clientId, String key, String reserveTime, String keyExpireTime,
-			String repairTime, String bodyshopId) {
+	public ReserveVO(String reserve_id, String client_id, String key, String reserve_time, String key_expire_time,
+			String repair_time, String bodyshop_id) {
 		super();
-		this.reserveId = reserveId;
-		this.clientId = clientId;
+		this.reserve_id = reserve_id;
+		this.client_id = client_id;
 		this.key = key;
-		this.reserveTime = reserveTime;
-		this.keyExpireTime = keyExpireTime;
-		this.repairTime = repairTime;
-		this.bodyshopId = bodyshopId;
+		this.reserve_time = reserve_time;
+		this.key_expire_time = key_expire_time;
+		this.repair_time = repair_time;
+		this.bodyshop_id = bodyshop_id;
 	}
 
-	public String getReserveId() {
-		return reserveId;
+	public String getReserve_id() {
+		return reserve_id;
 	}
 
-	public void setReserveId(String reserveId) {
-		this.reserveId = reserveId;
+	public void setReserve_id(String reserve_id) {
+		this.reserve_id = reserve_id;
 	}
 
-	public String getClientId() {
-		return clientId;
+	public String getClient_id() {
+		return client_id;
 	}
 
-	public void setClientId(String clientId) {
-		this.clientId = clientId;
+	public void setClient_id(String client_id) {
+		this.client_id = client_id;
 	}
 
 	public String getKey() {
@@ -49,56 +49,56 @@ public class ReserveVO {
 		this.key = key;
 	}
 
-	public String getReserveTime() {
-		return reserveTime;
+	public String getReserve_time() {
+		return reserve_time;
 	}
 
-	public void setReserveTime(String reserveTime) {
-		this.reserveTime = reserveTime;
+	public void setReserve_time(String reserve_time) {
+		this.reserve_time = reserve_time;
 	}
 
-	public String getKeyExpireTime() {
-		return keyExpireTime;
+	public String getKey_expire_time() {
+		return key_expire_time;
 	}
 
-	public void setKeyExpireTime(String keyExpireTime) {
-		this.keyExpireTime = keyExpireTime;
+	public void setKey_expire_time(String key_expire_time) {
+		this.key_expire_time = key_expire_time;
 	}
 
-	public String getRepairTime() {
-		return repairTime;
+	public String getRepair_time() {
+		return repair_time;
 	}
 
-	public void setRepairTime(String repairTime) {
-		this.repairTime = repairTime;
+	public void setRepair_time(String repair_time) {
+		this.repair_time = repair_time;
 	}
 
-	public String getBodyshopId() {
-		return bodyshopId;
+	public String getBodyshop_id() {
+		return bodyshop_id;
 	}
 
-	public void setBodyshopId(String bodyshopId) {
-		this.bodyshopId = bodyshopId;
+	public void setBodyshop_id(String bodyshop_id) {
+		this.bodyshop_id = bodyshop_id;
 	}
 
 	@Override
 	public String toString() {
-		return "reserveVO [reserveId=" + reserveId + ", clientId=" + clientId + ", key=" + key + ", reserveTime="
-				+ reserveTime + ", keyExpireTime=" + keyExpireTime + ", repairTime=" + repairTime + ", bodyshopId="
-				+ bodyshopId + "]";
+		return "ReserveVO [reserve_id=" + reserve_id + ", client_id=" + client_id + ", key=" + key + ", reserve_time="
+				+ reserve_time + ", key_expire_time=" + key_expire_time + ", repair_time=" + repair_time
+				+ ", bodyshop_id=" + bodyshop_id + "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((bodyshopId == null) ? 0 : bodyshopId.hashCode());
-		result = prime * result + ((clientId == null) ? 0 : clientId.hashCode());
+		result = prime * result + ((bodyshop_id == null) ? 0 : bodyshop_id.hashCode());
+		result = prime * result + ((client_id == null) ? 0 : client_id.hashCode());
 		result = prime * result + ((key == null) ? 0 : key.hashCode());
-		result = prime * result + ((keyExpireTime == null) ? 0 : keyExpireTime.hashCode());
-		result = prime * result + ((repairTime == null) ? 0 : repairTime.hashCode());
-		result = prime * result + ((reserveId == null) ? 0 : reserveId.hashCode());
-		result = prime * result + ((reserveTime == null) ? 0 : reserveTime.hashCode());
+		result = prime * result + ((key_expire_time == null) ? 0 : key_expire_time.hashCode());
+		result = prime * result + ((repair_time == null) ? 0 : repair_time.hashCode());
+		result = prime * result + ((reserve_id == null) ? 0 : reserve_id.hashCode());
+		result = prime * result + ((reserve_time == null) ? 0 : reserve_time.hashCode());
 		return result;
 	}
 
@@ -111,43 +111,47 @@ public class ReserveVO {
 		if (getClass() != obj.getClass())
 			return false;
 		ReserveVO other = (ReserveVO) obj;
-		if (bodyshopId == null) {
-			if (other.bodyshopId != null)
+		if (bodyshop_id == null) {
+			if (other.bodyshop_id != null)
 				return false;
-		} else if (!bodyshopId.equals(other.bodyshopId))
+		} else if (!bodyshop_id.equals(other.bodyshop_id))
 			return false;
-		if (clientId == null) {
-			if (other.clientId != null)
+		if (client_id == null) {
+			if (other.client_id != null)
 				return false;
-		} else if (!clientId.equals(other.clientId))
+		} else if (!client_id.equals(other.client_id))
 			return false;
 		if (key == null) {
 			if (other.key != null)
 				return false;
 		} else if (!key.equals(other.key))
 			return false;
-		if (keyExpireTime == null) {
-			if (other.keyExpireTime != null)
+		if (key_expire_time == null) {
+			if (other.key_expire_time != null)
 				return false;
-		} else if (!keyExpireTime.equals(other.keyExpireTime))
+		} else if (!key_expire_time.equals(other.key_expire_time))
 			return false;
-		if (repairTime == null) {
-			if (other.repairTime != null)
+		if (repair_time == null) {
+			if (other.repair_time != null)
 				return false;
-		} else if (!repairTime.equals(other.repairTime))
+		} else if (!repair_time.equals(other.repair_time))
 			return false;
-		if (reserveId == null) {
-			if (other.reserveId != null)
+		if (reserve_id == null) {
+			if (other.reserve_id != null)
 				return false;
-		} else if (!reserveId.equals(other.reserveId))
+		} else if (!reserve_id.equals(other.reserve_id))
 			return false;
-		if (reserveTime == null) {
-			if (other.reserveTime != null)
+		if (reserve_time == null) {
+			if (other.reserve_time != null)
 				return false;
-		} else if (!reserveTime.equals(other.reserveTime))
+		} else if (!reserve_time.equals(other.reserve_time))
 			return false;
 		return true;
 	}
+
+
+
+	
 	
 	
 }

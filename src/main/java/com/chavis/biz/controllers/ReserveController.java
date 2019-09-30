@@ -47,7 +47,7 @@ public class ReserveController {
 
 	@ExceptionHandler(Exception.class)
 	public String Ex(Exception exception,Model model) {
-		// ClientController 예외발생시 호출됨
+		// ReserveController 예외발생시 호출됨
 		model.addAttribute("exception", exception);
 		return "error";
 	}

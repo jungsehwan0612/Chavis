@@ -9,7 +9,9 @@ import com.chavis.biz.reserve.vo.ReserveVO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.stereotype.Service;
 
+@Service("reserveservice")
 public class ReserveServiceImpl implements ReserveService {
 
     @Resource(name = "reservemybatis")
@@ -29,8 +31,8 @@ public class ReserveServiceImpl implements ReserveService {
     }
 
     @Override
-    public ReserveVO getReserve(String reserveID) {
-        return dao.getReserve(reserveID);
+    public ReserveVO getReserve(String reserve_id) {
+        return dao.getReserve(reserve_id);
     }
 
     @Override
@@ -44,8 +46,8 @@ public class ReserveServiceImpl implements ReserveService {
     }
 
     @Override
-    public int removeReserve(String reserveID) {
-        return dao.removeReserve(reserveID);
+    public int removeReserve(String reserve_id) {
+        return dao.removeReserve(reserve_id);
     }
 
 }

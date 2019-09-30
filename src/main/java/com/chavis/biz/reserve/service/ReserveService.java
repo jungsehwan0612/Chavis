@@ -8,10 +8,10 @@ public interface ReserveService {
     // Create
     int addReserve(ReserveVO reserve);
     // Read
-    ReserveVO getReserve(String reserveID);
+    ReserveVO getReserve(String reserve_id);
     List<ReserveVO> getReserveList();
     // Update
     int updateReserve(ReserveVO reserve);
     // Delete
-    int removeReserve(String reseveID);
+    int removeReserve(String reseve_id);
 }
