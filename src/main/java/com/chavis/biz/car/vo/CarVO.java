@@ -1,11 +1,11 @@
 package com.chavis.biz.car.vo;
 
 public class CarVO {
-	private String carId;
-	private String tireDistance;
-	private String wiperDistance;
-	private String coolerLeft;
-	private String engineOilLeft;
+	private String car_id;
+	private String tire_change_distance;
+	private String wiper_change_distance;
+	private String cooler_left;
+	private String engine_oil_left;
 	private String distance;
 	
 	public CarVO() {
@@ -14,52 +14,52 @@ public class CarVO {
 	public CarVO(String carId, String tireDistance, String wiperDistance, String coolerLeft, String engineOilLeft,
 			String distance) {
 		super();
-		this.carId = carId;
-		this.tireDistance = tireDistance;
-		this.wiperDistance = wiperDistance;
-		this.coolerLeft = coolerLeft;
-		this.engineOilLeft = engineOilLeft;
+		this.car_id = carId;
+		this.tire_change_distance = tireDistance;
+		this.wiper_change_distance = wiperDistance;
+		this.cooler_left = coolerLeft;
+		this.engine_oil_left = engineOilLeft;
 		this.distance = distance;
 	}
 
-	public String getCarId() {
-		return carId;
+	public String getCar_id() {
+		return car_id;
 	}
 
-	public void setCarId(String carId) {
-		this.carId = carId;
+	public void setCar_id(String carId) {
+		this.car_id = carId;
 	}
 
-	public String getTireDistance() {
-		return tireDistance;
+	public String getTire_change_distance() {
+		return tire_change_distance;
 	}
 
-	public void setTireDistance(String tireDistance) {
-		this.tireDistance = tireDistance;
+	public void setTire_change_distance(String tireDistance) {
+		this.tire_change_distance = tireDistance;
 	}
 
-	public String getWiperDistance() {
-		return wiperDistance;
+	public String getWiper_change_distance() {
+		return wiper_change_distance;
 	}
 
-	public void setWiperDistance(String wiperDistance) {
-		this.wiperDistance = wiperDistance;
+	public void setWiper_change_distance(String wiperDistance) {
+		this.wiper_change_distance = wiperDistance;
 	}
 
-	public String getCoolerLeft() {
-		return coolerLeft;
+	public String getCooler_left() {
+		return cooler_left;
 	}
 
-	public void setCoolerLeft(String coolerLeft) {
-		this.coolerLeft = coolerLeft;
+	public void setCooler_left(String coolerLeft) {
+		this.cooler_left = coolerLeft;
 	}
 
-	public String getEngineOilLeft() {
-		return engineOilLeft;
+	public String getEngineoil_left() {
+		return engine_oil_left;
 	}
 
-	public void setEngineOilLeft(String engineOilLeft) {
-		this.engineOilLeft = engineOilLeft;
+	public void setEngineoil_left(String engineOilLeft) {
+		this.engine_oil_left = engineOilLeft;
 	}
 
 	public String getDistance() {
@@ -72,20 +72,20 @@ public class CarVO {
 
 	@Override
 	public String toString() {
-		return "carVO [carId=" + carId + ", tireDistance=" + tireDistance + ", wiperDistance=" + wiperDistance
-				+ ", coolerLeft=" + coolerLeft + ", engineOilLeft=" + engineOilLeft + ", distance=" + distance + "]";
+		return "carVO [carId=" + car_id + ", tireDistance=" + tire_change_distance + ", wiperDistance=" + wiper_change_distance
+				+ ", coolerLeft=" + cooler_left + ", engineOilLeft=" + engine_oil_left + ", distance=" + distance + "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((carId == null) ? 0 : carId.hashCode());
-		result = prime * result + ((coolerLeft == null) ? 0 : coolerLeft.hashCode());
+		result = prime * result + ((car_id == null) ? 0 : car_id.hashCode());
+		result = prime * result + ((cooler_left == null) ? 0 : cooler_left.hashCode());
 		result = prime * result + ((distance == null) ? 0 : distance.hashCode());
-		result = prime * result + ((engineOilLeft == null) ? 0 : engineOilLeft.hashCode());
-		result = prime * result + ((tireDistance == null) ? 0 : tireDistance.hashCode());
-		result = prime * result + ((wiperDistance == null) ? 0 : wiperDistance.hashCode());
+		result = prime * result + ((engine_oil_left == null) ? 0 : engine_oil_left.hashCode());
+		result = prime * result + ((tire_change_distance == null) ? 0 : tire_change_distance.hashCode());
+		result = prime * result + ((wiper_change_distance == null) ? 0 : wiper_change_distance.hashCode());
 		return result;
 	}
 
@@ -98,35 +98,35 @@ public class CarVO {
 		if (getClass() != obj.getClass())
 			return false;
 		CarVO other = (CarVO) obj;
-		if (carId == null) {
-			if (other.carId != null)
+		if (car_id == null) {
+			if (other.car_id != null)
 				return false;
-		} else if (!carId.equals(other.carId))
+		} else if (!car_id.equals(other.car_id))
 			return false;
-		if (coolerLeft == null) {
-			if (other.coolerLeft != null)
+		if (cooler_left == null) {
+			if (other.cooler_left != null)
 				return false;
-		} else if (!coolerLeft.equals(other.coolerLeft))
+		} else if (!cooler_left.equals(other.cooler_left))
 			return false;
 		if (distance == null) {
 			if (other.distance != null)
 				return false;
 		} else if (!distance.equals(other.distance))
 			return false;
-		if (engineOilLeft == null) {
-			if (other.engineOilLeft != null)
+		if (engine_oil_left == null) {
+			if (other.engine_oil_left != null)
 				return false;
-		} else if (!engineOilLeft.equals(other.engineOilLeft))
+		} else if (!engine_oil_left.equals(other.engine_oil_left))
 			return false;
-		if (tireDistance == null) {
-			if (other.tireDistance != null)
+		if (tire_change_distance == null) {
+			if (other.tire_change_distance != null)
 				return false;
-		} else if (!tireDistance.equals(other.tireDistance))
+		} else if (!tire_change_distance.equals(other.tire_change_distance))
 			return false;
-		if (wiperDistance == null) {
-			if (other.wiperDistance != null)
+		if (wiper_change_distance == null) {
+			if (other.wiper_change_distance != null)
 				return false;
-		} else if (!wiperDistance.equals(other.wiperDistance))
+		} else if (!wiper_change_distance.equals(other.wiper_change_distance))
 			return false;
 		return true;
 	}

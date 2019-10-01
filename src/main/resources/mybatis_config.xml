@@ -9,8 +9,10 @@
 			alias="clientvo" />
 		<typeAlias type="com.chavis.biz.reserve.vo.ReserveVO"
 			alias="ReserveVO" />
+		<typeAlias type="com.chavis.biz.car.vo.CarVO" alias="carvo"/>
 	</typeAliases>
 	<mappers>
+    	<mapper resource="./mappers/car_mapper.xml"/>
 		<mapper resource="./mappers/client_mapper.xml" />
 		<mapper resource="./mappers/reserve_mapper.xml" />
 	</mappers>
