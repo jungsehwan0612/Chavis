@@ -31,7 +31,7 @@ public class ClientController {
 		
 		ClientVO Client = service.login(vo.getClient_id(), vo.getPassword());
 		if(Client != null) {
-			request.getSession().setAttribute("Client", Client);
+			request.getSession().setAttribute("client", Client);
 			request.getSession().setAttribute("login", Client);
 			
 			return "초기화면으로";
@@ -54,8 +54,9 @@ public class ClientController {
 	}
 	
 	//회원가입
-	@RequestMapping(value = "/user/add.do", method = RequestMethod.POST)
-	public String addClient(@ModelAttribute("user") ClientVO client,HttpServletRequest request,BindingResult errors) {	
+	@RequestMapping(value = "/Client/add.do", method = RequestMethod.POST)
+	public String addClient(@ModelAttribute("client") ClientVO client, 
+								HttpServletRequest request, BindingResult errors) {	
 
 		new ClientValidator().validate(client, errors);
 		if(errors.hasErrors()) {

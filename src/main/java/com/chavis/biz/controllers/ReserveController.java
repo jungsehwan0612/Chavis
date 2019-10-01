@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.chavis.biz.reserve.service.ReserveService;
@@ -19,13 +20,15 @@ public class ReserveController {
 	@Autowired
 	ReserveService service;
 	
-	@RequestMapping(value = "/Reserve/add.do", method = RequestMethod.GET)
-	public int addReserve(ReserveVO reserve) {	
-		return service.addReserve(reserve);
+	@RequestMapping(value = "/Reserve/add.do", method = RequestMethod.POST)
+	public @ResponseBody ReserveVO addReserve(@RequestParam("ReverseVO") ReserveVO reserve) {
+		service.addReserve(reserve);
+		return service.getReserve(reserve.getReserve_id());
 	}
 	
 	@RequestMapping(value="/Reserve/list.do")
 	public @ResponseBody List<ReserveVO> getReserveList(){
+		
 		return service.getReserveList();
 	}
 

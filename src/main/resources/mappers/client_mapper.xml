@@ -7,7 +7,7 @@
 	<select id="login" parameterType="com.chavis.biz.client.vo.ClientVO"
 		resultType="clientvo">
 		select * from client
-		where client_id=#{password} and
+		where client_id=#{client_id} and
 		password = #{password}
 	</select>
 
@@ -18,7 +18,7 @@
 
 	<insert id="addclient" parameterType="clientvo">
 				insert into client (client_num, client_name, car_type, car_id, tel, client_id, password)
-				values (#{client_num}, #{client_name}, #{car_type}, #{car_id},
+				values ((select nvl(max(client_num),0)+1 from client), #{client_name}, #{car_type}, #{car_id},
 				#{tel}, #{client_id}, #{password})
 	</insert>
 
