@@ -43,7 +43,7 @@ public class ClientDAO_MyBatis implements ClientDAO{
 		return sqlSession.update("clientMapper.updateclient", client);
 	}
 
-	public int removeClient(String client_id) {
+	public int removeClient(ClientVO client_id) {
 		return sqlSession.update("clientMapper.removeclient", client_id);
 	}
 

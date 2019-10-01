@@ -1,5 +1,8 @@
 package com.chavis.biz.test;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -28,8 +31,13 @@ public class test {
 		for(ClientVO client:clientService.getClientList())
 			System.out.println(client);
 		
-		System.out.println(clientService.getClient("test01"));
+		System.out.println("--------------------------");
+		Map<String, String> map = new HashMap<String, String>();
+//		map.put("client_id", "test01");
+//		System.out.println(clientService.getClient(map));
 //		
+		clientService.getClient("test01");
+		
 //		ClientVO u2 = new ClientVO();
 //		u2.setClientId("test01");
 //		u2.setTel("010-9876-5432");

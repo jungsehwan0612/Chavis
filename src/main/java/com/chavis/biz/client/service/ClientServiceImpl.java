@@ -68,7 +68,7 @@ public class ClientServiceImpl implements ClientService {
 		return dao.updateClient(client);
 	}
 
-	public int removeClient(String client_id) {
+	public int removeClient(ClientVO client_id) {
 		return dao.removeClient(client_id);
 	}
 

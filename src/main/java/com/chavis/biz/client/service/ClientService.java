@@ -14,7 +14,7 @@ public interface ClientService {
 	
 	int updateClient(ClientVO user);
 	
-	int removeClient(String client_id);
+	int removeClient(ClientVO client_id);
 	
 	List<ClientVO> getClientList();
 	

@@ -16,7 +16,7 @@ public interface ClientDAO {
 	
 	int updateClient(ClientVO user);
 	
-	int removeClient(String client_id);
+	int removeClient(ClientVO client_id);
 	
 	List<ClientVO> selectClientList(Map<String, Object> param);
 }
