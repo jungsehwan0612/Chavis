@@ -116,4 +116,9 @@ public class CarDAO_mybatis implements CarDAO {
 	public int deleteCar(int car_no) {
 		return sqlSession.delete("carMapper.removeCar", car_no);
 	}
+	
+	@Override
+	public int getCarNo(String car_id) {
+		return sqlSession.selectOne("carMapper.getCarNo", car_id);
+	}
 }

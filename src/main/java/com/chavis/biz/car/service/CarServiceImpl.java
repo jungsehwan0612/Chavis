@@ -93,4 +93,10 @@ public class CarServiceImpl implements CarService {
 		return dao.deleteCar(car_no);
 	}
 
+
+	@Override
+	public int getCarNo(String car_id) {
+		return dao.getCarNo(car_id);
+	}
+	
 }

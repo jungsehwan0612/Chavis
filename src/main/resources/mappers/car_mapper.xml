@@ -36,4 +36,9 @@ SELECT * FROM CAR WHERE CAR_NO = #{CAR_NO}
 	<delete id="removeCar">
 		DELETE FROM CAR WHERE CAR_NO = #{CAR_NO}
 	</delete>
+	
+	<!-- GET CAR_NO -->
+	<select id="getCarNo" parameterType="String" resultType="Integer">
+		SELECT CAR_NO FROM CAR WHERE CAR_ID = #{CAR_ID}
+	</select>
 </mapper>
