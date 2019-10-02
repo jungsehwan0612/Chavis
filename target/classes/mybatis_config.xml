@@ -5,13 +5,10 @@
 <configuration>
 
 	<typeAliases>
-		<typeAlias type="com.chavis.biz.member.vo.MemberVO"
-			alias="MemberVO" />
-		<typeAlias type="com.chavis.biz.reservation.vo.ReservationVO"
-			alias="ReservationVO" />
-		<typeAlias type="com.chavis.biz.carbodyshop.vo.CarBodyshopVO"
-			alias="carbodyshopvo" />
-		<typeAlias type="com.chavis.biz.car.vo.CarVO" alias="carvo"/>
+		<typeAlias type="com.chavis.biz.member.vo.MemberVO" alias="MemberVO" />
+		<typeAlias type="com.chavis.biz.reservation.vo.ReservationVO" alias="ReservationVO" />
+		<typeAlias type="com.chavis.biz.carbodyshop.vo.CarBodyshopVO" alias="carbodyshopvo" />
+		<typeAlias type="com.chavis.biz.car.vo.CarVO" alias="CarVO"/>
 	</typeAliases>
 	<mappers>
     	<mapper resource="./mappers/car_mapper.xml"/>

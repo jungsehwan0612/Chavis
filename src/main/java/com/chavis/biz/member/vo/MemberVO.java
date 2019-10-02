@@ -6,21 +6,18 @@ public class MemberVO {
 	private String member_pw;
 	private String member_mname;
 	private String member_phonenumber;
-	private String car_no;
-	
+
 	public MemberVO() {
 		super();
 	}
 
-	public MemberVO(int member_no, String member_id, String member_pw, String member_mname, String member_phonenumber,
-			String car_no) {
+	public MemberVO(int member_no, String member_id, String member_pw, String member_mname, String member_phonenumber) {
 		super();
 		this.member_no = member_no;
 		this.member_id = member_id;
 		this.member_pw = member_pw;
 		this.member_mname = member_mname;
 		this.member_phonenumber = member_phonenumber;
-		this.car_no = car_no;
 	}
 
 	public int getMember_no() {
@@ -63,19 +60,10 @@ public class MemberVO {
 		this.member_phonenumber = member_phonenumber;
 	}
 
-	public String getCar_no() {
-		return car_no;
-	}
-
-	public void setCar_no(String car_no) {
-		this.car_no = car_no;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((car_no == null) ? 0 : car_no.hashCode());
 		result = prime * result + ((member_id == null) ? 0 : member_id.hashCode());
 		result = prime * result + ((member_mname == null) ? 0 : member_mname.hashCode());
 		result = prime * result + member_no;
@@ -93,11 +81,6 @@ public class MemberVO {
 		if (getClass() != obj.getClass())
 			return false;
 		MemberVO other = (MemberVO) obj;
-		if (car_no == null) {
-			if (other.car_no != null)
-				return false;
-		} else if (!car_no.equals(other.car_no))
-			return false;
 		if (member_id == null) {
 			if (other.member_id != null)
 				return false;
@@ -126,7 +109,6 @@ public class MemberVO {
 	@Override
 	public String toString() {
 		return "MemberVO [member_no=" + member_no + ", member_id=" + member_id + ", member_pw=" + member_pw
-				+ ", member_mname=" + member_mname + ", member_phonenumber=" + member_phonenumber + ", car_no=" + car_no
-				+ "]";
+				+ ", member_mname=" + member_mname + ", member_phonenumber=" + member_phonenumber + "]";
 	}
 }

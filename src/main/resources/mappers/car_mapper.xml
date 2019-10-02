@@ -1,34 +1,39 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper 
-PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="car">
-	<select id="getCar" resultType="carvo">
-		select * from car where car_id=#{car_id} 
-	</select>
-	<insert id="insertCar">
-		insert into car(car_id, car_no, car_color, tire_change_distance, wiper_change_distance, cooler_left, engine_oil_viscosity, distance)
-		values(#{car_id},select nvl(max(car_no),0)+1 from car),#{car_color},#{tire_change_distance},#{wiper_change_distance},#{cooler_left},#{engine_oil_viscosity},#{distance})
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="carMapper">
+
+	<!-- CREATE -->
+	<insert id="addCar" parameterType="CarVO">
+		INSERT INTO CAR(CAR_NO, CAR_TYPE, TIRE_CHANGE_DISTANCE, WIPER_CHANGE_DISTANCE, ENGINE_OIL_VISCOSITY, DISTANCE, CAR_ID, CAR_COLOR, COOLER_LEFT, MEMBER_NO) VALUES(#{CAR_NO}, #{CAR_TYPE}, #{TIRE_CHANGE_DISTANCE}, #{WIPER_CHANGE_DISTANCE}, #{ENGINE_OIL_VISCOSITY}, #{DISTANCE}, #{CAR_ID}, #{CAR_COLOR}, #{COOLER_LEFT}, #{MEMBER_NO})
 	</insert>
-	<update id="updateTireDistance">
-		update car set tire_change_distance=#{tire_change_distance} where car_id=#{car_id}
-	</update>
-	<update id="updateWiperDistance">
-		update car set wiper_change_distance=#{wiper_change_distance} where car_id=#{car_id}
-	</update>
-	<update id="updateCooler">
-		update car set cooler_left=#{cooler_left} where car_id=#{car_id}
-	</update>
-	<update id="updateEngineOil">
-		update car set engine_oil_left=#{engine_oil_viscosity} where car_id=#{car_id}
-	</update>
-	<update id="updateDistance">
-		update car set distance=#{distance} where car_id=#{car_id}
-	</update>
-	<delete id="deleteCar">
-		delete car where car_id=#{car_id}
-	</delete>
-	<select id="getCarList" resultType="carvo">
-		select * from car
+
+	<!-- READ -->
+	<select id="getCar" resultType="CarVO">
+SELECT * FROM CAR WHERE CAR_NO = #{CAR_NO}
 	</select>
+	<select id="getCarList" resultType="CarVO">
+	SELECT * FROM CAR ORDER BY CAR_NO DESC
+	</select>
+
+	<!-- UPDATE -->
+	<update id="updateTireDistance" parameterType="CarVO">
+		UPDATE CAR SET TIRE_CHANGE_DISTANCE=#{TIRE_CHANGE_DISTANCE} WHERE CAR_NO=#{CAR_NO}
+	</update>
+	<update id="updateWiperDistance" parameterType="CarVO">
+		UPDATE CAR SET WIPER_CHANGE_DISTANCE=#{WIPER_CHANGE_DISTANCE} WHERE CAR_NO=#{CAR_NO}
+	</update>
+	<update id="updateCooler" parameterType="CarVO">
+		UPDATE CAR SET COOLER_LEFT=#{COOLER_LEFT} WHERE CAR_NO=#{CAR_NO}
+	</update>
+	<update id="updateEngineOil" parameterType="CarVO">
+		UPDATE CAR SET ENGINE_OIL_VISCOSITY=#{ENGINE_OIL_VISCOSITY} WHERE CAR_NO=#{CAR_NO}
+	</update>
+	<update id="updateDistance" parameterType="CarVO">
+		UPDATE CAR SET DISTANCE=#{DISTANCE} WHERE CAR_NO=#{CAR_NO}
+	</update>
+
+	<!-- DELETE -->
+	<delete id="removeCar">
+		DELETE FROM CAR WHERE CAR_NO = #{CAR_NO}
+	</delete>
 </mapper>

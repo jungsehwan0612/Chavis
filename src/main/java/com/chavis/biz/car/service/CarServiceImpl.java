@@ -2,89 +2,95 @@ package com.chavis.biz.car.service;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import com.chavis.biz.car.dao.CarDAO;
 import com.chavis.biz.car.vo.CarVO;
 
-public class CarServiceImpl implements CarService{
-	
-	CarDAO dao = new CarDAO();
-	
-	
-	public CarServiceImpl() {
-		super();
-	}
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.stereotype.Service;
+
+@Service("carservice")
+public class CarServiceImpl implements CarService {
+
+	@Resource(name = "carmybatis")
+	CarDAO dao;
+
+	@Autowired
+	ApplicationContext context;
+
 	public CarServiceImpl(CarDAO dao) {
 		this.dao = dao;
 	}
-	public CarDAO getDao() {
-		return dao;
-	}
-	public void setDao(CarDAO dao) {
-		this.dao = dao;
-	}
-	
+
+	// CREATE
 	@Override
-	public CarVO getCar(String car_id) {
-		return dao.getCar(car_id);
+	public int registerCar(CarVO car) {
+		return dao.registerCar(car);
 	}
 
+	// READ
 	@Override
-	public void registerCar(CarVO vo) {
-		dao.registerCar(vo);
+	public CarVO getCar(int car_no) {
+		return dao.getCar(car_no);
 	}
 
-	@Override
-	public void tireDistanceReset(String car_id) {
-		dao.tireDistanceReset(car_id);
-	}
-
-	@Override
-	public void wiperDistanceReset(String car_id) {
-		dao.wiperDistanceReset(car_id);
-	}
-
-	@Override
-	public void coolerReset(String car_id) {
-		dao.coolerReset(car_id);
-	}
-
-	@Override
-	public void engineOilReset(String car_id) {
-		dao.engineOilReset(car_id);
-	}
-
-	@Override
-	public void deleteCar(String car_id) {
-		dao.deleteCar(car_id);
-	}
-	@Override
-	public void updateTireDistance(String distance, String car_id) {
-		dao.updateTireDistance(distance, car_id);
-	}
-
-	@Override
-	public void updateWiperDistance(String distance, String car_id) {
-		dao.updateWiperDistance(distance, car_id);
-	}
-
-	@Override
-	public void updateCooler(String cooler, String car_id) {
-		dao.updateCooler(cooler, car_id);
-	}
-
-	@Override
-	public void updateEngineOil(String engineOil, String car_id) {
-		dao.updateEngineOil(engineOil, car_id);
-	}
-
-	@Override
-	public void updateDistance(String distance, String car_id) {
-		dao.updateDistance(distance, car_id);
-	}
-	
 	@Override
 	public List<CarVO> getCarList() {
 		return dao.getCarList();
+	}
+
+	// UPDATE
+	@Override
+	public int resetTireDistance(int car_no) {
+		return dao.resetTireDistance(car_no);
+	}
+
+	@Override
+	public int resetWiperDistance(int car_no) {
+		return dao.resetWiperDistance(car_no);
+	}
+
+	@Override
+	public int resetCooler(int car_no) {
+		return dao.resetCooler(car_no);
+	}
+
+	@Override
+	public int resetEngineOil(int car_no) {
+		return dao.resetEngineOil(car_no);
+	}
+
+	@Override
+	public int updateTireDistance(String distance, int car_no) {
+		return dao.updateTireDistance(distance, car_no);
+	}
+
+	@Override
+	public int updateWiperDistance(String distance, int car_no) {
+		return dao.updateWiperDistance(distance, car_no);
+	}
+
+	@Override
+	public int updateCooler(String cooler, int car_no) {
+		return dao.updateCooler(cooler, car_no);
+	}
+
+	@Override
+	public int updateEngineOil(String engineOil, int car_no) {
+		return dao.updateEngineOil(engineOil, car_no);
+	}
+
+	@Override
+	public int updateDistance(String distance, int car_no) {
+		return dao.updateDistance(distance, car_no);
+	}
+	// DELETE
+
+	@Override
+	public int deleteCar(int car_no) {
+		return dao.deleteCar(car_no);
 	}
 
 }
