@@ -8,9 +8,9 @@ import com.chavis.biz.carbodyshop.vo.CarBodyshopVO;
 public interface CarBodyshopService {
 	CarBodyshopVO bodyLogin(String bodyshop_id,String bodyshop_pw);
 	void addBodyshop(CarBodyshopVO vo);
-	void updateBodyshop(CarBodyshopVO vo, String bodyshop_id);
+	void updateBodyshopPassword(String pw);
 	void removeBodyshop(String bodyshop_id, String bodyshop_pw);
-	CarBodyshopVO searchBodyshop(String bodyshop_address, String bodyshop_name);
-	List<CarBodyshopVO> getCarBodyshoplist();
+	List<CarBodyshopVO> searchBodyshop(String bodyshop_address, String bodyshop_name);
+	List<CarBodyshopVO> getBodyshoplist();
 
 }

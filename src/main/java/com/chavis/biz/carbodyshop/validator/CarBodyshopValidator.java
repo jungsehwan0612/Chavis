@@ -26,4 +26,5 @@ public class CarBodyshopValidator implements Validator {
 //			errors.rejectValue("tel", "required", new Object[] { "tel" }, "input tel");
 //		}
 	}
+
 }

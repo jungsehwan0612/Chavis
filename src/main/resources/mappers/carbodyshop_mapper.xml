@@ -3,11 +3,35 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="carbodyshop">
-	<select id="bodyLogin" parameterType="carbodyshopvo"
+	<select id="bodyLogin" parameterType="hashmap"
 		resultType="carbodyshopvo">
 		select * from bodyshop
 		where bodyshop_id = #{bodyshop_id} and
 		bodyshop_pw = #{bodyshop_pw}
 	</select>
-	<insert id="addBodyshop"></insert>
+	
+	<insert id="addBodyshop" parameterType="carbodyshopvo">
+		insert into bodyshop(bodyshop_no, bodyshop_id, bodyshop_pw, bodyshop_name, bodyshop_address, bodyshop_lat, bodyshop_long)
+		values(select nvl(max(bodyshop_no),0)+1 from bodyshop,#{bodyshop_id},#{bodyshop_pw},#{bodyshop_name},#{bodyshop_address},#{bodyshop_lat},#{bodyshop_long})
+	</insert>
+	
+	<update id="updateBodyshopPassword" parameterType="String">
+		update bodyshop set bodyshop_pw = #{bodyshop_pw}
+	</update>
+	
+	<delete id="removeBodyshop" parameterType="hashmap">
+		delete from bodyshop where bodyshop_id=#{bodyshop_id} and bodyshop_pw=#{bodyshop_pw}
+	</delete>
+	
+	<select id="searchBodyshop" parameterType="hashmap"
+		resultType="carbodyshopvo">
+		select * from bodyshop where
+		bodyshop_address like '%'||#{bodyshop_address}||'%' and
+		bodyshop_name like '%'||#{bodyshop_name}||'%'
+	</select>
+	
+	<select id="getBodyshoplist" resultType="carbodyshopvo">
+		select * from bodyshop
+	</select>
+	
 </mapper>

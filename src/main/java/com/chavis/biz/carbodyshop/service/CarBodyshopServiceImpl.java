@@ -58,32 +58,27 @@ public class CarBodyshopServiceImpl implements CarBodyshopService {
 
 	@Override
 	public void addBodyshop(CarBodyshopVO vo) {
-		// TODO Auto-generated method stub
-		
+		dao.addBodyshop(vo);
 	}
 
 	@Override
-	public void updateBodyshop(CarBodyshopVO vo, String bodyshop_id) {
-		// TODO Auto-generated method stub
-		
+	public void updateBodyshopPassword(String pw) {
+		dao.updateBodyshopPassword(pw);
 	}
 
 	@Override
 	public void removeBodyshop(String bodyshop_id, String bodyshop_pw) {
-		// TODO Auto-generated method stub
-		
+		dao.removeBodyshop(bodyshop_id, bodyshop_pw);
 	}
 
 	@Override
-	public CarBodyshopVO searchBodyshop(String bodyshop_address, String bodyshop_name) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<CarBodyshopVO> searchBodyshop(String bodyshop_address, String bodyshop_name) {
+		return dao.searchBodyshop(bodyshop_address, bodyshop_name);
 	}
 
 	@Override
-	public List<CarBodyshopVO> getCarBodyshoplist() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<CarBodyshopVO> getBodyshoplist() {
+		return dao.getBodyshoplist();
 	}
 
 	

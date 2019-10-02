@@ -31,27 +31,35 @@ public class CarBodyshopDAO_MyBatis implements CarBodyshopDAO {
 	}
 
 	@Override
-	public void updateBodyshop(CarBodyshopVO vo, String bodyshop_id) {
+	public void updateBodyshopPassword(String pw) {
 		System.out.println("CarBodyshop_updateBodyshop");
-		sqlSession.update("carbodyshop.updateBodyshop");
+		sqlSession.update("carbodyshop.updateBodyshop", pw);
 		sqlSession.commit();
 	}
 
 	@Override
 	public void removeBodyshop(String bodyshop_id, String bodyshop_pw) {
+		HashMap<String, String> map = new HashMap<String, String>();
 		System.out.println("CarBodyshop_removeBodyshop");
-		sqlSession.delete("carbodyshop.removeBodyshop");
+		map.put("bodyshop_id", bodyshop_id);
+		map.put("bodyshop_pw", bodyshop_pw);
+		sqlSession.delete("carbodyshop.removeBodyshop", map);
 		sqlSession.commit();
 	}
 
 	@Override
-	public CarBodyshopVO searchBodyshop(String bodyshop_address, String bodyshop_name) {
-		return null;
+	public List<CarBodyshopVO> searchBodyshop(String bodyshop_address, String bodyshop_name) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		System.out.println("CarBodyshop_searchBodyshop");
+		map.put("bodyshop_address", bodyshop_address);
+		map.put("bodyshop_name", bodyshop_name);
+		return sqlSession.selectList("carbodyshop.searchBodyshop",map);
 	}
 
 	@Override
-	public List<CarBodyshopVO> getCarBodyshoplist() {
-		return null;
+	public List<CarBodyshopVO> getBodyshoplist() {
+		System.out.println("CarBodyshop_getBodyshoplist");
+		return sqlSession.selectList("carbodyshop.getBodyshoplist");
 	}
 
     
