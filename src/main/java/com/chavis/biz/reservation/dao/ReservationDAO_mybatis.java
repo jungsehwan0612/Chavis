@@ -16,31 +16,31 @@ public class ReservationDAO_mybatis implements ReservationDAO {
 
     @Override
     public int addReservation(ReservationVO reservation) {
-        return sqlSession.insert("reserveMapper.addReserve",reservation);
+        return sqlSession.insert("reserveMapper.addReservation",reservation);
     }
 
     @Override
     public ReservationVO getReservation(int reservation_no) {
-        return sqlSession.selectOne("reserveMapper.getReserve", reservation_no);
+        return sqlSession.selectOne("reserveMapper.getReservation", reservation_no);
     }
 
     @Override
     public List<ReservationVO> getReservationToday() {
-        return sqlSession.selectList("reserveMapper.listReserve");
+        return sqlSession.selectList("reserveMapper.listReservation");
     }
     
     @Override
 	public List<ReservationVO> getReservationWeek() {
-    	return sqlSession.selectList("reserveMapper.listReserve");
+    	return sqlSession.selectList("reserveMapper.listReservation");
 	}
 
     @Override
     public int updateReservation(ReservationVO reservation) {
-        return sqlSession.update("reserveMapper.updateReserve", reservation);
+        return sqlSession.update("reserveMapper.updateReservation", reservation);
     }
 
     @Override
     public int removeReservation(int reserve_no) {
-        return sqlSession.delete("reserveMapper.removeReserve", reserve_no);
+        return sqlSession.delete("reserveMapper.removeReservation", reserve_no);
     }
 }
