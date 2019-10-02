@@ -7,8 +7,8 @@
 	<typeAliases>
 		<typeAlias type="com.chavis.biz.client.vo.ClientVO"
 			alias="clientvo" />
-		<typeAlias type="com.chavis.biz.reserve.vo.ReserveVO"
-			alias="ReserveVO" />
+		<typeAlias type="com.chavis.biz.reserve.vo.ReservationVO"
+			alias="ReservationVO" />
 		<typeAlias type="com.chavis.biz.carbodyshop.vo.CarBodyshopVO"
 			alias="carbodyshopvo" />
 		<typeAlias type="com.chavis.biz.car.vo.CarVO" alias="carvo"/>
@@ -16,7 +16,7 @@
 	<mappers>
     	<mapper resource="./mappers/car_mapper.xml"/>
 		<mapper resource="./mappers/client_mapper.xml" />
-		<mapper resource="./mappers/reserve_mapper.xml" />
+		<mapper resource="./mappers/reservation_mapper.xml" />
 		<mapper resource="./mappers/carbodyshop_mapper.xml" />
 	</mappers>
 </configuration>
