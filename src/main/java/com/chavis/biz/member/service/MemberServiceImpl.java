@@ -57,8 +57,6 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	public MemberVO getMember(String member_id) {
-		System.out.println("옴?");
-		System.out.println("getMemer service member_id : " + member_id);
 		return dao.getMember(member_id);
 	}
 

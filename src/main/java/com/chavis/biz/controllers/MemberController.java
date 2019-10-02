@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.chavis.biz.member.service.MemberService;
@@ -80,8 +81,9 @@ public class MemberController {
 	}
 
 	@RequestMapping(value="/Member/view.do", method=RequestMethod.POST)
-	public @ResponseBody MemberVO getMember(@RequestBody Map<String, String> map) {
-		return service.getMember(map.get("Member_id"));
+	public @ResponseBody MemberVO getMember(@RequestParam("member_id") String member_id) {
+		System.out.println(member_id);
+		return service.getMember(member_id);
 	}
 
 	@RequestMapping(value="/Member/remove.do", method=RequestMethod.POST)

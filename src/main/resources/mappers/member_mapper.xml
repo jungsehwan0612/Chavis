@@ -17,9 +17,9 @@
 	</select>
 
 	<insert id="addMember" parameterType="MemberVO">
-				insert into member (member_no, member_id, member_pw, member_mname, member_phonenumber, car_no)
+				insert into member (member_no, member_id, member_pw, member_mname, member_phonenumber)
 				values ((select nvl(max(member_no),0)+1 from member), 
-						#{member_id}, #{member_pw}, #{member_mname}, #{member_phonenumber}, #{car_no})
+						#{member_id}, #{member_pw}, #{member_mname}, #{member_phonenumber})
 	</insert>
 
 	<select id="listMember" resultType="MemberVO">

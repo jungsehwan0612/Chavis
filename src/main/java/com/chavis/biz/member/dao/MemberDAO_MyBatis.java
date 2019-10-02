@@ -28,7 +28,6 @@ public class MemberDAO_MyBatis implements MemberDAO{
 	}
 
 	public MemberVO getMember(String member_id) {
-		System.out.println("getMember dao member_id : " + member_id);
 		return sqlSession.selectOne("MemberMapper.getMember", member_id);
 	}
 
