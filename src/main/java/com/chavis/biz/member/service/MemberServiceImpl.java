@@ -68,7 +68,7 @@ public class MemberServiceImpl implements MemberService {
 		return dao.updateMember(member);
 	}
 
-	public int removeMember(MemberVO member_id) {
+	public int removeMember(String member_id) {
 		return dao.removeMember(member_id);
 	}
 

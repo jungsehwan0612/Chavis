@@ -4,46 +4,53 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="MemberMapper">
 
-	<select id="login" parameterType="com.chavis.biz.member.vo.MemberVO"
+	<select id="login"
+		parameterType="com.chavis.biz.member.vo.MemberVO"
 		resultType="MemberVO">
 		select * from member
 		where member_id=#{member_id} and
 		member_pw = #{member_pw}
 	</select>
 
-	<select id="getMember" parameterType="MemberVO" resultType="MemberVO">
-		select * from member 
+	<select id="getMember" parameterType="MemberVO"
+		resultType="MemberVO">
+		select * from member
 		where member_id = #{member_id}
 	</select>
 
 	<insert id="addMember" parameterType="MemberVO">
-				insert into member (member_no, member_id, member_pw, member_mname, member_phonenumber)
-				values ((select nvl(max(member_no),0)+1 from member), 
-						#{member_id}, #{member_pw}, #{member_mname}, #{member_phonenumber})
+		insert into member (member_no, member_id, member_pw, member_mname,
+		member_phonenumber)
+		values ((select nvl(max(member_no),0)+1 from member),
+		#{member_id}, #{member_pw}, #{member_mname}, #{member_phonenumber})
 	</insert>
 
 	<select id="listMember" resultType="MemberVO">
-		select * from member order by to_number(member_no) asc
+		select * from member order by
+		to_number(member_no) asc
 	</select>
-	
+
 	<update id="updateMember" parameterType="MemberVO">
-		update member set tel=#{tel} where member_id =#{member_id}
+		update member set
+		member_phonenumber=#{member_phonenumber} where member_id =#{member_id}
 	</update>
-	
+
 	<update id="removeMember">
 		delete from member where member_id = #{member_id}
 	</update>
-	
-	<select id="selectMemberList" parameterType="map" resultType="MemberVO">
-		select * 
-		  from (
-				select ROWNUM AS rnum, A.* from member A
-		 <where>
-		 	<if test="member_id != null and member_id != ''">member_id = #{member_id}</if>
-		 	<if test="member_name != null and member_name != ''">member_name like '%' ||  #{member_name} || '%' </if>
-		 </where>
-		 ) T 
-		 <!-- < 부등호를 사용하기 위해서는 cdata를 이용해야함 -->
-		 WHERE T.rnum >= #{startIndex} and T.rnum <![CDATA[<]]> #{lastIndex}
+
+	<select id="selectMemberList" parameterType="map"
+		resultType="MemberVO">
+		select *
+		from (
+		select ROWNUM AS rnum, A.* from member A
+		<where>
+			<if test="member_id != null and member_id != ''">member_id = #{member_id}</if>
+			<if test="member_name != null and member_name != ''">member_name like '%' || #{member_name} || '%' </if>
+		</where>
+		) T
+		<!-- < 부등호를 사용하기 위해서는 cdata를 이용해야함 -->
+		WHERE T.rnum >= #{startIndex} and T.rnum <![CDATA[<]]>
+		#{lastIndex}
 	</select>
 </mapper>

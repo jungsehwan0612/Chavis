@@ -30,10 +30,10 @@ public class MemberController {
 	@RequestMapping(value = "/login.do",method = RequestMethod.POST)
 	public String loginProc(MemberVO vo, HttpServletRequest request) throws Exception {
 		
-		MemberVO Member = service.login(vo.getMember_id(), vo.getMember_pw());
-		if(Member != null) {
-			request.getSession().setAttribute("Member", Member);
-			request.getSession().setAttribute("login", Member);
+		MemberVO member = service.login(vo.getMember_id(), vo.getMember_pw());
+		if(member != null) {
+			request.getSession().setAttribute("Member", member);
+			request.getSession().setAttribute("login", member);
 			
 			return "초기화면으로";
 		}else {
@@ -59,7 +59,6 @@ public class MemberController {
 	@RequestMapping(value = "/Member/add.do", method = RequestMethod.POST)
 	public String addMember(@ModelAttribute("Member") MemberVO Member, 
 								HttpServletRequest request, BindingResult errors) {	
-
 		new MemberValidator().validate(Member, errors);
 		if(errors.hasErrors()) {
 			return "정보 재입력 위치로";
@@ -75,22 +74,25 @@ public class MemberController {
 		return "로그인 결과로";
 	}
 	
-	@RequestMapping(value="/Member/list.do", method=RequestMethod.POST)
+	@RequestMapping(value="/Member/list.do", method=RequestMethod.GET)
 	public @ResponseBody List<MemberVO> getMemberList(){
 		return service.getMemberList();
 	}
 
-	@RequestMapping(value="/Member/view.do", method=RequestMethod.POST)
+	@RequestMapping(value="/Member/view.do", method=RequestMethod.GET)
 	public @ResponseBody MemberVO getMember(@RequestParam("member_id") String member_id) {
 		System.out.println(member_id);
 		return service.getMember(member_id);
 	}
 
 	@RequestMapping(value="/Member/remove.do", method=RequestMethod.POST)
-	public @ResponseBody int removeMember(@RequestBody MemberVO Member) {
+	public @ResponseBody int removeMember(@RequestParam("member_id") String Member) {
 		return service.removeMember(Member);
 	}
 	
+//	@RequestMapping(value="/Member/update.do", method=RequestMethod.POST)
+//	public @ResponseBody int updateMember
+//	
 	@ExceptionHandler(Exception.class)
 	public String Ex(Exception exception, Model model) {
 		// MemberController 예외발생시 호출됨

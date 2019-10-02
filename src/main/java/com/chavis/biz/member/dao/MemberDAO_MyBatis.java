@@ -43,7 +43,7 @@ public class MemberDAO_MyBatis implements MemberDAO{
 		return sqlSession.update("MemberMapper.updateMember", member);
 	}
 
-	public int removeMember(MemberVO member_id) {
+	public int removeMember(String member_id) {
 		return sqlSession.update("MemberMapper.removeMember", member_id);
 	}
 
