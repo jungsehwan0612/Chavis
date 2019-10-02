@@ -6,8 +6,9 @@ import java.util.Map;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.chavis.biz.client.service.ClientService;
-import com.chavis.biz.client.vo.ClientVO;
+import com.chavis.biz.carbodyshop.service.CarBodyshopService;
+import com.chavis.biz.member.service.MemberService;
+import com.chavis.biz.member.vo.MemberVO;
 
 public class test {
 	public static void main(String[] args) throws Exception {
@@ -16,27 +17,25 @@ public class test {
 //		@SuppressWarnings("resource")
 		ApplicationContext context = new ClassPathXmlApplicationContext(config);
 		
-		ClientService clientService = (ClientService) context.getBean("clientservice");
-//		ClientVO client = new ClientVO();
-//		client.setClientNum("4");
-//		client.setCarId("11가1111");
-//		client.setCarType("pororo");
-//		client.setClientId("test01");
-//		client.setClientName("테스트");
-//		client.setPassword("1234");
-//		client.setTel("010-1234-5678");
-//		
+		MemberService memberService = (MemberService) context.getBean("memberservice");
+		MemberVO client = new MemberVO();
+
+		client.setMember_id("test01");
+		client.setMember_pw("1234");
+		client.setMember_mname("테스트");
+		client.setMember_phonenumber("00000000000");
+		client.setCar_no("5");
 //		clientService.addClient(client);	
 //		
-		for(ClientVO client:clientService.getClientList())
-			System.out.println(client);
+		for(MemberVO member : memberService.getMemberList())
+			System.out.println(member);
 		
 		System.out.println("--------------------------");
-		Map<String, String> map = new HashMap<String, String>();
+//		Map<String, String> map = new HashMap<String, String>();
 //		map.put("client_id", "test01");
-//		System.out.println(clientService.getClient(map));
+//		System.out.println(memberService.getClient(map));
 //		
-		clientService.getClient("test01");
+		memberService.getMember("oea0805");
 		
 //		ClientVO u2 = new ClientVO();
 //		u2.setClientId("test01");
