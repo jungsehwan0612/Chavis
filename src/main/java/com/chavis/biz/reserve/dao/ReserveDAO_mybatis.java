@@ -25,9 +25,14 @@ public class ReserveDAO_mybatis implements ReserveDAO {
     }
 
     @Override
-    public List<ReserveVO> getReserveList() {
+    public List<ReserveVO> getReserveToday() {
         return sqlSession.selectList("reserveMapper.listReserve");
     }
+    
+    @Override
+	public List<ReserveVO> getReserveWeek() {
+    	return sqlSession.selectList("reserveMapper.listReserve");
+	}
 
     @Override
     public int updateReserve(ReserveVO reserve) {
@@ -38,5 +43,4 @@ public class ReserveDAO_mybatis implements ReserveDAO {
     public int removeReserve(String reserve_id) {
         return sqlSession.delete("reserveMapper.removeReserve", reserve_id);
     }
-
 }

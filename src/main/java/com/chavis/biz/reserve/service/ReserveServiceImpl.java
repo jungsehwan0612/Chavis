@@ -36,10 +36,14 @@ public class ReserveServiceImpl implements ReserveService {
     }
 
     @Override
-    public List<ReserveVO> getReserveList() {
-        return dao.getReserveList();
+    public List<ReserveVO> getReserveToday() {
+        return dao.getReserveToday();
     }
 
+    @Override
+    public List<ReserveVO> getReserveWeek() {
+        return dao.getReserveToday();
+    }
     @Override
     public int updateReserve(ReserveVO reserve) {
         return dao.updateReserve(reserve);

@@ -9,7 +9,8 @@ public interface ReserveService {
     int addReserve(ReserveVO reserve);
     // Read
     ReserveVO getReserve(String reserve_id);
-    List<ReserveVO> getReserveList();
+    List<ReserveVO> getReserveToday();
+    List<ReserveVO> getReserveWeek();
     // Update
     int updateReserve(ReserveVO reserve);
     // Delete

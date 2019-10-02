@@ -9,8 +9,8 @@ public interface ReserveDAO {
 	int addReserve(ReserveVO reserve);
 	// Read
 	ReserveVO getReserve(String reserve_id);
-	// List
-	List<ReserveVO> getReserveList();
+	List<ReserveVO> getReserveToday();
+	List<ReserveVO> getReserveWeek();
 	// Update
 	int updateReserve(ReserveVO reserve_id);
 	// Delete
