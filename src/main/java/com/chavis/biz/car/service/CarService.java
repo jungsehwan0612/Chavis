@@ -26,7 +26,7 @@ public interface CarService {
 
 	int updateWiperDistance(String distance, int car_no);
 
-	int updateCooler(String cooler, int car_no);
+	int updateCooler(String cooler_left, int car_no);
 
 	int updateEngineOil(String engineOil, int car_no);
 
