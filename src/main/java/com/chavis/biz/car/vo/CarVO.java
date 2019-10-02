@@ -13,11 +13,10 @@ public class CarVO {
 	public CarVO() {
 	}
 
-	public CarVO(String car_id, String car_no, String car_color, String tire_change_distance, String wiper_change_distance,
+	public CarVO(String car_id, String car_color, String tire_change_distance, String wiper_change_distance,
 			String cooler_left, String engine_oil_viscosity, String distance) {
 		super();
 		this.car_id = car_id;
-		this.car_no = car_no;
 		this.car_color = car_color;
 		this.tire_change_distance = tire_change_distance;
 		this.wiper_change_distance = wiper_change_distance;

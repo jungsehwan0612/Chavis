@@ -4,7 +4,6 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 import com.chavis.biz.carbodyshop.vo.CarBodyshopVO;
-import com.chavis.biz.client.vo.ClientVO;
 
 public class CarBodyshopValidator implements Validator {
 
