@@ -1,5 +1,6 @@
 package com.chavis.biz.controllers;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -62,12 +63,14 @@ public class ReservationController {
 			map.put(i, 0);
 		}
 		for (ReservationVO reserve : service.getReservationToday()) {
-			int hour = Integer.parseInt(reserve.getReservation_time().substring(8, 10));
+			String time = reserve.getReservation_time().split(" ")[1];
+			int hour = Integer.parseInt(time.split(":")[0]);
 			map.replace(hour, map.get(hour) + 1);
 		}
 		return map;
 	}
 
+	
 	@RequestMapping(value="/Reservation/listToday.do")
 	public @ResponseBody List<ReservationVO> getReservationToday() {
 		return service.getReservationToday();
