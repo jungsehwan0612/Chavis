@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,7 +14,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.chavis.biz.reservation.service.ReservationService;
@@ -25,18 +26,32 @@ public class ReservationController {
 	ReservationService service;
 
 	@RequestMapping(value = "/Reservation/add.do", method = RequestMethod.POST)
-	public @ResponseBody ReservationVO addReservation(@RequestParam("ReversationVO") ReservationVO reservation) {
-		service.addReservation(reservation);
-		return service.getReservation(reservation.getReservation_no());
+	public @ResponseBody List<ReservationVO> addClothHistory(HttpServletRequest request) {
+		//{"member_id":"111","reservation_time":"2019101010","key":"0"}
+		String member_id = request.getParameter("member_id");
+		String reservation_time = request.getParameter("reservation_time");
+		String key = request.getParameter("key");
+		
+		System.out.println(member_id);
+		System.out.println(reservation_time);
+		ReservationVO vo = new ReservationVO();
+		vo.setReservation_time(reservation_time);
+		vo.setKey(key);
+		
+		service.addReservation(vo);
+		return service.getReservationByID(member_id);
 	}
+	
 
 	@RequestMapping(value="/Reservation/list.do")
 	public @ResponseBody List<ReservationVO> getReservationList() {
 		return service.getReservationToday();
 	}
+	
 
 	@RequestMapping(value="/Reservation/view.do", method=RequestMethod.POST)
 	public @ResponseBody ReservationVO getReserve(@RequestBody int reserve_no) {
+		System.out.println(reserve_no);
 		return service.getReservation(reserve_no);
 	}
 
