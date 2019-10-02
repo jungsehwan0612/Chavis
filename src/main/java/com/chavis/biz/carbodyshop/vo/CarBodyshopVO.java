@@ -12,10 +12,9 @@ public class CarBodyshopVO {
 	public CarBodyshopVO() {
 	}
 
-	public CarBodyshopVO(String bodyshop_no, String bodyshop_id, String bodyshop_pw, String bodyshop_name,
+	public CarBodyshopVO(String bodyshop_id, String bodyshop_pw, String bodyshop_name,
 			String bodyshop_address, String bodyshop_lat, String bodyshop_long) {
 		super();
-		this.bodyshop_no = bodyshop_no;
 		this.bodyshop_id = bodyshop_id;
 		this.bodyshop_pw = bodyshop_pw;
 		this.bodyshop_name = bodyshop_name;
