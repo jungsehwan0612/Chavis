@@ -19,30 +19,29 @@ public class test {
 		
 		MemberService memberService = (MemberService) context.getBean("memberservice");
 		MemberVO client = new MemberVO();
-
-		client.setMember_id("test01");
-		client.setMember_pw("1234");
-		client.setMember_mname("테스트");
-		client.setMember_phonenumber("00000000000");
-		client.setCar_no("5");
-//		clientService.addClient(client);	
+//
+//		client.setMember_id("test01");
+//		client.setMember_pw("1234");
+//		client.setMember_mname("테스트");
+//		client.setMember_phonenumber("00000000000");
+//		memberService.addMember(client);	
 //		
-		for(MemberVO member : memberService.getMemberList())
-			System.out.println(member);
+//		for(MemberVO member : memberService.getMemberList())
+//			System.out.println(member);
 		
 		System.out.println("--------------------------");
 //		Map<String, String> map = new HashMap<String, String>();
 //		map.put("client_id", "test01");
 //		System.out.println(memberService.getClient(map));
 //		
-		memberService.getMember("oea0805");
+		System.out.println(memberService.getMember("oea0805"));
 		
 //		ClientVO u2 = new ClientVO();
 //		u2.setClientId("test01");
 //		u2.setTel("010-9876-5432");
 //		clientService.updateClient(u2);
 //		
-//		clientService.removeclient("test01");
+		memberService.removeMember("test01");
 		
 	}
 }

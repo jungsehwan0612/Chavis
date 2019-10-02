@@ -41,10 +41,6 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
-    public List<ReservationVO> getReservationWeek() {
-        return dao.getReservationToday();
-    }
-    @Override
     public int updateReservation(ReservationVO reservation) {
         return dao.updateReservation(reservation);
     }
@@ -53,5 +49,10 @@ public class ReservationServiceImpl implements ReservationService {
     public int removeReservation(int reserve_no) {
         return dao.removeReservation(reserve_no);
     }
+
+	@Override
+	public List<ReservationVO> getReservationByID(String member_id) {
+		return dao.getReservationByID(member_id);
+	}
 
 }

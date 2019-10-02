@@ -9,8 +9,10 @@ public interface ReservationDAO {
 	int addReservation(ReservationVO reservation);
 	// Read
 	ReservationVO getReservation(int reservation_no);
+	// List
 	List<ReservationVO> getReservationToday();
-	List<ReservationVO> getReservationWeek();
+	// ListByID
+	List<ReservationVO> getReservationByID(String member_id);
 	// Update
 	int updateReservation(ReservationVO reservation);
 	// Delete
