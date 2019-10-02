@@ -24,7 +24,6 @@ public class test {
 		client.setMember_pw("1234");
 		client.setMember_mname("테스트");
 		client.setMember_phonenumber("00000000000");
-		client.setCar_no("5");
 //		clientService.addClient(client);	
 //		
 		for(MemberVO member : memberService.getMemberList())
