@@ -1,20 +1,16 @@
 package com.chavis.biz.test;
 
-import java.util.HashMap;
-import java.util.Map;
+import com.chavis.biz.member.service.MemberService;
+import com.chavis.biz.member.vo.MemberVO;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import com.chavis.biz.carbodyshop.service.CarBodyshopService;
-import com.chavis.biz.member.service.MemberService;
-import com.chavis.biz.member.vo.MemberVO;
 
 public class test {
 	public static void main(String[] args) throws Exception {
 		
 		String[] config = { "applicationContext.xml" };
-//		@SuppressWarnings("resource")
+		@SuppressWarnings("resource")
 		ApplicationContext context = new ClassPathXmlApplicationContext(config);
 		
 		MemberService memberService = (MemberService) context.getBean("memberservice");
@@ -25,6 +21,8 @@ public class test {
 //		client.setMember_mname("테스트");
 //		client.setMember_phonenumber("00000000000");
 //		memberService.addMember(client);	
+
+
 //		
 //		for(MemberVO member : memberService.getMemberList())
 //			System.out.println(member);
@@ -43,5 +41,6 @@ public class test {
 //		
 		memberService.removeMember("test01");
 		
+
 	}
 }
