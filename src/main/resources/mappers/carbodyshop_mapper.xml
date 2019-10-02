@@ -2,35 +2,12 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="carbodyshopMapper">
-	<select id="bodylogin" parameterType="com.chavis.biz.carbodyshop.vo.CarBodyshopVO"
+<mapper namespace="carbodyshop">
+	<select id="bodylogin" parameterType="carbodyshopvo"
 		resultType="carbodyshopvo">
 		select * from bodyshop
-		where body_id =#{body_id} and
-		body_pw = #{body_pw}
+		where bodyshop_id = #{bodyshop_id} and
+		bodyshop_pw = #{bodyshop_pw}
 	</select>
-	
-	<insert id="addbody" parameterType="carbodyshopvo">
-				insert into bodyshop (bodyshop_num, address, latitude, longitude, body_id, body_pw)
-				values ((select nvl(max(bodyshop_num),0)+1 from bodyshop), #{address}, #{latitude}, #{longitude},
-				#{body_id}, #{body_pw})
-	</insert>
-    
-    <select id="getbody" resultType="carbodyshopvo">
-		select * from bodyshop where
-		body_id = #{body_id}
-	</select>
-	
-	<select id="listbody" resultType="carbodyshopvo">
-		select * from bodyshop order body_id desc
-	</select>
-	
-	<update id="updatebody" parameterType="carbodyshopvo">
-		update bodyshop set address=#{address} where body_id =#{body_id}
-	</update>
-	
-	<update id="removebody">
-		delete from bodyshop where body_id = #{body_id}
-	</update>
 	
 </mapper>

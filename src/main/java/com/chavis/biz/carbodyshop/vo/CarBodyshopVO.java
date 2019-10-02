@@ -1,91 +1,103 @@
 package com.chavis.biz.carbodyshop.vo;
 
 public class CarBodyshopVO {
-	private String bodyshop_num;
-	private String address;
-	private String latitude;
-	private String longitude;
-	private String body_pw;
-	private String body_id;
+	private String bodyshop_no;
+	private String bodyshop_id;
+	private String bodyshop_pw;
+	private String bodyshop_name;
+	private String bodyshop_address;
+	private String bodyshop_lat;
+	private String bodyshop_long;
 
 	public CarBodyshopVO() {
 	}
-	
-	public CarBodyshopVO(String bodyshop_num, String address, String latitude, String longitude, String body_pw,
-			String body_id) {
+
+	public CarBodyshopVO(String bodyshop_no, String bodyshop_id, String bodyshop_pw, String bodyshop_name,
+			String bodyshop_address, String bodyshop_lat, String bodyshop_long) {
 		super();
-		this.bodyshop_num = bodyshop_num;
-		this.address = address;
-		this.latitude = latitude;
-		this.longitude = longitude;
-		this.body_pw = body_pw;
-		this.body_id = body_id;
-	}	
-
-	public String getBodyshop_num() {
-		return bodyshop_num;
+		this.bodyshop_no = bodyshop_no;
+		this.bodyshop_id = bodyshop_id;
+		this.bodyshop_pw = bodyshop_pw;
+		this.bodyshop_name = bodyshop_name;
+		this.bodyshop_address = bodyshop_address;
+		this.bodyshop_lat = bodyshop_lat;
+		this.bodyshop_long = bodyshop_long;
 	}
 
-	public void setBodyshop_num(String bodyshop_num) {
-		this.bodyshop_num = bodyshop_num;
+	public String getBodyshop_no() {
+		return bodyshop_no;
 	}
 
-	public String getAddress() {
-		return address;
+	public void setBodyshop_no(String bodyshop_no) {
+		this.bodyshop_no = bodyshop_no;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
+	public String getBodyshop_id() {
+		return bodyshop_id;
 	}
 
-	public String getLatitude() {
-		return latitude;
+	public void setBodyshop_id(String bodyshop_id) {
+		this.bodyshop_id = bodyshop_id;
 	}
 
-	public void setLatitude(String latitude) {
-		this.latitude = latitude;
+	public String getBodyshop_pw() {
+		return bodyshop_pw;
 	}
 
-	public String getLongitude() {
-		return longitude;
+	public void setBodyshop_pw(String bodyshop_pw) {
+		this.bodyshop_pw = bodyshop_pw;
 	}
 
-	public void setLongitude(String longitude) {
-		this.longitude = longitude;
-	}	
-	
-	public String getBody_pw() {
-		return body_pw;
+	public String getBodyshop_name() {
+		return bodyshop_name;
 	}
 
-	public void setBody_pw(String body_pw) {
-		this.body_pw = body_pw;
+	public void setBodyshop_name(String bodyshop_name) {
+		this.bodyshop_name = bodyshop_name;
 	}
 
-	public String getBody_id() {
-		return body_id;
+	public String getBodyshop_address() {
+		return bodyshop_address;
 	}
 
-	public void setBody_id(String body_id) {
-		this.body_id = body_id;
-	}	
-	
+	public void setBodyshop_address(String bodyshop_address) {
+		this.bodyshop_address = bodyshop_address;
+	}
+
+	public String getBodyshop_lat() {
+		return bodyshop_lat;
+	}
+
+	public void setBodyshop_lat(String bodyshop_lat) {
+		this.bodyshop_lat = bodyshop_lat;
+	}
+
+	public String getBodyshop_long() {
+		return bodyshop_long;
+	}
+
+	public void setBodyshop_long(String bodyshop_long) {
+		this.bodyshop_long = bodyshop_long;
+	}
+
 	@Override
 	public String toString() {
-		return "CarBodyshopVO [bodyshop_num=" + bodyshop_num + ", address=" + address + ", latitude=" + latitude
-				+ ", longitude=" + longitude + ", body_pw=" + body_pw + ", body_id=" + body_id + "]";
+		return "CarBodyshopVO [bodyshop_no=" + bodyshop_no + ", bodyshop_id=" + bodyshop_id + ", bodyshop_pw="
+				+ bodyshop_pw + ", bodyshop_name=" + bodyshop_name + ", bodyshop_address=" + bodyshop_address
+				+ ", bodyshop_lat=" + bodyshop_lat + ", bodyshop_long=" + bodyshop_long + "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((address == null) ? 0 : address.hashCode());
-		result = prime * result + ((body_id == null) ? 0 : body_id.hashCode());
-		result = prime * result + ((body_pw == null) ? 0 : body_pw.hashCode());
-		result = prime * result + ((bodyshop_num == null) ? 0 : bodyshop_num.hashCode());
-		result = prime * result + ((latitude == null) ? 0 : latitude.hashCode());
-		result = prime * result + ((longitude == null) ? 0 : longitude.hashCode());
+		result = prime * result + ((bodyshop_address == null) ? 0 : bodyshop_address.hashCode());
+		result = prime * result + ((bodyshop_id == null) ? 0 : bodyshop_id.hashCode());
+		result = prime * result + ((bodyshop_lat == null) ? 0 : bodyshop_lat.hashCode());
+		result = prime * result + ((bodyshop_long == null) ? 0 : bodyshop_long.hashCode());
+		result = prime * result + ((bodyshop_name == null) ? 0 : bodyshop_name.hashCode());
+		result = prime * result + ((bodyshop_no == null) ? 0 : bodyshop_no.hashCode());
+		result = prime * result + ((bodyshop_pw == null) ? 0 : bodyshop_pw.hashCode());
 		return result;
 	}
 
@@ -98,36 +110,43 @@ public class CarBodyshopVO {
 		if (getClass() != obj.getClass())
 			return false;
 		CarBodyshopVO other = (CarBodyshopVO) obj;
-		if (address == null) {
-			if (other.address != null)
+		if (bodyshop_address == null) {
+			if (other.bodyshop_address != null)
 				return false;
-		} else if (!address.equals(other.address))
+		} else if (!bodyshop_address.equals(other.bodyshop_address))
 			return false;
-		if (body_id == null) {
-			if (other.body_id != null)
+		if (bodyshop_id == null) {
+			if (other.bodyshop_id != null)
 				return false;
-		} else if (!body_id.equals(other.body_id))
+		} else if (!bodyshop_id.equals(other.bodyshop_id))
 			return false;
-		if (body_pw == null) {
-			if (other.body_pw != null)
+		if (bodyshop_lat == null) {
+			if (other.bodyshop_lat != null)
 				return false;
-		} else if (!body_pw.equals(other.body_pw))
+		} else if (!bodyshop_lat.equals(other.bodyshop_lat))
 			return false;
-		if (bodyshop_num == null) {
-			if (other.bodyshop_num != null)
+		if (bodyshop_long == null) {
+			if (other.bodyshop_long != null)
 				return false;
-		} else if (!bodyshop_num.equals(other.bodyshop_num))
+		} else if (!bodyshop_long.equals(other.bodyshop_long))
 			return false;
-		if (latitude == null) {
-			if (other.latitude != null)
+		if (bodyshop_name == null) {
+			if (other.bodyshop_name != null)
 				return false;
-		} else if (!latitude.equals(other.latitude))
+		} else if (!bodyshop_name.equals(other.bodyshop_name))
 			return false;
-		if (longitude == null) {
-			if (other.longitude != null)
+		if (bodyshop_no == null) {
+			if (other.bodyshop_no != null)
 				return false;
-		} else if (!longitude.equals(other.longitude))
+		} else if (!bodyshop_no.equals(other.bodyshop_no))
+			return false;
+		if (bodyshop_pw == null) {
+			if (other.bodyshop_pw != null)
+				return false;
+		} else if (!bodyshop_pw.equals(other.bodyshop_pw))
 			return false;
 		return true;
-	}	
+	}
+	
+	
 }

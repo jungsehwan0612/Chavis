@@ -36,7 +36,6 @@ public class CarDAO{
 	}
 	public void registerCar(CarVO vo) {
 		System.out.println("CarDAO_registerCar");
-		System.out.println(sqlSession);
 		sqlSession.insert("car.insertCar", vo);
 		sqlSession.commit();
 	}

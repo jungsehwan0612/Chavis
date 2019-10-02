@@ -41,16 +41,16 @@ public class CarBodyshopServiceImpl implements CarBodyshopService {
 	}
 	
 	@Override
-	public CarBodyshopVO bodylogin(String body_id, String body_pw) {
+	public CarBodyshopVO bodylogin(String bodyshop_id, String bodyshop_pw) {
 		String msg = "";
 		CarBodyshopVO vo = null;
 		try {
-			vo = dao.bodylogin(body_id, body_pw);
+			vo = dao.bodylogin(bodyshop_id, bodyshop_pw);
 
 			if (vo != null) {
-				msg = context.getMessage("login.success", new Object[] { body_id }, Locale.KOREA);
+				msg = context.getMessage("login.success", new Object[] { bodyshop_id }, Locale.KOREA);
 			} else {
-				msg = context.getMessage("login.fail", new Object[] { body_id }, Locale.KOREA);
+				msg = context.getMessage("login.fail", new Object[] { bodyshop_id }, Locale.KOREA);
 			}
 		} catch (Exception e) {
 			System.out.println(e);
@@ -58,49 +58,49 @@ public class CarBodyshopServiceImpl implements CarBodyshopService {
 		System.out.println(msg);
 		return vo;
 	}
-	
-
-	@Override
-	public CarBodyshopVO getBody(String body_id) {
-		return dao.getBody(body_id);
-	}
-
-	@Override
-	public List<CarBodyshopVO> getCarBodyshopList() {
-		return dao.getCarBodyshopList();
-	}
-
-	@Override
-	public List<CarBodyshopVO> selectCarBodyshopList(Map<String, Object> param) {
-		int startIndex = 1;
-		int endIndex = 20;
-		if(param.containsKey("pageSize") && param.containsKey("pageIndex")) {
-			int pageSize = (int) param.get("pageSize"); 
-			int pageIndex = (int) param.get("pageIndex");
-			
-			startIndex = pageSize * (pageIndex - 1) + 1;
-			endIndex = startIndex + pageSize;
-		} 
-		param.put("startIndex", startIndex);
-		param.put("lastIndex", endIndex);
-		
-		return dao.selectCarBodyshopList(param);
-	}
-
-	@Override
-	public int addCarBodyshop(CarBodyshopVO body) {
-		return dao.addCarBodyshop(body);
-	}
-
-	@Override
-	public int updateCarBodyshop(CarBodyshopVO body) {
-		return dao.updateCarBodyshop(body);
-	}
-
-	@Override
-	public int removeCarBodyshop(CarBodyshopVO body_id) {
-		return dao.removeCarBodyshop(body_id);
-	}
+//	
+//
+//	@Override
+//	public CarBodyshopVO getBody(String body_id) {
+//		return dao.getBody(body_id);
+//	}
+//
+//	@Override
+//	public List<CarBodyshopVO> getCarBodyshopList() {
+//		return dao.getCarBodyshopList();
+//	}
+//
+//	@Override
+//	public List<CarBodyshopVO> selectCarBodyshopList(Map<String, Object> param) {
+//		int startIndex = 1;
+//		int endIndex = 20;
+//		if(param.containsKey("pageSize") && param.containsKey("pageIndex")) {
+//			int pageSize = (int) param.get("pageSize"); 
+//			int pageIndex = (int) param.get("pageIndex");
+//			
+//			startIndex = pageSize * (pageIndex - 1) + 1;
+//			endIndex = startIndex + pageSize;
+//		} 
+//		param.put("startIndex", startIndex);
+//		param.put("lastIndex", endIndex);
+//		
+//		return dao.selectCarBodyshopList(param);
+//	}
+//
+//	@Override
+//	public int addCarBodyshop(CarBodyshopVO body) {
+//		return dao.addCarBodyshop(body);
+//	}
+//
+//	@Override
+//	public int updateCarBodyshop(CarBodyshopVO body) {
+//		return dao.updateCarBodyshop(body);
+//	}
+//
+//	@Override
+//	public int removeCarBodyshop(CarBodyshopVO body_id) {
+//		return dao.removeCarBodyshop(body_id);
+//	}
 
 	
 }
