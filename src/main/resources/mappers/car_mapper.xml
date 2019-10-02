@@ -4,41 +4,41 @@
 
 	<!-- CREATE -->
 	<insert id="addCar" parameterType="CarVO">
-		INSERT INTO CAR(CAR_NO, CAR_TYPE, TIRE_CHANGE_DISTANCE, WIPER_CHANGE_DISTANCE, ENGINE_OIL_VISCOSITY, DISTANCE, CAR_ID, CAR_COLOR, COOLER_LEFT, MEMBER_NO) VALUES(#{CAR_NO}, #{CAR_TYPE}, #{TIRE_CHANGE_DISTANCE}, #{WIPER_CHANGE_DISTANCE}, #{ENGINE_OIL_VISCOSITY}, #{DISTANCE}, #{CAR_ID}, #{CAR_COLOR}, #{COOLER_LEFT}, #{MEMBER_NO})
+		INSERT INTO car(car_no, car_type, tire_change_distance, wiper_change_distance, engine_oil_viscosity, distance, car_id, car_color, cooler_left, member_no) VALUES(#{car_no}, #{car_type}, #{tire_change_distance}, #{wiper_change_distance}, #{engine_oil_viscosity}, #{distance}, #{car_id}, #{car_color}, #{cooler_left}, #{member_no})
 	</insert>
 
 	<!-- READ -->
 	<select id="getCar" resultType="CarVO">
-SELECT * FROM CAR WHERE CAR_NO = #{CAR_NO}
+		SELECT * FROM car WHERE car_no = #{car_no}
 	</select>
 	<select id="getCarList" resultType="CarVO">
-	SELECT * FROM CAR ORDER BY CAR_NO DESC
+		SELECT * FROM car ORDER BY car_no DESC
 	</select>
 
 	<!-- UPDATE -->
 	<update id="updateTireDistance" parameterType="CarVO">
-		UPDATE CAR SET TIRE_CHANGE_DISTANCE=#{TIRE_CHANGE_DISTANCE} WHERE CAR_NO=#{CAR_NO}
+		UPDATE car SET tire_change_distance=#{tire_change_distance} WHERE car_no=#{car_no}
 	</update>
 	<update id="updateWiperDistance" parameterType="CarVO">
-		UPDATE CAR SET WIPER_CHANGE_DISTANCE=#{WIPER_CHANGE_DISTANCE} WHERE CAR_NO=#{CAR_NO}
+		UPDATE car SET wiper_change_distance=#{wiper_change_distance} WHERE car_no=#{car_no}
 	</update>
 	<update id="updateCooler" parameterType="CarVO">
-		UPDATE CAR SET COOLER_LEFT=#{COOLER_LEFT} WHERE CAR_NO=#{CAR_NO}
+		UPDATE car SET cooler_left=#{cooler_left} WHERE car_no=#{car_no}
 	</update>
 	<update id="updateEngineOil" parameterType="CarVO">
-		UPDATE CAR SET ENGINE_OIL_VISCOSITY=#{ENGINE_OIL_VISCOSITY} WHERE CAR_NO=#{CAR_NO}
+		UPDATE car SET engine_oil_viscosity=#{engine_oil_viscosity} WHERE car_no=#{car_no}
 	</update>
 	<update id="updateDistance" parameterType="CarVO">
-		UPDATE CAR SET DISTANCE=#{DISTANCE} WHERE CAR_NO=#{CAR_NO}
+		UPDATE car SET distance=#{distance} WHERE car_no=#{car_no}
 	</update>
 
 	<!-- DELETE -->
 	<delete id="removeCar">
-		DELETE FROM CAR WHERE CAR_NO = #{CAR_NO}
+		DELETE FROM car WHERE car_no = #{car_no}
 	</delete>
 	
 	<!-- GET CAR_NO -->
 	<select id="getCarNo" parameterType="String" resultType="Integer">
-		SELECT CAR_NO FROM CAR WHERE CAR_ID = #{CAR_ID}
+		SELECT car_no FROM car WHERE car_id = #{car_id}
 	</select>
 </mapper>

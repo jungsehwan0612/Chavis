@@ -2,22 +2,24 @@ package com.chavis.biz.car.dao;
 
 import java.util.List;
 
-import com.chavis.biz.car.vo.CarVO;
-
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import com.chavis.biz.car.vo.CarVO;
 
 @Component("carmybatis")
 public class CarDAO_mybatis implements CarDAO {
 
 	@Autowired
 	SqlSession sqlSession;
-
+	
 	// CREATE
 	@Override
 	public int registerCar(CarVO car) {
-		return sqlSession.insert("carMapper.addCar", car);
+		int result = sqlSession.insert("carMapper.addCar", car);
+		sqlSession.commit();
+		return result;
 	}
 
 	// READ
@@ -37,7 +39,9 @@ public class CarDAO_mybatis implements CarDAO {
 		CarVO car = new CarVO();
 		car.setCar_no(car_no);
 		car.setTire_change_distance("0");
-		return sqlSession.update("carMapper.updateTireDistance", car);
+		int result = sqlSession.update("carMapper.updateTireDistance", car);
+		sqlSession.commit();
+		return result;
 
 	}
 
@@ -46,7 +50,9 @@ public class CarDAO_mybatis implements CarDAO {
 		CarVO car = new CarVO();
 		car.setCar_no(car_no);
 		car.setWiper_change_distance("0");
-		return sqlSession.update("carMapper.updateWiperDistance", car);
+		int result = sqlSession.update("carMapper.updateWiperDistance", car);
+		sqlSession.commit();
+		return result;
 
 	}
 
@@ -55,7 +61,9 @@ public class CarDAO_mybatis implements CarDAO {
 		CarVO car = new CarVO();
 		car.setCar_no(car_no);
 		car.setCooler_left("100");
-		return sqlSession.update("carMapper.updateCooler", car);
+		int result = sqlSession.update("carMapper.updateCooler", car);
+		sqlSession.commit();
+		return result;
 	}
 
 
@@ -65,7 +73,9 @@ public class CarDAO_mybatis implements CarDAO {
 		CarVO car = new CarVO();
 		car.setCar_no(car_no);
 		car.setEngine_oil_viscosity("100");
-		return sqlSession.update("carMapper.updateEngineOil", car);
+		int result = sqlSession.update("carMapper.updateEngineOil", car);
+		sqlSession.commit();
+		return result;
 
 	}
 
@@ -74,7 +84,9 @@ public class CarDAO_mybatis implements CarDAO {
 		CarVO car = new CarVO();
 		car.setCar_no(car_no);
 		car.setTire_change_distance(distance);
-		return sqlSession.update("carMapper.updateTireDistance", car);
+		int result = sqlSession.update("carMapper.updateTireDistance", car);
+		sqlSession.commit();
+		return result;
 	}
 
 	@Override
@@ -82,16 +94,20 @@ public class CarDAO_mybatis implements CarDAO {
 		CarVO car = new CarVO();
 		car.setCar_no(car_no);
 		car.setWiper_change_distance(distance);
-		return sqlSession.update("carMapper.updateWiperDistance", car);
+		int result = sqlSession.update("carMapper.updateWiperDistance", car);
+		sqlSession.commit();
+		return result;
 
 	}
 
 	@Override
-	public int updateCooler(String cooler, int car_no) {
+	public int updateCooler(String cooler_left, int car_no) {
 		CarVO car = new CarVO();
+		car.setCooler_left(cooler_left);
 		car.setCar_no(car_no);
-		car.setCooler_left(cooler);
-		return sqlSession.update("carMapper.updateCooler", car);
+		int result = sqlSession.update("carMapper.updateCooler", car);
+		sqlSession.commit();
+		return result;
 
 	}
 
@@ -100,7 +116,9 @@ public class CarDAO_mybatis implements CarDAO {
 		CarVO car = new CarVO();
 		car.setCar_no(car_no);
 		car.setEngine_oil_viscosity(engineOil);
-		return sqlSession.update("carMapper.updateEngineOil", car);
+		int result = sqlSession.update("carMapper.updateEngineOil", car);
+		sqlSession.commit();
+		return result;
 	}
 
 	@Override
@@ -108,13 +126,17 @@ public class CarDAO_mybatis implements CarDAO {
 		CarVO car = new CarVO();
 		car.setCar_no(car_no);
 		car.setDistance(distance);
-		return sqlSession.update("carMapper.updateDistance", car);
+		int result = sqlSession.update("carMapper.updateDistance", car);
+		sqlSession.commit();
+		return result;
 
 	}
 
 	@Override
 	public int deleteCar(int car_no) {
-		return sqlSession.delete("carMapper.removeCar", car_no);
+		int result = sqlSession.delete("carMapper.removeCar", car_no);
+		sqlSession.commit();
+		return result;
 	}
 	
 	@Override

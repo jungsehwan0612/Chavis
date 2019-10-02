@@ -4,16 +4,16 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import com.chavis.biz.car.dao.CarDAO;
-import com.chavis.biz.car.vo.CarVO;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
+import com.chavis.biz.car.dao.CarDAO;
+import com.chavis.biz.car.vo.CarVO;
+
 @Service("carservice")
 public class CarServiceImpl implements CarService {
-
+	
 	@Resource(name = "carmybatis")
 	CarDAO dao;
 
@@ -23,7 +23,6 @@ public class CarServiceImpl implements CarService {
 	public CarServiceImpl(CarDAO dao) {
 		this.dao = dao;
 	}
-
 	// CREATE
 	@Override
 	public int registerCar(CarVO car) {
@@ -73,8 +72,8 @@ public class CarServiceImpl implements CarService {
 	}
 
 	@Override
-	public int updateCooler(String cooler, int car_no) {
-		return dao.updateCooler(cooler, car_no);
+	public int updateCooler(String cooler_left, int car_no) {
+		return dao.updateCooler(cooler_left, car_no);
 	}
 
 	@Override
@@ -93,10 +92,9 @@ public class CarServiceImpl implements CarService {
 		return dao.deleteCar(car_no);
 	}
 
-
 	@Override
 	public int getCarNo(String car_id) {
 		return dao.getCarNo(car_id);
 	}
-	
+
 }
