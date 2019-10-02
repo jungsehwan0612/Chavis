@@ -34,4 +34,7 @@ public interface CarDAO {
 
     // DELETE
     public int deleteCar(int car_no);
+    
+    // GET CAR_NO
+    public int getCarNo(String car_id);
 }

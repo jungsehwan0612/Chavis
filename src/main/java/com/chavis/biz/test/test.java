@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-package com.chavis.biz.test;
-
 package com.chavis.biz.test;
 
 import com.chavis.biz.member.service.MemberService;

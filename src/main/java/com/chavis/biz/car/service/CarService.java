@@ -34,4 +34,7 @@ public interface CarService {
 
 	// DELETE(차량 정보 삭제)
 	int deleteCar(int car_no);
+	
+	// GET CAR_NO
+    public int getCarNo(String car_id);
 }
