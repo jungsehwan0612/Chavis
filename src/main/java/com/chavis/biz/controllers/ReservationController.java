@@ -32,6 +32,7 @@ public class ReservationController {
 		String reservation_time = request.getParameter("reservation_time");
 		String key = request.getParameter("key");
 		
+		
 		System.out.println(member_id);
 		System.out.println(reservation_time);
 		ReservationVO vo = new ReservationVO();
@@ -50,7 +51,8 @@ public class ReservationController {
 	
 
 	@RequestMapping(value="/Reservation/view.do", method=RequestMethod.POST)
-	public @ResponseBody ReservationVO getReserve(@RequestBody int reserve_no) {
+	public @ResponseBody ReservationVO getReserve(@RequestBody Map<String, String> map) {
+		int reserve_no = Integer.parseInt(map.get("reserve_no"));
 		System.out.println(reserve_no);
 		return service.getReservation(reserve_no);
 	}
@@ -74,7 +76,8 @@ public class ReservationController {
 	}
 
 	@RequestMapping(value="/Reservation/remove.do", method = RequestMethod.POST)
-	public @ResponseBody int removeReservation(@RequestBody int reserve_no) {
+	public @ResponseBody int removeReservation(@RequestBody Map<String, String> map) {
+		int reserve_no = Integer.parseInt(map.get("reservation_no"));
 		return service.removeReservation(reserve_no);
 	}
 
