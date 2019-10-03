@@ -1,19 +1,14 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper
-  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="MemberMapper">
 
-	<select id="login"
-		parameterType="MemberVO"
-		resultType="MemberVO">
+	<select id="login" parameterType="MemberVO" resultType="MemberVO">
 		select * from member
 		where member_id=#{member_id} and
 		member_pw = #{member_pw}
 	</select>
 
-	<select id="getMember" parameterType="MemberVO"
-		resultType="MemberVO">
+	<select id="getMember" parameterType="MemberVO" resultType="MemberVO">
 		select * from member
 		where member_id = #{member_id}
 	</select>
@@ -30,6 +25,15 @@
 		to_number(member_no) asc
 	</select>
 
+	<!-- getMemberList -->
+	<select id="getMemberList" resultType="com.chavis.biz.vo.MemberListVO">
+		SELECT reservation_no, bodyshop_no, repaired_person, reservation_time, repaired_time, key 
+		FROM RESERVATION JOIN MEMBER ON RESERVATION.member_no = MEMBER.member_no
+		WHERE MEMBER.member_no = 
+					(select member_no from member where member_id= #{member_id})
+		 ORDER BY reservation_no
+	</select>
+
 	<update id="updateMember" parameterType="MemberVO">
 		update member set
 		member_phonenumber=#{member_phonenumber} where member_id =#{member_id}
@@ -39,8 +43,7 @@
 		delete from member where member_id = #{member_id}
 	</update>
 
-	<select id="selectMemberList" parameterType="map"
-		resultType="MemberVO">
+	<select id="selectMemberList" parameterType="map" resultType="MemberVO">
 		select *
 		from (
 		select ROWNUM AS rnum, A.* from member A
@@ -50,7 +53,8 @@
 		</where>
 		) T
 		<!-- < 부등호를 사용하기 위해서는 cdata를 이용해야함 -->
-		WHERE T.rnum >= #{startIndex} and T.rnum <![CDATA[<]]>
+		WHERE T.rnum >= #{startIndex} and T.rnum
+		<![CDATA[<]]>
 		#{lastIndex}
 	</select>
 </mapper>

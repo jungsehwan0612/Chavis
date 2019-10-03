@@ -3,6 +3,7 @@ package com.chavis.biz.reservation.dao;
 import java.util.List;
 
 import com.chavis.biz.reservation.vo.ReservationVO;
+import com.chavis.biz.vo.ReservationListVO;
 
 public interface ReservationDAO {
 	// Create
@@ -17,4 +18,6 @@ public interface ReservationDAO {
 	int updateReservation(ReservationVO reservation);
 	// Delete
 	int removeReservation(int reserve_no);
+
+	List<ReservationListVO> getReservationList(String id);
 }

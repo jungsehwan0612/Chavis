@@ -3,7 +3,7 @@ package com.chavis.biz.controllers;
 import java.util.List;
 
 import com.chavis.biz.car.service.CarService;
-import com.chavis.biz.car.vo.CarVO;
+import com.chavis.biz.vo.CarVO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

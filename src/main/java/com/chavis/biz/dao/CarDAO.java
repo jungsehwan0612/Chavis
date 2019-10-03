@@ -1,8 +1,8 @@
-package com.chavis.biz.car.dao;
+package com.chavis.biz.dao;
 
 import java.util.List;
 
-import com.chavis.biz.car.vo.CarVO;
+import com.chavis.biz.vo.CarVO;
 
 public interface CarDAO {
     // CREATE

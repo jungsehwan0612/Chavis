@@ -1,4 +1,4 @@
-package com.chavis.biz.car.vo;
+package com.chavis.biz.vo;
 
 public class CarVO {
 	private int car_no;

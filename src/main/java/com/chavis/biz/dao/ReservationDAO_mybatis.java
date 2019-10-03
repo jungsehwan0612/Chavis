@@ -3,6 +3,7 @@ package com.chavis.biz.reservation.dao;
 import java.util.List;
 
 import com.chavis.biz.reservation.vo.ReservationVO;
+import com.chavis.biz.vo.ReservationListVO;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,5 +57,10 @@ public class ReservationDAO_mybatis implements ReservationDAO {
 	@Override
 	public List<ReservationVO> getReservationByID(String member_id) {
 		return sqlSession.selectList("reservationMapper.listReservationByID", member_id);
+    }
+
+    @Override
+    public List<ReservationListVO> getReservationList(String id) {
+		return sqlSession.selectList("reserveMapper.getReservationList");
 	}
 }

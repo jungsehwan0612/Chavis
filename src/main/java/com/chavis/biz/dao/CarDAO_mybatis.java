@@ -1,4 +1,4 @@
-package com.chavis.biz.car.dao;
+package com.chavis.biz.dao;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.chavis.biz.car.vo.CarVO;
+import com.chavis.biz.vo.CarVO;
 
 @Component("carmybatis")
 public class CarDAO_mybatis implements CarDAO {
