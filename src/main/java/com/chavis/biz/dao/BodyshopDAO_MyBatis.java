@@ -8,7 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-@Component("bodyshopMyBatis")
+@Component("bodyshopmybatis")
 public class BodyshopDAO_MyBatis implements BodyshopDAO {
 	@Autowired
     SqlSession sqlSession = null;

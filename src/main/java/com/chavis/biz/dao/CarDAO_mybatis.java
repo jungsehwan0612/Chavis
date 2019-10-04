@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 import com.chavis.biz.vo.CarVO;
 
-@Component("carMyBatis")
+@Component("carmybatis")
 public class CarDAO_mybatis implements CarDAO {
 
 	@Autowired

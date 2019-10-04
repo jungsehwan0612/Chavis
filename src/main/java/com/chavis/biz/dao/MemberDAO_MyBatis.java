@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 import com.chavis.biz.vo.MemberVO;
 
-@Component("memberMyBatis")
+@Component("membermybatis")
 public class MemberDAO_MyBatis implements MemberDAO{
 
 	@Autowired
