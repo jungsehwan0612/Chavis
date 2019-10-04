@@ -4,8 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,21 +23,15 @@ public class ReservationController {
 	@Autowired
 	ReservationService service;
 
-	@RequestMapping(value = "/Reservation/add.do", method = RequestMethod.POST)
-	public @ResponseBody List<ReservationVO> addClothHistory(HttpServletRequest request) {
+	@RequestMapping(value = "/Reservation/add.do", method = RequestMethod.POST, consumes="application/json")
+	@ResponseBody
+	public List<ReservationVO> addClothHistory(@RequestBody Map<String, String> map) {
 		//{"member_id":"111","reservation_time":"2019101010","key":"0"}
-		String member_id = request.getParameter("member_id");
-		String reservation_time = request.getParameter("reservation_time");
-		String key = request.getParameter("key");
-		
-		System.out.println(member_id);
-		System.out.println(reservation_time);
-		ReservationVO vo = new ReservationVO();
-		vo.setReservation_time(reservation_time);
-		vo.setKey(key);
-		
-		service.addReservation(vo);
-		return service.getReservationByID(member_id);
+		System.out.println(map);
+		System.out.println(map.get("member_id"));
+		System.out.println(map.get("reservation_time"));
+		System.out.println(map.get("key"));
+		return service.getReservationByID(map.get("member_id"));
 	}
 	
 
@@ -50,7 +42,10 @@ public class ReservationController {
 	
 
 	@RequestMapping(value="/Reservation/view.do", method=RequestMethod.POST)
-	public @ResponseBody ReservationVO getReserve(@RequestBody int reserve_no) {
+	public @ResponseBody ReservationVO getReserve(@RequestBody Map<String, String> map) {
+		int reserve_no = Integer.parseInt(map.get("reservation_time"));
+		System.out.println("view.do");
+		System.out.println(map);
 		System.out.println(reserve_no);
 		return service.getReservation(reserve_no);
 	}
