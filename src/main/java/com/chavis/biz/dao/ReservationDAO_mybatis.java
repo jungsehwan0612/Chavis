@@ -18,7 +18,6 @@ public class ReservationDAO_mybatis implements ReservationDAO {
     @Override
     public int addReservation(ReservationVO reservation) {
         return sqlSession.insert("reservationMapper.addReservation",reservation);
-
     }
 
     @Override

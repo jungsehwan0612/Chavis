@@ -74,20 +74,23 @@ public class MemberController {
 		return "로그인 결과로";
 	}
 	
-	@RequestMapping(value="/Member/list.do", method=RequestMethod.GET)
+	@RequestMapping(value="/Member/list.do", method=RequestMethod.POST)
 	public @ResponseBody List<MemberVO> getMemberList(){
 		return service.getMemberList();
 	}
 
-	@RequestMapping(value="/Member/view.do", method=RequestMethod.GET)
-	public @ResponseBody MemberVO getMember(@RequestParam("member_id") String member_id) {
+
+	@RequestMapping(value="/Member/view.do", method=RequestMethod.POST)
+	public @ResponseBody MemberVO getMember(@RequestBody Map<String, String> map) {
+		System.out.println(map);
+		String member_id = map.get("member_id");
 		System.out.println(member_id);
 		return service.getMember(member_id);
 	}
 
 	@RequestMapping(value="/Member/remove.do", method=RequestMethod.POST)
-	public @ResponseBody int removeMember(@RequestParam("member_id") String Member) {
-		return service.removeMember(Member);
+	public @ResponseBody int removeMember(@RequestBody Map<String, String> map) {
+		return service.removeMember(map.get("member_id"));
 	}
 	
 //	@RequestMapping(value="/Member/update.do", method=RequestMethod.POST)
