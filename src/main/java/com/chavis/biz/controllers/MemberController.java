@@ -26,7 +26,7 @@ public class MemberController {
 	@Autowired
 	MemberService service;
 
-	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/Member/login.do", method = RequestMethod.POST)
 	public String loginProc(MemberVO vo, HttpServletRequest request) throws Exception {
 
 		MemberVO member = service.login(vo.getMember_id(), vo.getMember_pw());
@@ -42,7 +42,7 @@ public class MemberController {
 		}
 	}
 
-	@RequestMapping("/logout.do")
+	@RequestMapping("/Member/logout.do")
 	public String logout(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		if (session != null)

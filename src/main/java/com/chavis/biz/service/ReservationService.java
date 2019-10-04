@@ -17,4 +17,6 @@ public interface ReservationService {
     int updateReservation(ReservationVO reservation);
     // Delete
     int removeReservation(int reserve_no);
+    
+    int finishRepair(int reservation_no, String repaired_time, String repaired_person);
 }

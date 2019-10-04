@@ -62,8 +62,17 @@ public class ReservationDAO_MyBatis implements ReservationDAO {
 		return sqlSession.selectList("reservationMapper.listReservationByID", member_id);
     }
 
-    @Override
-    public List<ReservationListVO> getReservationList(String id) {
-		return sqlSession.selectList("reserveMapper.getReservationList");
+	@Override
+	public List<ReservationListVO> getReservationList(String id) {
+		return sqlSession.selectList("reservationMapper.getReservationList", id);
 	}
+    
+    @Override
+    public int finishRepair(int reservation_no, String repaired_time, String repaired_person) {
+    	ReservationVO reservation = new ReservationVO();
+    	reservation.setReservation_no(reservation_no);
+    	reservation.setRepaired_time(repaired_time);
+    	reservation.setRepaired_person(repaired_person);
+    	return sqlSession.insert("reserveMapper.finishRepair", reservation);
+    }
 }

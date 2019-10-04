@@ -5,17 +5,17 @@ import java.util.Locale;
 
 import javax.annotation.Resource;
 
-import com.chavis.biz.dao.BodyshopDAO;
-import com.chavis.biz.vo.BodyshopVO;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
+import com.chavis.biz.dao.BodyshopDAO;
+import com.chavis.biz.vo.BodyshopVO;
+import com.chavis.biz.vo.ReservationListVO;
 
 @Service("bodyshopservice")
 public class BodyshopServiceImpl implements BodyshopService {
-	
+
 	@Resource(name = "bodyshopmybatis")
 	BodyshopDAO dao;
 
@@ -29,7 +29,7 @@ public class BodyshopServiceImpl implements BodyshopService {
 	public BodyshopServiceImpl(BodyshopDAO dao) {
 		this.dao = dao;
 	}
-	
+
 	@Override
 	public BodyshopVO bodyshopLogin(String bodyshop_id, String bodyshop_pw) {
 		String msg = "";
@@ -74,5 +74,9 @@ public class BodyshopServiceImpl implements BodyshopService {
 		return dao.getBodyshoplist();
 	}
 
-	
+	@Override
+	public List<ReservationListVO> getReservationList(String member_id) {
+		return dao.getReservationList(member_id);
+	}
+
 }

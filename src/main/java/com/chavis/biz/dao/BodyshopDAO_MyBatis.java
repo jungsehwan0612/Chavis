@@ -3,6 +3,7 @@ package com.chavis.biz.dao;
 import java.util.List;
 
 import com.chavis.biz.vo.BodyshopVO;
+import com.chavis.biz.vo.ReservationListVO;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,11 +60,16 @@ public class BodyshopDAO_MyBatis implements BodyshopDAO {
 		return sqlSession.selectList("bodyshopMapper.searchBodyshop",bodyshop);
 	}
 
+	
+	
 	@Override
 	public List<BodyshopVO> getBodyshoplist() {
 		System.out.println("GET BODYSHOP LIST");
 		return sqlSession.selectList("bodyshopMapper.getBodyshoplist");
 	}
-
+	@Override
+    public List<ReservationListVO> getReservationList(String id) {
+		return sqlSession.selectList("reservationMapper.getReservationList");
+	}
     
 }

@@ -57,5 +57,11 @@ public class ReservationServiceImpl implements ReservationService {
 	public List<ReservationVO> getReservationByID(String member_id) {
 		return dao.getReservationByID(member_id);
 	}
+	
+	@Override
+	public int finishRepair(int reservation_no, String repaired_time, String repaired_person) {
+		return dao.finishRepair(reservation_no, repaired_time, repaired_person);
+	}
+	
 
 }

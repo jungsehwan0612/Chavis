@@ -23,10 +23,17 @@
 
 	<!-- getReservationList -->
 	<select id="getReservationList" resultType="com.chavis.biz.vo.ReservationListVO">
-		SELECT key,key_expire_time,member_mname,car_type,car_id,reservation_time,repaired_time,repaired_person
+		<!-- SELECT key,key_expire_time,member_mname,car_type,car_id,reservation_time,repaired_time,repaired_person
 		FROM member join reservation on member.member_no = reservation.member_no
 		JOIN car on member.member_no =  car.car_no 
-		where member_id = #{member_id};
+		where member_id = #{member_id}; -->
+		
+		SELECT key,key_expire_time,member_mname,car_type,car_id,reservation_time,repaired_time,repaired_person
+        FROM member join reservation on member.member_no = reservation.member_no 
+        JOIN car
+        	ON member.member_no =  car.car_no 
+        WHERE bodyshop_no = #{bodyshop_no}
+		
 	</select>
 	<!-- LIST -->
 	<select id="listReservation" resultType="ReservationVO">
@@ -57,4 +64,10 @@
 		DELETE FROM RESERVATION WHERE RESERVATION_NO =
 		#{RESERVATION_NO}
 	</delete>
+	
+	<insert id="finishRepair" parameterType="ReservationVO">
+		UPDATE RESERVATION
+		SET REPAIRED_PERSON=#{repaired_person}, REPAIRED_TIME=#{repaired_time}
+		WHERE RESERVATION_NO =#{reservation_no}
+	</insert>
 </mapper>
