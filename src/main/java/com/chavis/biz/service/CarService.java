@@ -1,4 +1,4 @@
-package com.chavis.biz.car.service;
+package com.chavis.biz.service;
 
 import java.util.List;
 

@@ -5,6 +5,10 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.chavis.biz.service.BodyshopService;
+import com.chavis.biz.validator.CarBodyshopValidator;
+import com.chavis.biz.vo.BodyshopVO;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -14,19 +18,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.chavis.biz.carbodyshop.service.CarBodyshopService;
-import com.chavis.biz.carbodyshop.validator.CarBodyshopValidator;
-import com.chavis.biz.carbodyshop.vo.CarBodyshopVO;
-
 @Controller
 public class CarBodyshopController {
 	@Autowired
-	CarBodyshopService service;
+	BodyshopService service;
 	
 	@RequestMapping(value = "/CarBodyshop/login.do",method = RequestMethod.POST)
 	public String loginProc(@RequestParam("bodyshopid")String bodyshop_id, @RequestParam("bodyshoppw")String bodyshop_pw, 
 			HttpServletRequest request) throws Exception {
-		CarBodyshopVO carBodyshop = service.bodyLogin(bodyshop_id, bodyshop_pw);
+		BodyshopVO carBodyshop = service.bodyshopLogin(bodyshop_id, bodyshop_pw);
 		if(carBodyshop != null) {
 			request.getSession().setAttribute("CarBodyshop", carBodyshop);
 			request.getSession().setAttribute("login", carBodyshop);
@@ -50,7 +50,7 @@ public class CarBodyshopController {
 	}
 	
 	@RequestMapping(value = "/CarBodyshop/add.do",method = RequestMethod.POST)
-	public String addBodyshop(@ModelAttribute("bodyshop") CarBodyshopVO carBodyshopVO,
+	public String addBodyshop(@ModelAttribute("bodyshop") BodyshopVO carBodyshopVO,
 			HttpServletRequest request, BindingResult errors) {
 		new CarBodyshopValidator().validate(carBodyshopVO, errors);
 		if(errors.hasErrors()) {
@@ -80,7 +80,7 @@ public class CarBodyshopController {
 		return "로그인 화면으로";
 	}
 	@RequestMapping(value = "CarBodyshop/remove.do",method = RequestMethod.POST)
-	public String removeBodyshop(@ModelAttribute("bodyshop") CarBodyshopVO carBodyshopVO,
+	public String removeBodyshop(@ModelAttribute("bodyshop") BodyshopVO carBodyshopVO,
 			HttpServletRequest request) {
 		if(carBodyshopVO != null) {
 			service.removeBodyshop(carBodyshopVO.getBodyshop_id(), carBodyshopVO.getBodyshop_pw());
@@ -91,11 +91,11 @@ public class CarBodyshopController {
 		return "로그인 화면으로";
 	}
 	@RequestMapping(value = "CarBodyshop/list.do",method = RequestMethod.POST)
-	public @ResponseBody List<CarBodyshopVO> getCarBodyshopList() {
+	public @ResponseBody List<BodyshopVO> getCarBodyshopList() {
 		return service.getBodyshoplist();
 	}
 	@RequestMapping(value = "CarBodyshop/search.do",method = RequestMethod.POST)
-	public @ResponseBody List<CarBodyshopVO> searchBodyshop(@RequestParam("bodyshopaddress")String bodyshop_address,
+	public @ResponseBody List<BodyshopVO> searchBodyshop(@RequestParam("bodyshopaddress")String bodyshop_address,
 			@RequestParam("bodyshopname")String bodyshop_name) {
 		return service.searchBodyshop(bodyshop_address, bodyshop_name);
 	}

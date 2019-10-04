@@ -5,8 +5,8 @@ import java.util.HashMap;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.chavis.biz.reservation.service.ReservationService;
-import com.chavis.biz.reservation.vo.ReservationVO;
+import com.chavis.biz.service.ReservationService;
+import com.chavis.biz.vo.ReservationVO;
 
 public class Test_Reservation {
 	public static void main(String[] args) throws Exception {

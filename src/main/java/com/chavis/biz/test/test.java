@@ -1,7 +1,7 @@
 package com.chavis.biz.test;
 
-import com.chavis.biz.member.service.MemberService;
-import com.chavis.biz.member.vo.MemberVO;
+import com.chavis.biz.service.MemberService;
+import com.chavis.biz.vo.MemberVO;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -15,12 +15,12 @@ public class test {
 		
 		MemberService memberService = (MemberService) context.getBean("memberservice");
 		MemberVO client = new MemberVO();
-//
-//		client.setMember_id("test01");
-//		client.setMember_pw("1234");
-//		client.setMember_mname("테스트");
-//		client.setMember_phonenumber("00000000000");
-//		memberService.addMember(client);	
+
+		client.setMember_id("test01");
+		client.setMember_pw("1234");
+		client.setMember_mname("테스트");
+		client.setMember_phonenumber("00000000000");
+		memberService.addMember(client);	
 
 
 //		
