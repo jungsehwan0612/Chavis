@@ -9,11 +9,15 @@ import org.springframework.stereotype.Component;
 import com.chavis.biz.vo.CarVO;
 
 @Component("carmybatis")
-public class CarDAO_mybatis implements CarDAO {
+public class CarDAO_MyBatis implements CarDAO {
 
 	@Autowired
 	SqlSession sqlSession;
 	
+	
+	public CarDAO_MyBatis() {
+		System.out.println("CarDAO 시작");
+	}
 	// CREATE
 	@Override
 	public int registerCar(CarVO car) {

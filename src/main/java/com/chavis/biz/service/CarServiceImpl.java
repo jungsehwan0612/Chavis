@@ -20,6 +20,10 @@ public class CarServiceImpl implements CarService {
 	@Autowired
 	ApplicationContext context;
 
+	
+	public CarServiceImpl() {
+		System.out.println("CarService 시작");
+	}
 	public CarServiceImpl(CarDAO dao) {
 		this.dao = dao;
 	}

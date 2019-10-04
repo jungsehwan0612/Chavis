@@ -20,7 +20,10 @@ public class ReservationServiceImpl implements ReservationService {
     @Autowired
     ApplicationContext context;
 
-
+    public ReservationServiceImpl() {
+    	System.out.println("ReservationService 시작");
+    }
+    
     public ReservationServiceImpl(ReservationDAO dao)   {
         this.dao = dao;
     }

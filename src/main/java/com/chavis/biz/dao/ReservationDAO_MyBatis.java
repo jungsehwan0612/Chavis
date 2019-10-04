@@ -10,10 +10,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component("reservationmybatis")
-public class ReservationDAO_mybatis implements ReservationDAO {
+public class ReservationDAO_MyBatis implements ReservationDAO {
 
     @Autowired
-    SqlSession sqlSession = null;
+    SqlSession sqlSession;
+    
+    public ReservationDAO_MyBatis() {
+    	System.out.println("ReservationDAO 시작");
+	}
 
     @Override
     public int addReservation(ReservationVO reservation) {

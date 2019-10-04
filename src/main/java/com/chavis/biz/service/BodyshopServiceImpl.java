@@ -23,7 +23,7 @@ public class BodyshopServiceImpl implements BodyshopService {
 	ApplicationContext context;
 
 	public BodyshopServiceImpl() {
-		System.out.println("CarBodyshopServiceImpl 호출");
+		System.out.println("BodyshopService 시작");
 	}
 
 	public BodyshopServiceImpl(BodyshopDAO dao) {

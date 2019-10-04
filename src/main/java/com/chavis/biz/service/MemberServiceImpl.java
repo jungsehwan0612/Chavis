@@ -23,7 +23,7 @@ public class MemberServiceImpl implements MemberService {
 	ApplicationContext context;
 
 	public MemberServiceImpl() {
-		System.out.println("MemberServiceImpl 호출");
+		System.out.println("MemberService 시작");
 	}
 
 	public void setDao(MemberDAO dao) {

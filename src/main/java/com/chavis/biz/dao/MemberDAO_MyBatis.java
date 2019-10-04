@@ -13,10 +13,10 @@ import com.chavis.biz.vo.MemberVO;
 public class MemberDAO_MyBatis implements MemberDAO{
 
 	@Autowired
-	SqlSession sqlSession = null;
+	SqlSession sqlSession;
 	
 	public MemberDAO_MyBatis() {
-		System.out.println("MemberDAO_MyBatis 호출");
+		System.out.println("MemberDAO 시작");
 	}
 	
 	public MemberVO login(String Member_id, String member_pw) {
@@ -44,7 +44,7 @@ public class MemberDAO_MyBatis implements MemberDAO{
 	}
 
 	public int removeMember(String member_id) {
-		return sqlSession.update("meberMapper.removeMember", member_id);
+		return sqlSession.update("memberMapper.removeMember", member_id);
 	}
 
 	@Override
@@ -60,7 +60,7 @@ public class MemberDAO_MyBatis implements MemberDAO{
 		} 
 		param.put("startIndex", startIndex);
 		param.put("lastIndex", endIndex);
-		return sqlSession.selectList("MemberMapper.selectMemberList", param);
+		return sqlSession.selectList("memberMapper.selectMemberList", param);
 	}
 	
 }

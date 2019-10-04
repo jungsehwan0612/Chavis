@@ -11,8 +11,12 @@ import org.springframework.stereotype.Component;
 @Component("bodyshopmybatis")
 public class BodyshopDAO_MyBatis implements BodyshopDAO {
 	@Autowired
-    SqlSession sqlSession = null;
+    SqlSession sqlSession;
 
+	public BodyshopDAO_MyBatis() {
+		System.out.println("BodyshopDAO 시작");
+	}
+	
 	@Override
 	public BodyshopVO bodyshopLogin(String bodyshop_id, String bodyshop_pw) {
 		System.out.println("BODYSHOP LOGIN");
