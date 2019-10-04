@@ -79,6 +79,7 @@ public class MemberController {
 		return service.getMemberList();
 	}
 
+
 	@RequestMapping(value="/Member/view.do", method=RequestMethod.POST)
 	public @ResponseBody MemberVO getMember(@RequestBody Map<String, String> map) {
 		System.out.println(map);
@@ -88,8 +89,8 @@ public class MemberController {
 	}
 
 	@RequestMapping(value="/Member/remove.do", method=RequestMethod.POST)
-	public @ResponseBody int removeMember(@RequestParam("member_id") String Member) {
-		return service.removeMember(Member);
+	public @ResponseBody int removeMember(@RequestBody Map<String, String> map) {
+		return service.removeMember(map.get("member_id"));
 	}
 	
 //	@RequestMapping(value="/Member/update.do", method=RequestMethod.POST)

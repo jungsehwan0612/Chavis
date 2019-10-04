@@ -69,7 +69,8 @@ public class ReservationController {
 	}
 
 	@RequestMapping(value="/Reservation/remove.do", method = RequestMethod.POST)
-	public @ResponseBody int removeReservation(@RequestBody int reserve_no) {
+	public @ResponseBody int removeReservation(@RequestBody Map<String, String> map) {
+		int reserve_no = Integer.parseInt(map.get("reservation_no"));
 		return service.removeReservation(reserve_no);
 	}
 

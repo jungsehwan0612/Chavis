@@ -26,7 +26,7 @@ public interface CarDAO {
 
     public int updateWiperDistance(String distance, int car_no);
 
-    public int updateCooler(String cooler, int car_no);
+    public int updateCooler(String cooler_left, int car_no);
 
     public int updateEngineOil(String engineOil, int car_no);
 
@@ -34,4 +34,7 @@ public interface CarDAO {
 
     // DELETE
     public int deleteCar(int car_no);
+    
+    // GET CAR_NO
+    public int getCarNo(String car_id);
 }

@@ -26,7 +26,7 @@ public interface CarService {
 
 	int updateWiperDistance(String distance, int car_no);
 
-	int updateCooler(String cooler, int car_no);
+	int updateCooler(String cooler_left, int car_no);
 
 	int updateEngineOil(String engineOil, int car_no);
 
@@ -34,4 +34,7 @@ public interface CarService {
 
 	// DELETE(차량 정보 삭제)
 	int deleteCar(int car_no);
+	
+	// GET CAR_NO
+    public int getCarNo(String car_id);
 }
