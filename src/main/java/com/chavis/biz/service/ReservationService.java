@@ -1,8 +1,8 @@
-package com.chavis.biz.reservation.service;
+package com.chavis.biz.service;
 
 import java.util.List;
 
-import com.chavis.biz.reservation.vo.ReservationVO;
+import com.chavis.biz.vo.ReservationVO;
 
 public interface ReservationService {
     // Create

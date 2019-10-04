@@ -1,48 +1,41 @@
-package com.chavis.biz.carbodyshop.service;
+package com.chavis.biz.service;
 
 import java.util.List;
 import java.util.Locale;
 
 import javax.annotation.Resource;
 
+import com.chavis.biz.dao.BodyshopDAO;
+import com.chavis.biz.vo.BodyshopVO;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
-import com.chavis.biz.carbodyshop.dao.CarBodyshopDAO;
-import com.chavis.biz.carbodyshop.vo.CarBodyshopVO;
 
-@Service("carbodyservice")
-public class CarBodyshopServiceImpl implements CarBodyshopService {
+@Service("bodyshopservice")
+public class BodyshopServiceImpl implements BodyshopService {
 	
 	@Resource(name = "carbodyshopmybatis")
-	CarBodyshopDAO dao;
+	BodyshopDAO dao;
 
 	@Autowired
 	ApplicationContext context;
 
-	public CarBodyshopServiceImpl() {
+	public BodyshopServiceImpl() {
 		System.out.println("CarBodyshopServiceImpl 호출");
 	}
 
-	public CarBodyshopServiceImpl(CarBodyshopDAO dao) {
-		this.dao = dao;
-	}
-
-	public CarBodyshopDAO getDao() {
-		return dao;
-	}
-
-	public void setDao(CarBodyshopDAO dao) {
+	public BodyshopServiceImpl(BodyshopDAO dao) {
 		this.dao = dao;
 	}
 	
 	@Override
-	public CarBodyshopVO bodyLogin(String bodyshop_id, String bodyshop_pw) {
+	public BodyshopVO bodyshopLogin(String bodyshop_id, String bodyshop_pw) {
 		String msg = "";
-		CarBodyshopVO vo = null;
+		BodyshopVO vo = null;
 		try {
-			vo = dao.bodyLogin(bodyshop_id, bodyshop_pw);
+			vo = dao.bodyshopLogin(bodyshop_id, bodyshop_pw);
 
 			if (vo != null) {
 				msg = context.getMessage("login.success", new Object[] { bodyshop_id }, Locale.KOREA);
@@ -57,7 +50,7 @@ public class CarBodyshopServiceImpl implements CarBodyshopService {
 	}
 
 	@Override
-	public void addBodyshop(CarBodyshopVO vo) {
+	public void addBodyshop(BodyshopVO vo) {
 		dao.addBodyshop(vo);
 	}
 
@@ -72,12 +65,12 @@ public class CarBodyshopServiceImpl implements CarBodyshopService {
 	}
 
 	@Override
-	public List<CarBodyshopVO> searchBodyshop(String bodyshop_address, String bodyshop_name) {
+	public List<BodyshopVO> searchBodyshop(String bodyshop_address, String bodyshop_name) {
 		return dao.searchBodyshop(bodyshop_address, bodyshop_name);
 	}
 
 	@Override
-	public List<CarBodyshopVO> getBodyshoplist() {
+	public List<BodyshopVO> getBodyshoplist() {
 		return dao.getBodyshoplist();
 	}
 

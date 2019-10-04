@@ -1,4 +1,4 @@
-package com.chavis.biz.member.service;
+package com.chavis.biz.service;
 
 import java.util.List;
 import java.util.Locale;
@@ -6,12 +6,12 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import com.chavis.biz.dao.MemberDAO;
+import com.chavis.biz.vo.MemberVO;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
-
-import com.chavis.biz.member.dao.MemberDAO;
-import com.chavis.biz.member.vo.MemberVO;
 
 @Service("memberservice")
 public class MemberServiceImpl implements MemberService {
@@ -24,14 +24,6 @@ public class MemberServiceImpl implements MemberService {
 
 	public MemberServiceImpl() {
 		System.out.println("MemberServiceImpl 호출");
-	}
-
-	public MemberServiceImpl(MemberDAO dao) {
-		this.dao = dao;
-	}
-
-	public MemberDAO getDao() {
-		return dao;
 	}
 
 	public void setDao(MemberDAO dao) {
@@ -76,19 +68,7 @@ public class MemberServiceImpl implements MemberService {
 		return dao.getMemberList();
 	}
 
-	public List<MemberVO> selectMemberList(Map<String, Object> param) {
-		int startIndex = 1;
-		int endIndex = 20;
-		if(param.containsKey("pageSize") && param.containsKey("pageIndex")) {
-			int pageSize = (int) param.get("pageSize"); 
-			int pageIndex = (int) param.get("pageIndex");
-			
-			startIndex = pageSize * (pageIndex - 1) + 1;
-			endIndex = startIndex + pageSize;
-		} 
-		param.put("startIndex", startIndex);
-		param.put("lastIndex", endIndex);
-		
+	public List<MemberVO> selectMemberList(Map<String, Object> param) {		
 		return dao.selectMemberList(param);
 	}
 	

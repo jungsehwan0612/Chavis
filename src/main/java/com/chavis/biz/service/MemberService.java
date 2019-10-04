@@ -1,9 +1,9 @@
-package com.chavis.biz.member.service;
+package com.chavis.biz.service;
 
 import java.util.List;
 import java.util.Map;
 
-import com.chavis.biz.member.vo.MemberVO;
+import com.chavis.biz.vo.MemberVO;
 
 public interface MemberService {
 	MemberVO login(String member_id, String member_pw);

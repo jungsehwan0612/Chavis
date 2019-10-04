@@ -1,9 +1,9 @@
-package com.chavis.biz.member.validator;
+package com.chavis.biz.validator;
 
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
-import com.chavis.biz.member.vo.MemberVO;
+import com.chavis.biz.vo.MemberVO;
 
 public class MemberValidator implements Validator {
 

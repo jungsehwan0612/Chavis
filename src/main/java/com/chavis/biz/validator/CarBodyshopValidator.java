@@ -1,9 +1,9 @@
-package com.chavis.biz.carbodyshop.validator;
+package com.chavis.biz.validator;
 
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
-import com.chavis.biz.carbodyshop.vo.CarBodyshopVO;
+import com.chavis.biz.vo.BodyshopVO;
 
 public class CarBodyshopValidator implements Validator {
 
@@ -12,7 +12,7 @@ public class CarBodyshopValidator implements Validator {
 	}
 
 	public void validate(Object target, Errors errors) {
-		CarBodyshopVO vo = (CarBodyshopVO) target;
+		BodyshopVO vo = (BodyshopVO) target;
 		if (vo.getBodyshop_id() == null || vo.getBodyshop_id().trim().isEmpty()) {
 			errors.rejectValue("bodyshop_id", "required");
 		}

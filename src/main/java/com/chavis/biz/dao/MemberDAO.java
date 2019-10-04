@@ -1,9 +1,9 @@
-package com.chavis.biz.member.dao;
+package com.chavis.biz.dao;
 
 import java.util.List;
 import java.util.Map;
 
-import com.chavis.biz.member.vo.MemberVO;
+import com.chavis.biz.vo.MemberVO;
 
 public interface MemberDAO {
 	MemberVO login(String member_id, String member_pw);
@@ -19,4 +19,6 @@ public interface MemberDAO {
 	int removeMember(String member_id);
 	
 	List<MemberVO> selectMemberList(Map<String, Object> param);
+
+	
 }

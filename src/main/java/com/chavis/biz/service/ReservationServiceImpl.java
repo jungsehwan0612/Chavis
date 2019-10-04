@@ -1,11 +1,11 @@
-package com.chavis.biz.reservation.service;
+package com.chavis.biz.service;
 
 import java.util.List;
 
 import javax.annotation.Resource;
 
-import com.chavis.biz.reservation.dao.ReservationDAO;
-import com.chavis.biz.reservation.vo.ReservationVO;
+import com.chavis.biz.dao.ReservationDAO;
+import com.chavis.biz.vo.ReservationVO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;

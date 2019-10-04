@@ -1,8 +1,8 @@
-package com.chavis.biz.reservation.dao;
+package com.chavis.biz.dao;
 
 import java.util.List;
 
-import com.chavis.biz.reservation.vo.ReservationVO;
+import com.chavis.biz.vo.ReservationVO;
 import com.chavis.biz.vo.ReservationListVO;
 
 import org.apache.ibatis.session.SqlSession;
