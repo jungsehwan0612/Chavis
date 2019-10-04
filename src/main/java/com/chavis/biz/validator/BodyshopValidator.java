@@ -5,7 +5,7 @@ import org.springframework.validation.Validator;
 
 import com.chavis.biz.vo.BodyshopVO;
 
-public class CarBodyshopValidator implements Validator {
+public class BodyshopValidator implements Validator {
 
 	public boolean supports(Class<?> clazz) {
 		return true;
