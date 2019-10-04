@@ -58,6 +58,7 @@ public class BodyshopController {
 		}		
 		try {
 			service.addBodyshop(bodyshopVO);
+
 			request.setAttribute("msg", "정비소가 등록되었습니다.");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -66,11 +67,8 @@ public class BodyshopController {
 		
 		return "로그인 결과로";
 	}
-	@RequestMapping(value = "/CarBodyshop/update.do",method = RequestMethod.GET)
-	public String updateBodyshopPassword() {
-		return "비밀번호 수정 화면으로";
-	}
-	@RequestMapping(value = "/CarBodyshop/update.do",method = RequestMethod.POST)
+	
+	@RequestMapping(value = "/Bodyshop/update.do",method = RequestMethod.POST)
 	public String updateBodyshopPassword(String pw, HttpServletRequest request) {
 		if(pw==null|pw.equals("")) {
 			return "비밀번호 수정 창으로";
@@ -79,7 +77,8 @@ public class BodyshopController {
 		request.setAttribute("msg", "비밀번호가 수정되었습니다.");
 		return "로그인 화면으로";
 	}
-	@RequestMapping(value = "CarBodyshop/remove.do",method = RequestMethod.POST)
+	
+	@RequestMapping(value = "Bodyshop/remove.do",method = RequestMethod.POST)
 	public String removeBodyshop(@ModelAttribute("bodyshop") BodyshopVO carBodyshopVO,
 			HttpServletRequest request) {
 		if(carBodyshopVO != null) {
@@ -90,11 +89,11 @@ public class BodyshopController {
 		}
 		return "로그인 화면으로";
 	}
-	@RequestMapping(value = "CarBodyshop/list.do",method = RequestMethod.POST)
+	@RequestMapping(value = "Bodyshop/list.do",method = RequestMethod.POST)
 	public @ResponseBody List<BodyshopVO> getCarBodyshopList() {
 		return service.getBodyshoplist();
 	}
-	@RequestMapping(value = "CarBodyshop/search.do",method = RequestMethod.POST)
+	@RequestMapping(value = "Bodyshop/search.do",method = RequestMethod.POST)
 	public @ResponseBody List<BodyshopVO> searchBodyshop(@RequestParam("bodyshopaddress")String bodyshop_address,
 			@RequestParam("bodyshopname")String bodyshop_name) {
 		return service.searchBodyshop(bodyshop_address, bodyshop_name);

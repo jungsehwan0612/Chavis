@@ -75,6 +75,7 @@ public class MemberController {
 
 	@RequestMapping(value = "/Member/list.do", method = RequestMethod.POST)
 	public @ResponseBody List<MemberVO> getMemberList() {
+		System.out.println("member list controller");
 		return service.getMemberList();
 	}
 

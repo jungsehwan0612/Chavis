@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 @Service("bodyshopservice")
 public class BodyshopServiceImpl implements BodyshopService {
 	
-	@Resource(name = "carbodyshopmybatis")
+	@Resource(name = "bodyshopmybatis")
 	BodyshopDAO dao;
 
 	@Autowired
