@@ -30,7 +30,7 @@
 	</select>
 	
 	<select id="getBodyshoplist" resultType="Bodyshopvo">
-		select * from bodyshop
+		select * from bodyshop 
 	</select>
 	
 </mapper>

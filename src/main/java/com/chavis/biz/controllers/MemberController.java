@@ -27,18 +27,19 @@ public class MemberController {
 	MemberService service;
 
 	@RequestMapping(value = "/Member/login.do", method = RequestMethod.POST)
-	public String loginProc(MemberVO vo, HttpServletRequest request) throws Exception {
-
-		MemberVO member = service.login(vo.getMember_id(), vo.getMember_pw());
+	public @ResponseBody MemberVO loginProc(@RequestBody Map<String, String> map, HttpServletRequest request) throws Exception {
+		String member_id = map.get("member_id");
+		String member_pw = map.get("member_pw");
+		MemberVO member = service.login(member_id, member_pw);
 		if (member != null) {
 			request.getSession().setAttribute("Member", member);
 			request.getSession().setAttribute("login", member);
 
-			return "초기화면으로";
+			return service.login(member_id, member_pw);
 		} else {
 			request.setAttribute("msg", "로그인 정보를 다시 입력하세요.");
 
-			return "로그인 화면으로";
+			return service.login(member_id, member_pw);
 		}
 	}
 

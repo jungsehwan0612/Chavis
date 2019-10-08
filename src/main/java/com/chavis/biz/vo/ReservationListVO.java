@@ -1,6 +1,7 @@
 package com.chavis.biz.vo;
 
 public class ReservationListVO {
+	private int reservation_no;
 	private String key;
 	private String key_expire_time;
 	private String member_mname;
@@ -12,9 +13,12 @@ public class ReservationListVO {
 
 	public ReservationListVO() {
 	}
+	
 
-	public ReservationListVO(String key, String key_expire_time, String member_mname, String car_type, String car_id,
-			String reservation_time, String repaired_time, String repaired_person) {
+	public ReservationListVO(int reservation_no, String key, String key_expire_time, String member_mname,
+			String car_type, String car_id, String reservation_time, String repaired_time, String repaired_person) {
+		super();
+		this.reservation_no = reservation_no;
 		this.key = key;
 		this.key_expire_time = key_expire_time;
 		this.member_mname = member_mname;
@@ -23,6 +27,15 @@ public class ReservationListVO {
 		this.reservation_time = reservation_time;
 		this.repaired_time = repaired_time;
 		this.repaired_person = repaired_person;
+	}
+
+
+	public int getReservation_no() {
+		return reservation_no;
+	}
+
+	public void setReservation_no(int reservation_no) {
+		this.reservation_no = reservation_no;
 	}
 
 	public String getKey() {
@@ -88,4 +101,6 @@ public class ReservationListVO {
 	public void setRepaired_person(String repaired_person) {
 		this.repaired_person = repaired_person;
 	}
+
+	
 }

@@ -4,7 +4,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.chavis.biz.service.BodyshopService;
 import com.chavis.biz.service.ReservationService;
+import com.chavis.biz.vo.ReservationListVO;
 import com.chavis.biz.vo.ReservationVO;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @CrossOrigin("*")
@@ -22,6 +25,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class ReservationController {
 	@Autowired
 	ReservationService service;
+	
+	@Autowired
+	BodyshopService bservice;
 
 	@RequestMapping(value = "/Reservation/add.do", method = RequestMethod.POST, consumes="application/json")
 	@ResponseBody
@@ -79,6 +85,25 @@ public class ReservationController {
 	@RequestMapping("/Reservation/update.do")
 	public @ResponseBody int UpdateReservation(@RequestBody ReservationVO reservation) {
 		return service.updateReservation(reservation);
+	}
+	
+	@RequestMapping(value="/Reservation/finishrepair.do", method=RequestMethod.POST)
+	public @ResponseBody List<ReservationListVO> finishRepair(@RequestBody Map<String, String> map) {
+		System.out.println("reservation controller");
+		System.out.println(map);
+//		ReservationVO vo = new ReservationVO();
+//		vo.setReservation_no(Integer.parseInt(map.get("reservation_no")));
+//		vo.setRepaired_time(map.get("repaired_time"));
+//		vo.setRepaired_person(map.get("repaired_person"));
+//		System.out.println(vo);
+//		service.finishRepair(vo);
+//		return bservice.getReservationList(vo.getBodyshop_no());
+		int reservation_no = Integer.parseInt(map.get("reservation_no"));
+		String repaired_time = map.get("repaired_time");
+		String repaired_person = map.get("repaired_person");
+		
+		service.finishRepair(reservation_no, repaired_time, repaired_person);
+		return bservice.getReservationList(Integer.parseInt(map.get("bodyshop_no")));
 	}
 
 	@ExceptionHandler(Exception.class)

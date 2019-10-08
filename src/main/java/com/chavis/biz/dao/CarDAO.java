@@ -10,6 +10,8 @@ public interface CarDAO {
 
     // READ
     public CarVO getCar(int car_no);
+    
+    public CarVO getPersonalCar(String member_id);
 
     public List<CarVO> getCarList();
 

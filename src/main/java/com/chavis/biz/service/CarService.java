@@ -10,6 +10,8 @@ public interface CarService {
 
 	// READ (단일 차량 정보 조회, 전체 차량 정보 조회)
 	CarVO getCar(int car_no);
+	
+	CarVO getPersonalCar(String member_id);
 
 	List<CarVO> getCarList();
 

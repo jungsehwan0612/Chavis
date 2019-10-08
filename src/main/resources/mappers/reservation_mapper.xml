@@ -28,7 +28,7 @@
 		JOIN car on member.member_no =  car.car_no 
 		where member_id = #{member_id}; -->
 		
-		SELECT key,key_expire_time,member_mname,car_type,car_id,reservation_time,repaired_time,repaired_person
+		SELECT reservation_no, key,key_expire_time,member_mname,car_type,car_id,reservation_time,repaired_time,repaired_person
         FROM member join reservation on member.member_no = reservation.member_no 
         JOIN car
         	ON member.member_no =  car.car_no 
@@ -65,9 +65,9 @@
 		#{RESERVATION_NO}
 	</delete>
 	
-	<insert id="finishRepair" parameterType="ReservationVO">
+	<update id="finishRepair" parameterType="ReservationVO">
 		UPDATE RESERVATION
-		SET REPAIRED_PERSON=#{repaired_person}, REPAIRED_TIME=#{repaired_time}
-		WHERE RESERVATION_NO =#{reservation_no}
-	</insert>
+		SET REPAIRED_PERSON = #{repaired_person}, REPAIRED_TIME = #{repaired_time}
+		WHERE RESERVATION_NO = #{reservation_no}
+	</update>
 </mapper>

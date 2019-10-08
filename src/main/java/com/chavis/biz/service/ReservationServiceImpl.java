@@ -4,12 +4,12 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import com.chavis.biz.dao.ReservationDAO;
-import com.chavis.biz.vo.ReservationVO;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
+
+import com.chavis.biz.dao.ReservationDAO;
+import com.chavis.biz.vo.ReservationVO;
 
 @Service("reservationservice")
 public class ReservationServiceImpl implements ReservationService {
@@ -60,6 +60,7 @@ public class ReservationServiceImpl implements ReservationService {
 	
 	@Override
 	public int finishRepair(int reservation_no, String repaired_time, String repaired_person) {
+		System.out.println("serviceimpl");
 		return dao.finishRepair(reservation_no, repaired_time, repaired_person);
 	}
 	
