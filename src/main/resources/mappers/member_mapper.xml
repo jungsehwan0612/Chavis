@@ -3,12 +3,12 @@
 <mapper namespace="memberMapper">
 
 	<select id="memberLogin" parameterType="MemberVO" resultType="MemberVO">
-		select member.member_no, member_id, member_pw, 
-				member+_mname, member_phonenumber, car.car_no, car_id, car_type 
-				from member 
-				join car 
-				on member.member_no = car.member_no 
-				where member_id = #{member_id} and member_pw = #{member_pw}
+		SELECT member.member_no, member_id, member_pw, 
+				member_mname, member_phonenumber, car.car_no, car_id, car_type 
+				FROM member 
+				JOIN car 
+				ON member.member_no = car.member_no 
+				WHERE member_id = #{member_id} and member_pw = #{member_pw}
 	</select>
 
 	<select id="getMember" parameterType="MemberVO" resultType="MemberVO">
