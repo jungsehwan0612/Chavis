@@ -46,8 +46,10 @@ public class ReservationDAO_MyBatis implements ReservationDAO {
 
     @Override
     public int updateReservation(ReservationVO reservation) {
-        return sqlSession.update("reservationMapper.updateReservation", reservation);
-
+    	reservation.setReservation_no(reservation.getBodyshop_no());
+    	reservation.setRepaired_time(reservation.getRepaired_time());
+    	reservation.setRepaired_person(reservation.getRepaired_person());
+    	return sqlSession.insert("reserveMapper.updateReservation", reservation);
     }
 
     @Override
@@ -67,12 +69,5 @@ public class ReservationDAO_MyBatis implements ReservationDAO {
 		return sqlSession.selectList("reservationMapper.getReservationList", id);
 	}
     
-    @Override
-    public int finishRepair(int reservation_no, String repaired_time, String repaired_person) {
-    	ReservationVO reservation = new ReservationVO();
-    	reservation.setReservation_no(reservation_no);
-    	reservation.setRepaired_time(repaired_time);
-    	reservation.setRepaired_person(repaired_person);
-    	return sqlSession.insert("reserveMapper.finishRepair", reservation);
-    }
+ 
 }

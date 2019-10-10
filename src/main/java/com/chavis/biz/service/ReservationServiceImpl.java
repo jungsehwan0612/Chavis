@@ -16,15 +16,15 @@ public class ReservationServiceImpl implements ReservationService {
 
     @Resource(name = "reservationmybatis")
     ReservationDAO dao;
-    
+
     @Autowired
     ApplicationContext context;
 
     public ReservationServiceImpl() {
-    	System.out.println("ReservationService 시작");
+        System.out.println("ReservationService 시작");
     }
-    
-    public ReservationServiceImpl(ReservationDAO dao)   {
+
+    public ReservationServiceImpl(ReservationDAO dao) {
         this.dao = dao;
     }
 
@@ -53,15 +53,9 @@ public class ReservationServiceImpl implements ReservationService {
         return dao.removeReservation(reserve_no);
     }
 
-	@Override
-	public List<ReservationVO> getReservationByID(String member_id) {
-		return dao.getReservationByID(member_id);
-	}
-	
-	@Override
-	public int finishRepair(int reservation_no, String repaired_time, String repaired_person) {
-		return dao.finishRepair(reservation_no, repaired_time, repaired_person);
-	}
-	
+    @Override
+    public List<ReservationVO> getReservationByID(String member_id) {
+        return dao.getReservationByID(member_id);
+    }
 
 }
