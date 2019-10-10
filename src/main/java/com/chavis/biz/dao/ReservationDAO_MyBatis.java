@@ -1,11 +1,9 @@
 package com.chavis.biz.dao;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import com.chavis.biz.vo.ReservationVO;
 import com.chavis.biz.vo.ReservationListVO;
+import com.chavis.biz.vo.ReservationVO;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
