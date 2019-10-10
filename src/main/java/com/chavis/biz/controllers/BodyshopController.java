@@ -1,6 +1,7 @@
 package com.chavis.biz.controllers;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,17 +27,20 @@ public class BodyshopController {
 	BodyshopService service;
 	
 	@RequestMapping(value = "/Bodyshop/login.do",method = RequestMethod.POST)
-	public String loginProc(@RequestParam("bodyshopid")String bodyshop_id, @RequestParam("bodyshoppw")String bodyshop_pw, 
+	public @ResponseBody BodyshopVO loginProc(@RequestBody Map<String, String> map, 
 			HttpServletRequest request) throws Exception {
+		System.out.println(map);
+		String bodyshop_id = map.get("id");
+		String bodyshop_pw = map.get("pw");
 		BodyshopVO Bodyshop = service.bodyshopLogin(bodyshop_id, bodyshop_pw);
 		if(Bodyshop != null) {
 			request.getSession().setAttribute("Bodyshop", Bodyshop);
 			request.getSession().setAttribute("Login", Bodyshop);
-			return "초기화면으로";
+			return service.bodyshopLogin(bodyshop_id, bodyshop_pw);
 		}else {
 			request.setAttribute("msg", "로그인 정보를 다시 입력하세요.");
 			System.out.println(Bodyshop);
-			return "로그인 화면으로";
+			return service.bodyshopLogin(bodyshop_id, bodyshop_pw);
 		}
 	}
 	@RequestMapping("/Bodyshop/logout.do")
@@ -79,7 +84,7 @@ public class BodyshopController {
 		return "로그인 화면으로";
 	}
 	
-	@RequestMapping(value = "Bodyshop/remove.do",method = RequestMethod.POST)
+	@RequestMapping(value = "/Bodyshop/remove.do",method = RequestMethod.POST)
 	public String removeBodyshop(@ModelAttribute("bodyshop") BodyshopVO carBodyshopVO,
 			HttpServletRequest request) {
 		if(carBodyshopVO != null) {
@@ -90,18 +95,20 @@ public class BodyshopController {
 		}
 		return "로그인 화면으로";
 	}
-	@RequestMapping(value = "Bodyshop/list.do",method = RequestMethod.POST)
+	@RequestMapping(value = "/Bodyshop/list.do",method = RequestMethod.POST)
 	public @ResponseBody List<BodyshopVO> getCarBodyshopList() {
 		return service.getBodyshoplist();
 	}
-	@RequestMapping(value = "Bodyshop/search.do",method = RequestMethod.POST)
+	@RequestMapping(value = "/Bodyshop/search.do",method = RequestMethod.POST)
 	public @ResponseBody List<BodyshopVO> searchBodyshop(@RequestParam("bodyshopaddress")String bodyshop_address,
 			@RequestParam("bodyshopname")String bodyshop_name) {
 		return service.searchBodyshop(bodyshop_address, bodyshop_name);
 	}
 	
-	@RequestMapping(value = "Bodyshop/blist.do",method = RequestMethod.POST)
-	public @ResponseBody List<ReservationListVO> getReservationList(@RequestParam("member_id")String member_id) {
-		return service.getReservationList(member_id);
+	@RequestMapping(value = "/Bodyshop/blist.do", method = RequestMethod.POST)
+	public @ResponseBody List<ReservationListVO> getReservationList(@RequestBody Map<String, String> map) {
+		System.out.println(map);
+		int member_no = Integer.parseInt(map.get("bodyshop_no"));
+		return service.getReservationList(member_no);
 	}
 }

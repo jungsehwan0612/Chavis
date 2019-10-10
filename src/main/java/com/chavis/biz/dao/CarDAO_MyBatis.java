@@ -31,6 +31,7 @@ public class CarDAO_MyBatis implements CarDAO {
 	public CarVO getCar(int car_no) {
 		return sqlSession.selectOne("carMapper.getCar", car_no);
 	}
+	
 
 	@Override
 	public List<CarVO> getCarList() {
@@ -146,5 +147,9 @@ public class CarDAO_MyBatis implements CarDAO {
 	@Override
 	public int getCarNo(String car_id) {
 		return sqlSession.selectOne("carMapper.getCarNo", car_id);
+	}
+	@Override
+	public CarVO getPersonalCar(String member_id) {
+		return sqlSession.selectOne("carMapper.getPersonalCar", member_id);
 	}
 }

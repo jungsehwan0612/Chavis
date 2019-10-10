@@ -38,6 +38,8 @@ public class CarServiceImpl implements CarService {
 	public CarVO getCar(int car_no) {
 		return dao.getCar(car_no);
 	}
+	
+	
 
 	@Override
 	public List<CarVO> getCarList() {
@@ -99,6 +101,10 @@ public class CarServiceImpl implements CarService {
 	@Override
 	public int getCarNo(String car_id) {
 		return dao.getCarNo(car_id);
+	}
+	@Override
+	public CarVO getPersonalCar(String member_id) {
+		return dao.getPersonalCar(member_id);
 	}
 
 }

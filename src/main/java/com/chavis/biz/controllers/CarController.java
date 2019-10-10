@@ -1,19 +1,21 @@
 package com.chavis.biz.controllers;
 
 import java.util.List;
-
-import com.chavis.biz.service.CarService;
-import com.chavis.biz.vo.CarVO;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.chavis.biz.service.CarService;
+import com.chavis.biz.vo.CarVO;
 
 @CrossOrigin("*")
 @Controller
@@ -32,6 +34,12 @@ public class CarController {
     @RequestMapping(value = "/Car/view.do")
     public @ResponseBody CarVO getCar(@RequestParam("car_no") int car_no) {
         return service.getCar(car_no);
+    }
+    
+    @RequestMapping(value = "/Car/personalview.do", method=RequestMethod.POST)
+    public @ResponseBody CarVO getPersonalCar(@RequestBody Map<String, String> map) {
+    	System.out.println(map);
+    	return service.getPersonalCar(map.get("member_id"));
     }
 
     @RequestMapping(value = "/Car/list.do")

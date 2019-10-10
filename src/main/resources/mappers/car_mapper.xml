@@ -14,6 +14,12 @@
 	<select id="getCarList" resultType="CarVO">
 		SELECT * FROM car ORDER BY car_no DESC
 	</select>
+	<select id="getPersonalCar" resultType="CarVO" parameterType="CarVO">
+		SELECT * FROM CAR 
+		JOIN MEMBER ON CAR.member_no = MEMBER.member_no
+		WHERE MEMBER.member_no = 
+		(select member_no from member where member_id= #{member_id})
+	</select>
 
 	<!-- UPDATE -->
 	<update id="updateTireDistance" parameterType="CarVO">

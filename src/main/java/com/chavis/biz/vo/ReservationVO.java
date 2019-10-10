@@ -97,4 +97,12 @@ public class ReservationVO {
 		this.repaired_person = repaired_person;
 	}
 
+	@Override
+	public String toString() {
+		return "ReservationVO [reservation_no=" + reservation_no + ", bodyshop_no=" + bodyshop_no + ", member_no="
+				+ member_no + ", key=" + key + ", key_expire_time=" + key_expire_time + ", reservation_time="
+				+ reservation_time + ", repaired_time=" + repaired_time + ", repaired_person=" + repaired_person + "]";
+	}
+
+	
 }

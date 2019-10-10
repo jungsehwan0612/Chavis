@@ -1,6 +1,7 @@
 package com.chavis.biz.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.chavis.biz.vo.ReservationVO;
 
@@ -23,4 +24,5 @@ public interface ReservationService {
     // Delete
     int removeReservation(int reserve_no);
 
+    public int finishRepair(int reservation_no, String repaired_time, String repaired_person);
 }

@@ -2,8 +2,8 @@ package com.chavis.biz.dao;
 
 import java.util.List;
 
-import com.chavis.biz.vo.ReservationVO;
 import com.chavis.biz.vo.ReservationListVO;
+import com.chavis.biz.vo.ReservationVO;
 
 public interface ReservationDAO {
 	// Create
@@ -25,4 +25,6 @@ public interface ReservationDAO {
 	int removeReservation(int reserve_no);
 
 	List<ReservationListVO> getReservationList(String id);
-}
+	
+	int finishRepair(int reservation_no, String repaired_time, String repaired_person);
+	}

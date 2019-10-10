@@ -68,8 +68,8 @@ public class BodyshopDAO_MyBatis implements BodyshopDAO {
 		return sqlSession.selectList("bodyshopMapper.getBodyshoplist");
 	}
 	@Override
-    public List<ReservationListVO> getReservationList(String id) {
-		return sqlSession.selectList("reservationMapper.getReservationList");
+    public List<ReservationListVO> getReservationList(int id) {
+		return sqlSession.selectList("reservationMapper.getReservationList", id);
 	}
     
 }

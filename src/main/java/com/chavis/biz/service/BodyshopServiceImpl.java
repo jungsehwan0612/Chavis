@@ -75,8 +75,8 @@ public class BodyshopServiceImpl implements BodyshopService {
 	}
 
 	@Override
-	public List<ReservationListVO> getReservationList(String member_id) {
-		return dao.getReservationList(member_id);
+	public List<ReservationListVO> getReservationList(int member_no) {
+		return dao.getReservationList(member_no);
 	}
 
 }
