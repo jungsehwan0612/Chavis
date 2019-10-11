@@ -5,6 +5,7 @@ public class ReservationListVO {
 	private String key;
 	private String key_expire_time;
 	private String member_mname;
+	private String member_no;
 	private String car_type;
 	private String car_id;
 	private String reservation_time;
@@ -15,18 +16,30 @@ public class ReservationListVO {
 	}
 	
 
-	public ReservationListVO(int reservation_no, String key, String key_expire_time, String member_mname,
+	public ReservationListVO(int reservation_no, String key, String key_expire_time, String member_mname, String member_no,
 			String car_type, String car_id, String reservation_time, String repaired_time, String repaired_person) {
 		super();
 		this.reservation_no = reservation_no;
 		this.key = key;
 		this.key_expire_time = key_expire_time;
 		this.member_mname = member_mname;
+		this.member_no = member_no;
 		this.car_type = car_type;
 		this.car_id = car_id;
 		this.reservation_time = reservation_time;
 		this.repaired_time = repaired_time;
 		this.repaired_person = repaired_person;
+	}
+
+	
+
+	public String getMember_no() {
+		return member_no;
+	}
+
+
+	public void setMember_no(String member_no) {
+		this.member_no = member_no;
 	}
 
 

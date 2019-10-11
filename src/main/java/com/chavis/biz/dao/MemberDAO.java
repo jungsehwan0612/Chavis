@@ -20,5 +20,7 @@ public interface MemberDAO {
 	
 	List<MemberVO> selectMemberList(Map<String, Object> param);
 
+	MemberVO dupcheck(String member_id);
+
 	
 }
