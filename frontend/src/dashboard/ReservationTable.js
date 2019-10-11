@@ -1,6 +1,4 @@
-import Link from '@material-ui/core/Link';
 import React, { useState, useEffect } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -14,7 +12,7 @@ function createData(reservation_time, client_name, key, repaired_person, repaire
 
 }
 
-export default function Orders() {
+export default function ReservationTable() {
 
   const [orders, setOrders] = useState([]);
 
@@ -31,40 +29,30 @@ export default function Orders() {
     rows.push(createData(order['reservation_time'], order['client_name'], order['key'], order["repaired_person"], order['repaired_time']))
   })
 
-  const classes = makeStyles(theme => ({
-    seeMore: {
-      marginTop: theme.spacing(3),
-    }
-  }));
   return (
     <React.Fragment>
       <Table>
         <TableHead>
           <TableRow>
-            <TableCell>예약 시간</TableCell>
-            <TableCell>회원 이름</TableCell>
-            <TableCell>원격키</TableCell>
-            <TableCell>정비사 이름</TableCell>
-            <TableCell>작업 완료 시간</TableCell>
+            <TableCell key="1">예약 시간</TableCell>
+            <TableCell key="2">회원 이름</TableCell>
+            <TableCell key="3">원격키</TableCell>
+            <TableCell key="4">정비사 이름</TableCell>
+            <TableCell key="5">작업 완료 시간</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {rows.map(row => (
             <TableRow>
-              <TableCell>{row.reservation_time}</TableCell>
-              <TableCell>{row.client_name}</TableCell>
-              <TableCell>{row.temp}</TableCell>
-              <TableCell>{row.repaired_person}</TableCell>
-              <TableCell align="center">{row.repaired_time}</TableCell>
+              <TableCell key="1">{row.reservation_time}</TableCell>
+              <TableCell key="2">{row.client_name}</TableCell>
+              <TableCell key="3">{row.temp}</TableCell>
+              <TableCell key="4">{row.repaired_person}</TableCell>
+              <TableCell align="center" key="5">{row.repaired_time}</TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
-      <div className={classes.seeMore}>
-        <Link color="primary" href="public/order_detail.html">
-          이번 주 예약 확인
-        </Link>
-      </div>
     </React.Fragment>
   );
 }

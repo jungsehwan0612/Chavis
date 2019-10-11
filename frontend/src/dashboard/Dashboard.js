@@ -12,11 +12,11 @@ import IconButton from '@material-ui/core/IconButton';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import MenuIcon from '@material-ui/icons/Menu';
+import InfoIcon from '@material-ui/icons/Info';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import Menu from './Menu';
 import Chart from './Chart';
-import Orders from './Orders';
+import ReservationTable from './ReservationTable';
 
 function Copyright() {
   return (
@@ -135,7 +135,7 @@ export default function Dashboard() {
             onClick={handleDrawerOpen}
             className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
           >
-            <MenuIcon />
+            <InfoIcon />
           </IconButton>
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
             오늘의 예약
@@ -171,7 +171,7 @@ export default function Dashboard() {
             {/* Recent Orders */}
             <Grid item xs={12}>
               <Paper className={classes.paper}>
-                <Orders />
+                <ReservationTable />
               </Paper>
             </Grid>
           </Grid>
