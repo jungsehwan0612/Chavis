@@ -53,24 +53,30 @@ public class MemberController {
 
 		return "로그인 화면으로";
 	}
+	
+	@RequestMapping(value = "/Member/dupcheck.do", method = RequestMethod.POST)
+	public int dupcheck(@RequestBody Map<String, String> map, HttpServletRequest request) throws Exception {
+		String member_id = map.get("member_id");
+		System.out.println(map);
+		System.out.println(member_id);
+		return service.dupcheck(member_id);
+	}
 
 	// 회원가입
 	@RequestMapping(value = "/Member/add.do", method = RequestMethod.POST)
-	public String addMember(@ModelAttribute("Member") MemberVO Member, HttpServletRequest request,
+	public boolean addMember(@RequestBody MemberVO Member, HttpServletRequest request,
 			BindingResult errors) {
 		new MemberValidator().validate(Member, errors);
 		if (errors.hasErrors()) {
-			return "정보 재입력 위치로";
+			return false;
 		}
 		try {
 			service.addMember(Member);
-
 		} catch (Exception e) {
 			e.printStackTrace();
-			return "정보 재입력 위치로";
+			return false;
 		}
-
-		return "로그인 결과로";
+		return true;
 	}
 
 	@RequestMapping(value = "/Member/list.do", method = RequestMethod.POST)

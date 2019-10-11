@@ -29,6 +29,24 @@ public class MemberServiceImpl implements MemberService {
 	public void setDao(MemberDAO dao) {
 		this.dao = dao;
 	}
+	
+	public int dupcheck(String member_id) {
+		String msg = "";
+		int flag = 0;
+		MemberVO vo = null;
+		try {
+			vo = dao.dupcheck(member_id);
+			if (vo != null) {
+				return 1;
+			} else {
+				return 0;
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		System.out.println(msg);
+		return flag;
+	}
 
 	public MemberVO login(String member_id, String password) {
 		String msg = "";

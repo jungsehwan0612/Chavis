@@ -3,12 +3,16 @@
 <mapper namespace="memberMapper">
 
 	<select id="memberLogin" parameterType="MemberVO" resultType="MemberVO">
-		SELECT member.member_no, member_id, member_pw, 
-				member_mname, member_phonenumber, car.car_no, car_id, car_type 
+		SELECT member.member_no, member.member_id, member.member_pw, 
+				member_mname, member_phonenumber, car.car_no, car.car_id, car.car_type , car.car_color
 				FROM member 
 				JOIN car 
 				ON member.member_no = car.member_no 
 				WHERE member_id = #{member_id} and member_pw = #{member_pw}
+	</select>
+	
+	<select id="dupcheck" resultType="MemberVO">
+		select member_id from member where member_id = #{member_id}
 	</select>
 
 	<select id="getMember" parameterType="MemberVO" resultType="MemberVO">
@@ -17,10 +21,10 @@
 	</select>
 
 	<insert id="addMember" parameterType="MemberVO">
-		insert into member (member_no, member_id, member_pw, member_mname,
-		member_phonenumber)
-		values ((select nvl(max(member_no),0)+1 from member),
-		#{member_id}, #{member_pw}, #{member_mname}, #{member_phonenumber})
+		insert into member (member_no, member_id, member_pw, member_mname,member_phonenumber) 
+		values ((select nvl(max(member_no),0)+1 from member),#{member_id}, #{member_pw}, #{member_mname}, #{member_phonenumber})
+	
+		insert into car (car_no,car_type,car_id,car_color,member_no) values ((select nvl(max(car_no),0)+1 from car), #{car_type}, #{car_id},#{car_color},(select nvl(max(member_no),0) from member))
 	</insert>
 
 	<select id="listMember" resultType="MemberVO">

@@ -19,4 +19,6 @@ public interface MemberService {
 	List<MemberVO> getMemberList();
 	
 	List<MemberVO> selectMemberList(Map<String, Object> param);
+
+	int dupcheck(String member_id);
 }

@@ -85,13 +85,6 @@ public class ReservationController {
 	public List<ReservationListVO> finishRepair(@RequestBody Map<String, String> map) {
 		System.out.println("reservation controller");
 		System.out.println(map);
-		// ReservationVO vo = new ReservationVO();
-		// vo.setReservation_no(Integer.parseInt(map.get("reservation_no")));
-		// vo.setRepaired_time(map.get("repaired_time"));
-		// vo.setRepaired_person(map.get("repaired_person"));
-		// System.out.println(vo);
-		// service.finishRepair(vo);
-		// return bservice.getReservationList(vo.getBodyshop_no());
 		int reservation_no = Integer.parseInt(map.get("reservation_no"));
 		String repaired_time = map.get("repaired_time");
 		String repaired_person = map.get("repaired_person");

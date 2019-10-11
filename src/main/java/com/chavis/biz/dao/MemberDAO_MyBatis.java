@@ -19,12 +19,19 @@ public class MemberDAO_MyBatis implements MemberDAO{
 		System.out.println("MemberDAO 시작");
 	}
 	
+	public MemberVO dupcheck(String Member_id) {
+		MemberVO membervo = new MemberVO();
+		membervo.setMember_id(Member_id);
+		
+		return sqlSession.selectOne("memberMapper.dupcheck", membervo);
+	}
+	
 	public MemberVO login(String Member_id, String member_pw) {
 		MemberVO membervo = new MemberVO();
 		membervo.setMember_id(Member_id);
 		membervo.setMember_pw(member_pw);
 		
-		return sqlSession.selectOne("memberMapper.login", membervo);
+		return sqlSession.selectOne("memberMapper.memberLogin", membervo);
 	}
 
 	public MemberVO getMember(String member_id) {
