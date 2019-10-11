@@ -7,27 +7,26 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.chavis.biz.service.BodyshopService;
 import com.chavis.biz.validator.BodyshopValidator;
 import com.chavis.biz.vo.BodyshopVO;
 import com.chavis.biz.vo.ReservationListVO;
 
-@Controller
+@RestController
 public class BodyshopController {
 	@Autowired
 	BodyshopService service;
 	
 	@RequestMapping(value = "/Bodyshop/login.do",method = RequestMethod.POST)
-	public @ResponseBody BodyshopVO loginProc(@RequestBody Map<String, String> map, 
+	public BodyshopVO loginProc(@RequestBody Map<String, String> map, 
 			HttpServletRequest request) throws Exception {
 		System.out.println(map);
 		String bodyshop_id = map.get("id");
@@ -96,17 +95,17 @@ public class BodyshopController {
 		return "로그인 화면으로";
 	}
 	@RequestMapping(value = "/Bodyshop/list.do",method = RequestMethod.POST)
-	public @ResponseBody List<BodyshopVO> getCarBodyshopList() {
+	public List<BodyshopVO> getCarBodyshopList() {
 		return service.getBodyshoplist();
 	}
 	@RequestMapping(value = "/Bodyshop/search.do",method = RequestMethod.POST)
-	public @ResponseBody List<BodyshopVO> searchBodyshop(@RequestParam("bodyshopaddress")String bodyshop_address,
+	public List<BodyshopVO> searchBodyshop(@RequestParam("bodyshopaddress")String bodyshop_address,
 			@RequestParam("bodyshopname")String bodyshop_name) {
 		return service.searchBodyshop(bodyshop_address, bodyshop_name);
 	}
 	
 	@RequestMapping(value = "/Bodyshop/blist.do", method = RequestMethod.POST)
-	public @ResponseBody List<ReservationListVO> getReservationList(@RequestBody Map<String, String> map) {
+	public List<ReservationListVO> getReservationList(@RequestBody Map<String, String> map) {
 		System.out.println(map);
 		int member_no = Integer.parseInt(map.get("bodyshop_no"));
 		return service.getReservationList(member_no);

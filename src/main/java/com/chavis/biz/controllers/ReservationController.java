@@ -4,23 +4,22 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.chavis.biz.service.BodyshopService;
-import com.chavis.biz.service.ReservationService;
-import com.chavis.biz.vo.ReservationListVO;
-import com.chavis.biz.vo.ReservationVO;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.chavis.biz.service.BodyshopService;
+import com.chavis.biz.service.ReservationService;
+import com.chavis.biz.vo.ReservationListVO;
+import com.chavis.biz.vo.ReservationVO;
 
 @CrossOrigin("*")
-@Controller
+@RestController
 public class ReservationController {
 	@Autowired
 	ReservationService service;
@@ -29,7 +28,6 @@ public class ReservationController {
 	BodyshopService bservice;
 
 	@RequestMapping(value = "/Reservation/add.do", method = RequestMethod.POST, consumes = "application/json")
-	@ResponseBody
 	public List<ReservationVO> addClothHistory(@RequestBody Map<String, String> map) {
 		// {"member_id":"111","reservation_time":"2019101010","key":"0"}
 		System.out.println(map);
@@ -40,12 +38,12 @@ public class ReservationController {
 	}
 
 	@RequestMapping(value = "/Reservation/list.do")
-	public @ResponseBody List<ReservationVO> getReservationList() {
+	public List<ReservationVO> getReservationList() {
 		return service.getReservationToday();
 	}
 
 	@RequestMapping(value = "/Reservation/view.do", method = RequestMethod.POST)
-	public @ResponseBody ReservationVO getReserve(@RequestBody Map<String, String> map) {
+	public ReservationVO getReserve(@RequestBody Map<String, String> map) {
 		int reserve_no = Integer.parseInt(map.get("reservation_time"));
 		System.out.println("view.do");
 		System.out.println(map);
@@ -54,7 +52,7 @@ public class ReservationController {
 	}
 
 	@RequestMapping(value = "/Reservation/chart.do", method = RequestMethod.GET)
-	public @ResponseBody Map<Integer, Integer> getChart() {
+	public Map<Integer, Integer> getChart() {
 		Map<Integer, Integer> map = new HashMap<>();
 		for (int i = 0; i < 24; i++) {
 			map.put(i, 0);
@@ -68,23 +66,23 @@ public class ReservationController {
 	}
 
 	@RequestMapping(value = "/Reservation/listToday.do")
-	public @ResponseBody List<ReservationVO> getReservationToday() {
+	public List<ReservationVO> getReservationToday() {
 		return service.getReservationToday();
 	}
 
 	@RequestMapping(value = "/Reservation/remove.do", method = RequestMethod.POST)
-	public @ResponseBody int removeReservation(@RequestBody Map<String, String> map) {
+	public int removeReservation(@RequestBody Map<String, String> map) {
 		int reserve_no = Integer.parseInt(map.get("reservation_no"));
 		return service.removeReservation(reserve_no);
 	}
 
 	@RequestMapping("/Reservation/update.do")
-	public @ResponseBody int UpdateReservation(@RequestBody ReservationVO reservation) {
+	public int UpdateReservation(@RequestBody ReservationVO reservation) {
 		return service.updateReservation(reservation);
 	}
 
 	@RequestMapping(value = "/Reservation/finishrepair.do", method = RequestMethod.POST)
-	public @ResponseBody List<ReservationListVO> finishRepair(@RequestBody Map<String, String> map) {
+	public List<ReservationListVO> finishRepair(@RequestBody Map<String, String> map) {
 		System.out.println("reservation controller");
 		System.out.println(map);
 		// ReservationVO vo = new ReservationVO();

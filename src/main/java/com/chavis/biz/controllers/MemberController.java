@@ -6,12 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import com.chavis.biz.service.MemberService;
-import com.chavis.biz.validator.MemberValidator;
-import com.chavis.biz.vo.MemberVO;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -19,15 +14,19 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+import com.chavis.biz.service.MemberService;
+import com.chavis.biz.validator.MemberValidator;
+import com.chavis.biz.vo.MemberVO;
+
+@RestController
 public class MemberController {
 	@Autowired
 	MemberService service;
-
+	
 	@RequestMapping(value = "/Member/login.do", method = RequestMethod.POST)
-	public @ResponseBody MemberVO loginProc(@RequestBody Map<String, String> map, HttpServletRequest request) throws Exception {
+	public MemberVO loginProc(@RequestBody Map<String, String> map, HttpServletRequest request) throws Exception {
 		String member_id = map.get("member_id");
 		String member_pw = map.get("member_pw");
 		MemberVO member = service.login(member_id, member_pw);
@@ -75,13 +74,13 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/Member/list.do", method = RequestMethod.POST)
-	public @ResponseBody List<MemberVO> getMemberList() {
+	public List<MemberVO> getMemberList() {
 		System.out.println("member list controller");
 		return service.getMemberList();
 	}
 
 	@RequestMapping(value = "/Member/view.do", method = RequestMethod.POST)
-	public @ResponseBody MemberVO getMember(@RequestBody Map<String, String> map) {
+	public MemberVO getMember(@RequestBody Map<String, String> map) {
 		System.out.println(map);
 		String member_id = map.get("member_id");
 		System.out.println(member_id);
@@ -89,7 +88,7 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/Member/remove.do", method = RequestMethod.POST)
-	public @ResponseBody int removeMember(@RequestBody Map<String, String> map) {
+	public int removeMember(@RequestBody Map<String, String> map) {
 		return service.removeMember(map.get("member_id"));
 	}
 
@@ -102,7 +101,7 @@ public class MemberController {
 
 	// 페이징 보류
 	@RequestMapping(value = "/Member/Memberlist", method = RequestMethod.POST)
-	public @ResponseBody List<MemberVO> selectMemberList(@RequestBody Map<String, Object> param) {
+	public List<MemberVO> selectMemberList(@RequestBody Map<String, Object> param) {
 		return service.selectMemberList(param);
 	}
 }
