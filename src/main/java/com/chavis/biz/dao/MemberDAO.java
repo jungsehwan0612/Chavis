@@ -14,7 +14,7 @@ public interface MemberDAO {
 	
 	int addMember(MemberVO member);
 	
-	int updateMember(MemberVO member);
+	int updateMember(Map<String, String> member);
 	
 	int removeMember(String member_id);
 	

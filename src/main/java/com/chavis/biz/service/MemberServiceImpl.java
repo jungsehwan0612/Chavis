@@ -74,7 +74,8 @@ public class MemberServiceImpl implements MemberService {
 		return dao.addMember(member);
 	}
 
-	public int updateMember(MemberVO member) {
+	public int updateMember(Map<String, String> member) {
+		System.out.println(member);
 		return dao.updateMember(member);
 	}
 

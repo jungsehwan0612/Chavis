@@ -46,7 +46,8 @@ public class MemberDAO_MyBatis implements MemberDAO{
 		return sqlSession.insert("memberMapper.addMember", member);
 	}
 
-	public int updateMember(MemberVO member) {
+	public int updateMember(Map<String, String> member) {
+		System.out.println("dao" + member);
 		return sqlSession.update("memberMapper.updateMember", member);
 	}
 

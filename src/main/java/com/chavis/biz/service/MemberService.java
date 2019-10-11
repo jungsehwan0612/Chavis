@@ -12,7 +12,7 @@ public interface MemberService {
 	
 	int addMember(MemberVO member);
 	
-	int updateMember(MemberVO member);
+	int updateMember(Map<String, String> string);
 	
 	int removeMember(String string);
 	

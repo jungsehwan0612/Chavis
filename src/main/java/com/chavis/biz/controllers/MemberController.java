@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -42,6 +41,12 @@ public class MemberController {
 		}
 	}
 
+	@RequestMapping(value = "/Member/update.do",method = RequestMethod.POST)
+	public int updateMember(@RequestBody Map<String, String> map) {
+		System.out.println(map);
+		return service.updateMember(map);
+	}
+	
 	@RequestMapping("/Member/logout.do")
 	public String logout(HttpServletRequest request) {
 		HttpSession session = request.getSession();

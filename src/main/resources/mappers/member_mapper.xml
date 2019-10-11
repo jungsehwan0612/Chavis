@@ -41,9 +41,17 @@
 		 ORDER BY reservation_no
 	</select>
 
-	<update id="updateMember" parameterType="MemberVO">
+	<update id="updateMember" parameterType="map">
 		update member set
+		member_pw = #{member_pw},
+		member_mname = #{member_mname},
 		member_phonenumber=#{member_phonenumber} where member_id =#{member_id}
+		
+		update car set
+		car_id = #{car_id},
+		car_color = #{car_color},
+		car_type = #{car_type}
+		where member_no = (select member_no from member where member_id= #{member_id});
 	</update>
 
 	<update id="removeMember">
