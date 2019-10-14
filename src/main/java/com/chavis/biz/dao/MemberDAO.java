@@ -12,11 +12,11 @@ public interface MemberDAO {
 	
 	List<MemberVO> getMemberList();
 	
-	int addMember(Map<String, Object> member);
+	int addMember(MemberVO member);
 	
 	int updateMember(Map<String, String> member);
 	
-	int updateCar(MemberVO member);
+	int updateCar(Map<String, String> map2);
 	
 	int removeMember(String member_id);
 	

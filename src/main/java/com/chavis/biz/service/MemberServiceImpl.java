@@ -1,5 +1,6 @@
 package com.chavis.biz.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -53,11 +54,16 @@ public class MemberServiceImpl implements MemberService {
 		MemberVO vo = null;
 		try {
 			vo = dao.login(member_id, password);
-
+			Map<String, String> log = new HashMap<String, String>();
 			if (vo != null) {
 				msg = context.getMessage("login.success", new Object[] { vo.getMember_mname() }, Locale.KOREA);
+				
+				log.put("code", "200");
+				log.put("message", "login success");
 			} else {
 				msg = context.getMessage("login.fail", new Object[] { member_id }, Locale.KOREA);
+				log.put("code", "300");
+				log.put("message", "login fail");
 			}
 		} catch (Exception e) {
 			System.out.println(e);
@@ -70,7 +76,7 @@ public class MemberServiceImpl implements MemberService {
 		return dao.getMember(member_id);
 	}
 
-	public int addMember(Map<String, Object> member) {
+	public int addMember(MemberVO member) {
 		return dao.addMember(member);
 	}
 
@@ -79,10 +85,6 @@ public class MemberServiceImpl implements MemberService {
 		return dao.updateMember(member);
 	}
 	
-	public int updateCar(MemberVO member) {
-		return dao.updateCar(member);
-	}
-
 	public int removeMember(String member_id) {
 		return dao.removeMember(member_id);
 	}
@@ -97,8 +99,7 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public int updateCar(Map<String, String> map2) {
-		// TODO Auto-generated method stub
-		return 0;
+		return dao.updateCar(map2);
 	}
 	
 }

@@ -29,6 +29,8 @@ public class MemberVO {
 		this.car_color = car_color;
 	}
 
+
+
 	public int getMember_no() {
 		return member_no;
 	}
@@ -107,4 +109,5 @@ public class MemberVO {
 				+ ", member_mname=" + member_mname + ", member_phonenumber=" + member_phonenumber + ", car_no=" + car_no
 				+ ", car_id=" + car_id + ", car_type=" + car_type + ", car_color=" + car_color + "]";
 	}
+
 }
