@@ -43,7 +43,7 @@
 		 ORDER BY reservation_no
 	</select>
 	
-	<select id="getMemberReserveList" resultType="com.chavis.biz.vo.ReservationListVO">
+	<select id="getMemberReserveList" resultType="com.chavis.biz.vo.ReservationVO">
 		SELECT reservation_no, bodyshop_no, repaired_person, reservation_time, repaired_time, key 
         FROM RESERVATION JOIN MEMBER ON RESERVATION.member_no = MEMBER.member_no 
         WHERE MEMBER.member_no = (select member_no from member where member_id= #{member_id}) 
