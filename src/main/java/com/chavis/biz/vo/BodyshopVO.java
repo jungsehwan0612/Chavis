@@ -66,5 +66,11 @@ public class BodyshopVO {
    public void setBodyshop_long(String bodyshop_long) {
       this.bodyshop_long = bodyshop_long;
    }
+@Override
+public String toString() {
+	return "BodyshopVO [bodyshop_no=" + bodyshop_no + ", bodyshop_id=" + bodyshop_id + ", bodyshop_pw=" + bodyshop_pw
+			+ ", bodyshop_name=" + bodyshop_name + ", bodyshop_address=" + bodyshop_address + ", bodyshop_lat="
+			+ bodyshop_lat + ", bodyshop_long=" + bodyshop_long + "]";
+}
    
 }
