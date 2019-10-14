@@ -56,6 +56,7 @@ public class ReservationServiceImpl implements ReservationService {
 
 	@Override
 	public List<ReservationVO> getReservationByID(String member_id) {
+		System.out.println("service reservationid" + member_id);
 		return dao.getReservationByID(member_id);
 	}
 	

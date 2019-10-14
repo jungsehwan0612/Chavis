@@ -3,6 +3,7 @@ package com.chavis.biz.controllers;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -32,12 +33,16 @@ public class ReservationController {
 		// {"member_id":"111","reservation_time":"2019101010","key":"0"}
 		map.put("repaired_time", "NO");
 		System.out.println("reser add" + map);
-		if (map.get("key") == "0") {
-			map.put("key", "NO");
+		map.put("key_expire_time", "NO");
+		if (map.get("key").equals("0") || map.get("key")== null) {
+			map.replace("key","NO");
 		}
-		System.out.println(map);
+		map.put("bodyshop_no", Integer.toString((int) (Math.random() * 11) + 1));
+		System.out.println("map1"+map);
+		String member_id = map.get("member_id");
+		System.out.println("member_id" + member_id);
 		service.addReservation(map);
-		return service.getReservationByID(map.get("member_id"));
+		return service.getReservationByID(member_id);
 	}
 
 	@RequestMapping(value = "/Reservation/list.do")
