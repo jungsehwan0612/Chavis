@@ -31,14 +31,14 @@ public class BodyshopController {
 		System.out.println(map);
 		String bodyshop_id = map.get("id");
 		String bodyshop_pw = map.get("pw");
-		BodyshopVO Bodyshop = service.bodyshopLogin(bodyshop_id, bodyshop_pw);
-		if(Bodyshop != null) {
-			request.getSession().setAttribute("Bodyshop", Bodyshop);
-			request.getSession().setAttribute("Login", Bodyshop);
+		BodyshopVO bodyshop = service.bodyshopLogin(bodyshop_id, bodyshop_pw);
+		if(bodyshop != null) {
+			request.getSession().setAttribute("Bodyshop", bodyshop);
+			request.getSession().setAttribute("Login", bodyshop);
 			return service.bodyshopLogin(bodyshop_id, bodyshop_pw);
 		}else {
 			request.setAttribute("msg", "로그인 정보를 다시 입력하세요.");
-			System.out.println(Bodyshop);
+			System.out.println(bodyshop);
 			return service.bodyshopLogin(bodyshop_id, bodyshop_pw);
 		}
 	}
