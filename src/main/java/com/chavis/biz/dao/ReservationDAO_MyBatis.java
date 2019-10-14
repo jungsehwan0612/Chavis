@@ -23,6 +23,7 @@ public class ReservationDAO_MyBatis implements ReservationDAO {
     @Override
     public int addReservation(Map<String, String> reservation) {
     	System.out.println("addReservation dao");
+    	System.out.println(reservation);
         return sqlSession.insert("reservationMapper.addReservation",reservation);
     }
 

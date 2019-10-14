@@ -5,11 +5,9 @@
 	<!-- CREATE -->
 	<insert id="addReservation" parameterType="ReservationVO">
 		INSERT INTO
-		RESERVATION (RESERVATION_NO, BODYSHOP_NO, MEMBER_NO, KEY,
-		KEY_EXPIRE_TIME, RESERVATION_TIME, REPAIRED_TIME)
+		RESERVATION (RESERVATION_NO, BODYSHOP_NO, MEMBER_NO, KEY, RESERVATION_TIME, REPAIRED_TIME)
 		VALUES ((select nvl(max(reservation_no),0)+1 from reservation), #{bodyshop_no},
-				(select member_no from member where member_id = #{member_id}),
-				 #{key}, #{key_expire_time}, #{reservation_time}, #{repaired_time})
+				(select member_no from member where member_id = #{member_id}), #{key}, #{reservation_time}, #{repaired_time})
 	</insert>
 
 	<!-- READ -->
@@ -40,15 +38,15 @@
 	</select>
 
 	<!-- ListByID -->
-	<select id="listReservationByID" parameterType="ReservationVO" resultType="ReservationVO">
+	<select id="listReservationByID" parameterType="String" resultType="ReservationVO">
 		SELECT reservation.reservation_time, member.member_mname,
 		reservation.key,
 		reservation.repaired_person, reservation.repaired_time
-		FROM RESERVATION
-		JOIN MEMBER
+		FROM reservation
+		JOIN member
 		ON
-		RESERVATION.member_no = MEMBER.member_no
-		WHERE MEMBER.member_no = reservation.member_no;
+		reservation.member_no = member.member_no
+		WHERE member.member_id = #{member_id}
 	</select>
 
 	<!-- UPDATE -->
