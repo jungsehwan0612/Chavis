@@ -30,8 +30,10 @@
 	</insert>
 
 	<select id="listMember" resultType="MemberVO">
-		select * from member order by
-		to_number(member_no) asc
+		/* member_mapper.listMember */
+		select * 
+		  from member 
+		 order by to_number(member_no) 
 	</select>
 
 	<!-- getMemberList -->

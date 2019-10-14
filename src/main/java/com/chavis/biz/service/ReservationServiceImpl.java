@@ -5,15 +5,20 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
+import com.chavis.biz.controllers.ReservationController;
 import com.chavis.biz.dao.ReservationDAO;
 import com.chavis.biz.vo.ReservationVO;
 
 @Service("reservationservice")
 public class ReservationServiceImpl implements ReservationService {
+	
+	private static Logger log = LoggerFactory.getLogger(ReservationServiceImpl.class); 
 
     @Resource(name = "reservationmybatis")
     ReservationDAO dao;
@@ -22,7 +27,8 @@ public class ReservationServiceImpl implements ReservationService {
     ApplicationContext context;
 
     public ReservationServiceImpl() {
-        System.out.println("ReservationService 시작");
+    	log.debug("ReservationService 시작"); 
+    	
     }
 
     public ReservationServiceImpl(ReservationDAO dao) {

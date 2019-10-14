@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -22,6 +24,8 @@ import com.chavis.biz.vo.ReservationVO;
 @CrossOrigin("*")
 @RestController
 public class ReservationController {
+	private static Logger log = LoggerFactory.getLogger(ReservationController.class); 
+	
 	@Autowired
 	ReservationService service;
 
@@ -32,16 +36,19 @@ public class ReservationController {
 	public List<ReservationVO> addReservation(@RequestBody Map<String, String> map) {
 		// {"member_id":"111","reservation_time":"2019101010","key":"0"}
 		map.put("repaired_time", "NO");
-		System.out.println("reser add" + map);
+		
+		log.info("reser add " + map); 
+		
 		map.put("key_expire_time", "NO");
-		if (map.get("key").equals("0") || map.get("key")== null) {
+		if (map.get("key").equals("0") || map.get("key").equals(null)) {
 			map.replace("key","NO");
 		}
 		map.put("bodyshop_no", Integer.toString((int) (Math.random() * 11) + 1));
-		System.out.println("map1"+map);
 		String member_id = map.get("member_id");
 		System.out.println("member_id" + member_id);
+		
 		service.addReservation(map);
+		log.info("제발 :" + member_id);
 		return service.getReservationByID(member_id);
 	}
 

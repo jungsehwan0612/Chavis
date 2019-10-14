@@ -3,7 +3,7 @@
 <mapper namespace="reservationMapper">
 
 	<!-- CREATE -->
-	<insert id="addReservation" parameterType="ReservationVO">
+	<insert id="addReservation" parameterType="map">
 		INSERT INTO
 		RESERVATION (RESERVATION_NO, BODYSHOP_NO, MEMBER_NO, KEY, RESERVATION_TIME, REPAIRED_TIME)
 		VALUES ((select nvl(max(reservation_no),0)+1 from reservation), #{bodyshop_no},
