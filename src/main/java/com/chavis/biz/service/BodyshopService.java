@@ -8,6 +8,7 @@ import com.chavis.biz.vo.ReservationListVO;
 
 public interface BodyshopService {
 	BodyshopVO bodyshopLogin(String bodyshop_id,String bodyshop_pw);
+	int getNo();
 	void addBodyshop(BodyshopVO vo);
 	void updateBodyshopPassword(String pw);
 	void removeBodyshop(String bodyshop_id, String bodyshop_pw);

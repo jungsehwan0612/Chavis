@@ -27,18 +27,20 @@ public class BodyshopDAO_MyBatis implements BodyshopDAO {
 		return sqlSession.selectOne("bodyshopMapper.bodyshopLogin", bodyshop);
 	}
 
+	
+	
 	@Override
 	public void addBodyshop(BodyshopVO bodyshop) {
 		System.out.println("ADD BODYSHOP");
 		sqlSession.insert("bodyshopMapper.addBodyshop", bodyshop);
-		sqlSession.commit();
+//		sqlSession.commit();
 	}
 
 	@Override
 	public void updateBodyshopPassword(String pw) {
 		System.out.println("UPDATE BODYSHOP PASSWORD");
 		sqlSession.update("bodyshopMapper.updateBodyshop", pw);
-		sqlSession.commit();
+//		sqlSession.commit();
 	}
 
 	@Override
@@ -48,7 +50,7 @@ public class BodyshopDAO_MyBatis implements BodyshopDAO {
 		bodyshop.setBodyshop_id(bodyshop_id);
 		bodyshop.setBodyshop_pw(bodyshop_pw);
 		sqlSession.delete("bodyshopMapper.removeBodyshop", bodyshop);
-		sqlSession.commit();
+//		sqlSession.commit();
 	}
 
 	@Override
@@ -70,6 +72,11 @@ public class BodyshopDAO_MyBatis implements BodyshopDAO {
 	@Override
     public List<ReservationListVO> getReservationList(int id) {
 		return sqlSession.selectList("reservationMapper.getReservationList", id);
+	}
+
+	@Override
+	public int getNo() {
+		return sqlSession.selectOne("bodyshopMapper.getNo");
 	}
     
 }

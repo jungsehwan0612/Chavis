@@ -79,4 +79,9 @@ public class BodyshopServiceImpl implements BodyshopService {
 		return dao.getReservationList(member_no);
 	}
 
+	@Override
+	public int getNo() {
+		return dao.getNo();
+	}
+
 }
