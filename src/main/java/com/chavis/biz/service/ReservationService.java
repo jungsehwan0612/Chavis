@@ -1,12 +1,13 @@
 package com.chavis.biz.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.chavis.biz.vo.ReservationVO;
 
 public interface ReservationService {
     // Create
-    int addReservation(ReservationVO reserveation);
+    int addReservation(Map<String, String> map);
 
     // Read
     ReservationVO getReservation(int reservation_no);

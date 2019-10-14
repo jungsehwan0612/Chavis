@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.chavis.biz.vo.MemberVO;
+import com.chavis.biz.vo.ReservationVO;
 
 @Component("membermybatis")
 public class MemberDAO_MyBatis implements MemberDAO{
@@ -71,6 +72,10 @@ public class MemberDAO_MyBatis implements MemberDAO{
 		return sqlSession.selectList("memberMapper.selectMemberList", param);
 	}
 
+	public List<ReservationVO> getMemberReserveList(String id){
+		return sqlSession.selectList("memberMapper.getMemberReserveList", id);
+	}
+	
 	@Override
 	public int updateMember(Map<String, String> member) {
 		System.out.println("daoupdatemember" + member);

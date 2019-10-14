@@ -9,6 +9,7 @@ import javax.annotation.Resource;
 
 import com.chavis.biz.dao.MemberDAO;
 import com.chavis.biz.vo.MemberVO;
+import com.chavis.biz.vo.ReservationVO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -96,10 +97,14 @@ public class MemberServiceImpl implements MemberService {
 	public List<MemberVO> selectMemberList(Map<String, Object> param) {		
 		return dao.selectMemberList(param);
 	}
-
+	@Override
+	public List<ReservationVO> getMemberReserveList(String id) {
+		return dao.getMemberReserveList(id);
+	}
 	@Override
 	public int updateCar(Map<String, String> map2) {
 		return dao.updateCar(map2);
 	}
+	
 	
 }

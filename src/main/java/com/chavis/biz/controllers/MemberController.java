@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.chavis.biz.service.MemberService;
 import com.chavis.biz.validator.MemberValidator;
 import com.chavis.biz.vo.MemberVO;
+import com.chavis.biz.vo.ReservationVO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RestController
@@ -159,6 +160,12 @@ public class MemberController {
 		return service.getMember(member_id);
 	}
 
+	@RequestMapping(method=RequestMethod.GET, value="/Member/rlist.do")
+	public List<ReservationVO> getMemberReserveList(HttpServletRequest httpServletRequest, Model model) {
+	    String id = httpServletRequest.getParameter("id");
+	    List<ReservationVO> res = service.getMemberReserveList(id);
+	    return res;
+	}
 	@RequestMapping(value = "/Member/remove.do", method = RequestMethod.POST)
 	public int removeMember(@RequestBody Map<String, String> map) {
 		return service.removeMember(map.get("member_id"));

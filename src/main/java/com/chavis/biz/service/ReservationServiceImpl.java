@@ -1,6 +1,7 @@
 package com.chavis.biz.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -29,7 +30,7 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
-    public int addReservation(ReservationVO reservation) {
+    public int addReservation(Map<String, String> reservation) {
         return dao.addReservation(reservation);
     }
 

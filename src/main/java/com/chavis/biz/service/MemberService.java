@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.chavis.biz.vo.MemberVO;
+import com.chavis.biz.vo.ReservationVO;
 
 public interface MemberService {
 	MemberVO login(String member_id, String member_pw);
@@ -23,4 +24,6 @@ public interface MemberService {
 	List<MemberVO> selectMemberList(Map<String, Object> param);
 
 	int dupcheck(String member_id);
+
+	List<ReservationVO> getMemberReserveList(String id);
 }

@@ -1,13 +1,14 @@
 package com.chavis.biz.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.chavis.biz.vo.ReservationListVO;
 import com.chavis.biz.vo.ReservationVO;
 
 public interface ReservationDAO {
 	// Create
-	int addReservation(ReservationVO reservation);
+	int addReservation(Map<String, String> reservation);
 
 	// Read
 	ReservationVO getReservation(int reservation_no);

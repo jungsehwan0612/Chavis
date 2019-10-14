@@ -42,6 +42,13 @@
 					(select member_no from member where member_id= #{member_id})
 		 ORDER BY reservation_no
 	</select>
+	
+	<select id="getMemberReserveList" resultType="com.chavis.biz.vo.ReservationListVO">
+		SELECT reservation_no, bodyshop_no, repaired_person, reservation_time, repaired_time, key 
+        FROM RESERVATION JOIN MEMBER ON RESERVATION.member_no = MEMBER.member_no 
+        WHERE MEMBER.member_no = (select member_no from member where member_id= #{member_id}) 
+        ORDER BY reservation_no desc
+	</select>
 
 	<update id="updateMember" parameterType="com.chavis.biz.vo.MemberVO">
 		update member set
