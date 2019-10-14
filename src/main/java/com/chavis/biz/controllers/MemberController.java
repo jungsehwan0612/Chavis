@@ -1,5 +1,6 @@
 package com.chavis.biz.controllers;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -42,8 +43,28 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/Member/update.do",method = RequestMethod.POST)
-	public int updateMember(@RequestBody Map<String, String> map) {
+	public int updateMember(@RequestBody MemberVO map) {
 		System.out.println(map);
+		
+		Map<String, String> map1 = new HashMap<String, String>();
+		Map<String, String> map2 = new HashMap<String, String>();
+		
+		map1.put("member_id", map.getMember_id());
+		map1.put("member_mname", map.getMember_mname());
+		map1.put("member_phonenumber", map.getMember_phonenumber());
+		map1.put("member_pw", map.getMember_pw());
+		
+		map2.put("member_id", map.getMember_id());
+		map2.put("car_color", map.getCar_color());
+		map2.put("car_id", map.getCar_id());
+		map2.put("car_type", map.getCar_type());
+		
+		System.out.println(map1);
+		System.out.println(map2);
+		
+		service.updateMember(map1);
+		service.updateCar(map2);
+		
 		return service.updateMember(map);
 	}
 	
@@ -69,8 +90,10 @@ public class MemberController {
 
 	// 회원가입
 	@RequestMapping(value = "/Member/add.do", method = RequestMethod.POST)
-	public boolean addMember(@RequestBody MemberVO Member, HttpServletRequest request,
+	public boolean addMember(@RequestBody Map<String, Object> Member, HttpServletRequest request,
 			BindingResult errors) {
+		
+		System.out.println(Member);
 		new MemberValidator().validate(Member, errors);
 		if (errors.hasErrors()) {
 			return false;

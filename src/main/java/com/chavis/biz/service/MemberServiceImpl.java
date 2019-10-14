@@ -70,13 +70,17 @@ public class MemberServiceImpl implements MemberService {
 		return dao.getMember(member_id);
 	}
 
-	public int addMember(MemberVO member) {
+	public int addMember(Map<String, Object> member) {
 		return dao.addMember(member);
 	}
 
 	public int updateMember(Map<String, String> member) {
 		System.out.println(member);
 		return dao.updateMember(member);
+	}
+	
+	public int updateCar(MemberVO member) {
+		return dao.updateCar(member);
 	}
 
 	public int removeMember(String member_id) {
@@ -89,6 +93,12 @@ public class MemberServiceImpl implements MemberService {
 
 	public List<MemberVO> selectMemberList(Map<String, Object> param) {		
 		return dao.selectMemberList(param);
+	}
+
+	@Override
+	public int updateCar(Map<String, String> map2) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 }

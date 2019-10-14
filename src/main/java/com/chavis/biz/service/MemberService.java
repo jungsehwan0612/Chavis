@@ -10,9 +10,11 @@ public interface MemberService {
 	
 	MemberVO getMember(String member_id);
 	
-	int addMember(MemberVO member);
+	int addMember(Map<String, Object> member);
 	
-	int updateMember(Map<String, String> string);
+	int updateMember(Map<String, String> map1);
+	
+	int updateCar(Map<String, String> map2);
 	
 	int removeMember(String string);
 	

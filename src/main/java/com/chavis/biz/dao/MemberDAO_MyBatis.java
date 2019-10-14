@@ -42,15 +42,20 @@ public class MemberDAO_MyBatis implements MemberDAO{
 		return sqlSession.selectList("memberMapper.listMember");
 	}
 
-	public int addMember(MemberVO member) {
+	public int addMember(Map<String, Object> member) {
 		return sqlSession.insert("memberMapper.addMember", member);
 	}
 
-	public int updateMember(Map<String, String> member) {
+	public int updateMember(MemberVO member) {
 		System.out.println("dao" + member);
 		return sqlSession.update("memberMapper.updateMember", member);
 	}
-
+	
+	public int updateCar(Map<String, String> member) {
+		System.out.println("daocar" + member);
+		return sqlSession.update("memberMapper.updateCar", member);
+	}
+	
 	public int removeMember(String member_id) {
 		return sqlSession.update("memberMapper.removeMember", member_id);
 	}
@@ -69,6 +74,18 @@ public class MemberDAO_MyBatis implements MemberDAO{
 		param.put("startIndex", startIndex);
 		param.put("lastIndex", endIndex);
 		return sqlSession.selectList("memberMapper.selectMemberList", param);
+	}
+
+	@Override
+	public int updateMember(Map<String, String> member) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int updateCar(MemberVO member) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 }

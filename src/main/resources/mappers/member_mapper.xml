@@ -41,12 +41,13 @@
 		 ORDER BY reservation_no
 	</select>
 
-	<update id="updateMember" parameterType="map">
+	<update id="updateMember" parameterType="com.chavis.biz.vo.MemberVO">
 		update member set
 		member_pw = #{member_pw},
 		member_mname = #{member_mname},
 		member_phonenumber=#{member_phonenumber} where member_id =#{member_id}
-		
+	</update>
+	<update id="updateCar" parameterType="MemberVO">
 		update car set
 		car_id = #{car_id},
 		car_color = #{car_color},
