@@ -21,10 +21,12 @@
 	</select>
 
 	<insert id="addMember" parameterType="MemberVO">
-		insert into member (member_no, member_id, member_pw, member_mname,member_phonenumber) 
-		values ((select nvl(max(member_no),0)+1 from member),#{member_id}, #{member_pw}, #{member_mname}, #{member_phonenumber})
-	
-		insert into car (car_no,car_type,car_id,car_color,member_no) values ((select nvl(max(car_no),0)+1 from car), #{car_type}, #{car_id},#{car_color},(select nvl(max(member_no),0) from member))
+		insert all
+  			 into member (member_no, member_id, member_pw, member_mname,member_phonenumber) 
+				values ((select nvl(max(member_no),0)+1 from member),#{member_id}, #{member_pw}, #{member_mname}, #{member_phonenumber})
+   			 into car (car_no,car_type,car_id,car_color,member_no) 
+				values ((select nvl(max(car_no),0)+1 from car), #{car_type}, #{car_id},#{car_color},(select nvl(max(member_no),0) from member))
+        	 select * from dual
 	</insert>
 
 	<select id="listMember" resultType="MemberVO">
@@ -40,18 +42,26 @@
 					(select member_no from member where member_id= #{member_id})
 		 ORDER BY reservation_no
 	</select>
+	
+	<select id="getMemberReserveList" resultType="com.chavis.biz.vo.ReservationVO">
+		SELECT reservation_no, bodyshop_no, repaired_person, reservation_time, repaired_time, key 
+        FROM RESERVATION JOIN MEMBER ON RESERVATION.member_no = MEMBER.member_no 
+        WHERE MEMBER.member_no = (select member_no from member where member_id= #{member_id}) 
+        ORDER BY reservation_no desc
+	</select>
 
-	<update id="updateMember" parameterType="map">
+	<update id="updateMember" parameterType="com.chavis.biz.vo.MemberVO">
 		update member set
 		member_pw = #{member_pw},
 		member_mname = #{member_mname},
 		member_phonenumber=#{member_phonenumber} where member_id =#{member_id}
-		
+	</update>
+	<update id="updateCar" parameterType="CarVO">
 		update car set
 		car_id = #{car_id},
 		car_color = #{car_color},
 		car_type = #{car_type}
-		where member_no = (select member_no from member where member_id= #{member_id});
+		where member_no = (select member_no from member where member_id= #{member_id})
 	</update>
 
 	<update id="removeMember">

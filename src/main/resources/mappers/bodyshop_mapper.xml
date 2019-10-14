@@ -8,13 +8,15 @@
 		where bodyshop_id = #{bodyshop_id} and
 		bodyshop_pw = #{bodyshop_pw}
 	</select>
-	
+	<select id="getNo" resultType="Integer">
+		select nvl(max(bodyshop_no),0)+1 from bodyshop
+	</select>
 	<insert id="addBodyshop" parameterType="BodyshopVO">
-		insert into bodyshop(bodyshop_no, bodyshop_id, bodyshop_pw, bodyshop_name, bodyshop_address, bodyshop_lat, bodyshop_long)
-		values(select nvl(max(bodyshop_no),0)+1 from bodyshop,#{bodyshop_id},#{bodyshop_pw},#{bodyshop_name},#{bodyshop_address},#{bodyshop_lat},#{bodyshop_long})
+		insert into bodyshop(bodyshop_no, bodyshop_id, bodyshop_pw, bodyshop_name, bodyshop_address)
+		values(#{bodyshop_no},#{bodyshop_id},#{bodyshop_pw},#{bodyshop_name},#{bodyshop_address})
 	</insert>
 	
-	<update id="updateBodyshopPassword">
+	<update id="updateBodyshopPassword" parameterType="BodyshopVO">
 		update bodyshop set bodyshop_pw = #{bodyshop_pw}
 	</update>
 	

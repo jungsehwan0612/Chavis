@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.chavis.biz.vo.MemberVO;
+import com.chavis.biz.vo.ReservationVO;
 
 @Component("membermybatis")
 public class MemberDAO_MyBatis implements MemberDAO{
@@ -46,11 +47,11 @@ public class MemberDAO_MyBatis implements MemberDAO{
 		return sqlSession.insert("memberMapper.addMember", member);
 	}
 
-	public int updateMember(Map<String, String> member) {
-		System.out.println("dao" + member);
-		return sqlSession.update("memberMapper.updateMember", member);
+	public int updateCar(Map<String, String> member) {
+		System.out.println("daocar" + member);
+		return sqlSession.update("memberMapper.updateCar", member);
 	}
-
+	
 	public int removeMember(String member_id) {
 		return sqlSession.update("memberMapper.removeMember", member_id);
 	}
@@ -70,5 +71,14 @@ public class MemberDAO_MyBatis implements MemberDAO{
 		param.put("lastIndex", endIndex);
 		return sqlSession.selectList("memberMapper.selectMemberList", param);
 	}
+
+	public List<ReservationVO> getMemberReserveList(String id){
+		return sqlSession.selectList("memberMapper.getMemberReserveList", id);
+	}
 	
+	@Override
+	public int updateMember(Map<String, String> member) {
+		System.out.println("daoupdatemember" + member);
+		return sqlSession.update("memberMapper.updateMember", member);
+	}
 }

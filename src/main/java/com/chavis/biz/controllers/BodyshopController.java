@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.chavis.biz.method.AddressMethod;
 import com.chavis.biz.service.BodyshopService;
-import com.chavis.biz.validator.BodyshopValidator;
 import com.chavis.biz.vo.BodyshopVO;
 import com.chavis.biz.vo.ReservationListVO;
 
@@ -24,6 +24,8 @@ import com.chavis.biz.vo.ReservationListVO;
 public class BodyshopController {
 	@Autowired
 	BodyshopService service;
+	int bodyshop_no;
+	AddressMethod am = new AddressMethod();
 	
 	@RequestMapping(value = "/Bodyshop/login.do",method = RequestMethod.POST)
 	public BodyshopVO loginProc(@RequestBody Map<String, String> map, 
@@ -54,23 +56,28 @@ public class BodyshopController {
 		return "로그인 화면으로";
 	}
 	
-	@RequestMapping(value = "/Bodyshop/add.do",method = RequestMethod.POST)
-	public String addBodyshop(@ModelAttribute("bodyshop") BodyshopVO bodyshopVO,
+	@RequestMapping(value = "/Bodyshop/regist.do",method = RequestMethod.POST)
+	public String addBodyshop(@RequestBody Map<String, String> map,
 			HttpServletRequest request, BindingResult errors) {
-		new BodyshopValidator().validate(bodyshopVO, errors);
-		if(errors.hasErrors()) {
-			return "정보 재입력 위치로";
-		}		
-		try {
-			service.addBodyshop(bodyshopVO);
-
-			request.setAttribute("msg", "정비소가 등록되었습니다.");
-		} catch (Exception e) {
-			e.printStackTrace();
-			return "정보 재입력 위치로";
-		}			
-		
-		return "로그인 결과로";
+		System.out.println(map);
+		bodyshop_no = service.getNo();
+		String bodyshop_name = map.get("name");
+		String bodyshop_pw = map.get("pw");
+		String bodyshop_address = map.get("address");
+		String[] jiyeok = bodyshop_address.split("/");
+		String bodyshop_id = Integer.toString(bodyshop_no) + am.addressTrans(jiyeok[0].substring(0,2))+am.addressTrans(jiyeok[1]) + bodyshop_name;
+		System.out.println(jiyeok[0].substring(0,2));
+		System.out.println(bodyshop_id);
+		BodyshopVO vo = new BodyshopVO();
+		vo.setBodyshop_no(bodyshop_no);
+		vo.setBodyshop_id(bodyshop_id);
+		vo.setBodyshop_name(bodyshop_name);
+		vo.setBodyshop_pw(bodyshop_pw);
+		vo.setBodyshop_address(bodyshop_address);
+		service.addBodyshop(vo);
+		System.out.println("실행완료");
+		System.out.println(vo);
+		return bodyshop_id;
 	}
 	
 	@RequestMapping(value = "/Bodyshop/update.do",method = RequestMethod.POST)
@@ -106,7 +113,7 @@ public class BodyshopController {
 	
 	@RequestMapping(value = "/Bodyshop/blist.do", method = RequestMethod.POST)
 	public List<ReservationListVO> getReservationList(@RequestBody Map<String, String> map) {
-		System.out.println(map);
+		System.out.println("blist"+map);
 		int member_no = Integer.parseInt(map.get("bodyshop_no"));
 		return service.getReservationList(member_no);
 	}

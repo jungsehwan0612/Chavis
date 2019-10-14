@@ -1,13 +1,14 @@
 package com.chavis.biz.dao;
 
 import java.util.List;
-
-import com.chavis.biz.vo.ReservationListVO;
-import com.chavis.biz.vo.ReservationVO;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import com.chavis.biz.vo.ReservationListVO;
+import com.chavis.biz.vo.ReservationVO;
 
 @Component("reservationmybatis")
 public class ReservationDAO_MyBatis implements ReservationDAO {
@@ -20,7 +21,8 @@ public class ReservationDAO_MyBatis implements ReservationDAO {
 	}
 
     @Override
-    public int addReservation(ReservationVO reservation) {
+    public int addReservation(Map<String, String> reservation) {
+    	System.out.println("addReservation dao");
         return sqlSession.insert("reservationMapper.addReservation",reservation);
     }
 

@@ -10,7 +10,7 @@ public class MemberVO {
 	private String car_id;
 	private String car_type;
 	private String car_color;
-
+	
 	public MemberVO() {
 		super();
 	}
@@ -28,6 +28,8 @@ public class MemberVO {
 		this.car_type = car_type;
 		this.car_color = car_color;
 	}
+
+
 
 	public int getMember_no() {
 		return member_no;
@@ -100,4 +102,12 @@ public class MemberVO {
 	public void setCar_color(String car_color) {
 		this.car_color = car_color;
 	}
+
+	@Override
+	public String toString() {
+		return "MemberVO [member_no=" + member_no + ", member_id=" + member_id + ", member_pw=" + member_pw
+				+ ", member_mname=" + member_mname + ", member_phonenumber=" + member_phonenumber + ", car_no=" + car_no
+				+ ", car_id=" + car_id + ", car_type=" + car_type + ", car_color=" + car_color + "]";
+	}
+
 }

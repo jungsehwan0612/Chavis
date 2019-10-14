@@ -28,12 +28,15 @@ public class ReservationController {
 	BodyshopService bservice;
 
 	@RequestMapping(value = "/Reservation/add.do", method = RequestMethod.POST, consumes = "application/json")
-	public List<ReservationVO> addClothHistory(@RequestBody Map<String, String> map) {
+	public List<ReservationVO> addReservation(@RequestBody Map<String, String> map) {
 		// {"member_id":"111","reservation_time":"2019101010","key":"0"}
+		map.put("repaired_time", "NO");
+		System.out.println("reser add" + map);
+		if (map.get("key") == "0") {
+			map.put("key", "NO");
+		}
 		System.out.println(map);
-		System.out.println(map.get("member_id"));
-		System.out.println(map.get("reservation_time"));
-		System.out.println(map.get("key"));
+		service.addReservation(map);
 		return service.getReservationByID(map.get("member_id"));
 	}
 
