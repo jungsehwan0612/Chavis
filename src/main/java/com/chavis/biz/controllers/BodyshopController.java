@@ -1,5 +1,6 @@
 package com.chavis.biz.controllers;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -20,6 +21,7 @@ import com.chavis.biz.method.AddressMethod;
 import com.chavis.biz.service.BodyshopService;
 import com.chavis.biz.vo.BodyshopVO;
 import com.chavis.biz.vo.ReservationListVO;
+import com.chavis.biz.vo.ReservationVO;
 
 @RestController
 public class BodyshopController {
@@ -27,24 +29,6 @@ public class BodyshopController {
 	BodyshopService service;
 	int bodyshop_no;
 	AddressMethod am = new AddressMethod();
-
-	@RequestMapping(value = "/home.do", method = RequestMethod.GET)
-	public ModelAndView home(ModelAndView mv) {
-		return mv;
-	}
-
-	@RequestMapping(value = "/dashboard.do", method = RequestMethod.POST)
-	public ModelAndView loginProc(@RequestParam("bodyshop_id") String bodyshop_id,
-			@RequestParam("bodyshop_pw") String bodyshop_pw, HttpSession session) {
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("dashboard");
-		BodyshopVO bodyshop = service.bodyshopLogin(bodyshop_id, bodyshop_pw);
-		if (bodyshop != null) {
-			session.setAttribute("bodyshop", bodyshop);
-			
-		}
-		return mv;
-	}
 
 	@RequestMapping(value = "/Bodyshop/login.do", method = RequestMethod.POST)
 	public BodyshopVO loginProc(@RequestBody Map<String, String> map, HttpServletRequest request) throws Exception {

@@ -31,6 +31,13 @@
         WHERE bodyshop_no = #{bodyshop_no}
 		
 	</select>
+	
+	<!-- getReservationByBodyshopNo -->
+	<select id="getReservationByBodyshopNo" resultType="ReservationVO">
+		SELECT * 
+		FROM RESERVATION
+		WHERE BODYSHOP_NO = #{bodyshop_no}
+	</select>
 	<!-- LIST -->
 	<select id="listReservation" resultType="ReservationVO">
 		SELECT * FROM

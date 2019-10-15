@@ -19,6 +19,8 @@ public interface ReservationDAO {
 	// ListByID
 	List<ReservationVO> getReservationByID(String member_id);
 
+	//	ListByBodyshopNo
+	List<ReservationVO> getReservationByBodyshopNo(int bodyshop_no);
 	// Update
 	int updateReservation(ReservationVO reservation);
 

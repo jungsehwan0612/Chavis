@@ -24,7 +24,6 @@ import com.chavis.biz.vo.ReservationVO;
 public class ReservationController {
 	@Autowired
 	ReservationService service;
-
 	@Autowired
 	BodyshopService bservice;
 
@@ -60,16 +59,29 @@ public class ReservationController {
 	}
 
 	@RequestMapping(value = "/Reservation/chart.do", method = RequestMethod.GET)
-	public Map<Integer, Integer> getChart() {
-		Map<Integer, Integer> map = new HashMap<>();
-		for (int i = 0; i < 24; i++) {
-			map.put(i, 0);
-		}
+	public Map<String, Integer> getChart() {
+		Map<String, Integer> map = new HashMap<>();
+		int midnightToSix = 0;
+		int sixToNoon = 0;
+		int noonToSix = 0;
+		int sixToMidnight = 0;
+		
 		for (ReservationVO reserve : service.getReservationToday()) {
 			String time = reserve.getReservation_time().split(" ")[1];
 			int hour = Integer.parseInt(time.split(":")[0]);
-			map.replace(hour, map.get(hour) + 1);
+			if(hour >= 0 && hour < 6)
+				midnightToSix ++;
+			if(hour >= 6 && hour < 12)
+				sixToNoon ++;
+			if(hour >= 12 && hour < 18)
+				noonToSix ++;
+			if(hour >= 18 && hour < 24)
+				sixToMidnight ++;
 		}
+		map.put("0~6", midnightToSix);
+		map.put("6~12", sixToNoon);
+		map.put("12~18", noonToSix);
+		map.put("18~24", sixToMidnight);
 		return map;
 	}
 

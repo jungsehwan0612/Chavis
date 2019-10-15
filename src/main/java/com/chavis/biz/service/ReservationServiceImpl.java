@@ -45,6 +45,11 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
+	public List<ReservationVO> getReservationByBodyshopNo(int bodyshop_no) {
+		return dao.getReservationByBodyshopNo(bodyshop_no);
+	}
+
+	@Override
     public int updateReservation(ReservationVO reservation) {
         return dao.updateReservation(reservation);
     }
