@@ -46,30 +46,9 @@ public class ReservationServiceImpl implements ReservationService {
 	}
 
 	@Override
-	public List<ReservationVO> getReservationList() {
-		return dao.getReservationList();
-	}
-
-	@Override
-	public int updateReservation(ReservationVO reservation) {
-		return dao.updateReservation(reservation);
-	}
-
-	@Override
-	public int removeReservation(int reserve_no) {
-		return dao.removeReservation(reserve_no);
-	}
-
-	@Override
 	public List<ReservationVO> getReservationByID(String member_id) {
 		System.out.println("service reservationid" + member_id);
 		return dao.getReservationByID(member_id);
-	}
-
-	@Override
-	public int finishRepair(int reservation_no, String repaired_time, String repaired_person) {
-		System.out.println("serviceimpl");
-		return dao.finishRepair(reservation_no, repaired_time, repaired_person);
 	}
 
 	@Override

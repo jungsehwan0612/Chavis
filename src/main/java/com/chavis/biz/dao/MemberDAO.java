@@ -10,19 +10,11 @@ import com.chavis.biz.vo.ReservationVO;
 public interface MemberDAO {
 	MemberVO login(String member_id, String member_pw);
 
-	MemberVO getMember(String member_id);
-
-	List<MemberVO> getMemberList();
-
 	int addMember(MemberVO member);
 
 	int updateMember(Map<String, String> member);
 
 	int updateCar(Map<String, String> map2);
-
-	int removeMember(String member_id);
-
-	List<MemberVO> selectMemberList(Map<String, Object> param);
 
 	MemberVO dupcheck(String member_id);
 

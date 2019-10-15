@@ -29,10 +29,6 @@ public class MemberServiceImpl implements MemberService {
 		System.out.println("MemberService 시작");
 	}
 
-	public void setDao(MemberDAO dao) {
-		this.dao = dao;
-	}
-
 	public int dupcheck(String member_id) {
 		String msg = "";
 		int flag = 0;
@@ -74,10 +70,6 @@ public class MemberServiceImpl implements MemberService {
 		return vo;
 	}
 
-	public MemberVO getMember(String member_id) {
-		return dao.getMember(member_id);
-	}
-
 	public int addMember(MemberVO member) {
 		return dao.addMember(member);
 	}
@@ -87,20 +79,8 @@ public class MemberServiceImpl implements MemberService {
 		return dao.updateMember(member);
 	}
 
-	public int removeMember(String member_id) {
-		return dao.removeMember(member_id);
-	}
-
-	public List<MemberVO> getMemberList() {
-		return dao.getMemberList();
-	}
-
 	public List<NotificationVO> getNotificationList(String member_id) {
 		return dao.getNotificationList(member_id);
-	}
-
-	public List<MemberVO> selectMemberList(Map<String, Object> param) {
-		return dao.selectMemberList(param);
 	}
 
 	@Override

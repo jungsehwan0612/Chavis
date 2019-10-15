@@ -5,10 +5,13 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.chavis.biz.service.MemberService;
+import com.chavis.biz.validator.MemberValidator;
+import com.chavis.biz.vo.MemberVO;
+import com.chavis.biz.vo.NotificationVO;
+import com.chavis.biz.vo.ReservationVO;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,16 +21,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.chavis.biz.service.MemberService;
-import com.chavis.biz.validator.MemberValidator;
-import com.chavis.biz.vo.MemberVO;
-import com.chavis.biz.vo.NotificationVO;
-import com.chavis.biz.vo.ReservationVO;
-
 @RestController
 public class MemberController {
-
-	private static Logger log = LoggerFactory.getLogger(MemberController.class);
 
 	@Autowired
 	MemberService service;
@@ -41,12 +36,10 @@ public class MemberController {
 		MemberVO vo = null;
 		vo = service.login(member_id, member_pw);
 		if (vo == null) {
-			log.info("로그인 실패");
 			map.put("code", "100");
 
 			return map;
 		} else {
-			log.info("로그인 성공");
 			map.put("member_id", vo.getMember_id());
 			map.put("member_pw", vo.getMember_pw());
 			map.put("member_mname", vo.getMember_mname());
@@ -76,10 +69,6 @@ public class MemberController {
 		map2.put("car_color", map.getCar_color());
 		map2.put("car_id", map.getCar_id());
 		map2.put("car_type", map.getCar_type());
-
-		log.info("member/update.do");
-		log.info("map1 : " + map1);
-		log.info("map2 : " + map2);
 
 		return service.updateMember(map1) & service.updateCar(map2);
 	}
@@ -114,16 +103,6 @@ public class MemberController {
 			return false;
 		}
 		return true;
-	}
-
-	@RequestMapping(value = "/Member/list.do", method = RequestMethod.POST)
-	public List<MemberVO> getMemberList() {
-		return service.getMemberList();
-	}
-
-	@RequestMapping(value = "/Member/view.do", method = RequestMethod.POST)
-	public MemberVO getMember(@RequestBody Map<String, String> map) {
-		return service.getMember(map.get("member_id"));
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/Member/nlist.do")

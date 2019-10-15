@@ -12,12 +12,6 @@ public interface BodyshopDAO {
 
 	void addBodyshop(BodyshopVO vo);
 
-	void updateBodyshopPassword(String pw);
-
-	void removeBodyshop(String bodyshop_id, String bodyshop_pw);
-
-	List<BodyshopVO> searchBodyshop(String bodyshop_address, String bodyshop_name);
-
 	List<BodyshopVO> getBodyshoplist();
 
 	List<ReservationListVO> getReservationList(int member_no);

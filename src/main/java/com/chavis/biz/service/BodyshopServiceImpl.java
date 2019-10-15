@@ -55,21 +55,6 @@ public class BodyshopServiceImpl implements BodyshopService {
 	}
 
 	@Override
-	public void updateBodyshopPassword(String pw) {
-		dao.updateBodyshopPassword(pw);
-	}
-
-	@Override
-	public void removeBodyshop(String bodyshop_id, String bodyshop_pw) {
-		dao.removeBodyshop(bodyshop_id, bodyshop_pw);
-	}
-
-	@Override
-	public List<BodyshopVO> searchBodyshop(String bodyshop_address, String bodyshop_name) {
-		return dao.searchBodyshop(bodyshop_address, bodyshop_name);
-	}
-
-	@Override
 	public List<BodyshopVO> getBodyshoplist() {
 		return dao.getBodyshoplist();
 	}

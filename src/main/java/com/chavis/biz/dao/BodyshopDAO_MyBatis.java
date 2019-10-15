@@ -34,30 +34,6 @@ public class BodyshopDAO_MyBatis implements BodyshopDAO {
 	}
 
 	@Override
-	public void updateBodyshopPassword(String pw) {
-		System.out.println("UPDATE BODYSHOP PASSWORD");
-		sqlSession.update("bodyshopMapper.updateBodyshop", pw);
-	}
-
-	@Override
-	public void removeBodyshop(String bodyshop_id, String bodyshop_pw) {
-		System.out.println("REMOVE BODYSHOP");
-		BodyshopVO bodyshop = new BodyshopVO();
-		bodyshop.setBodyshop_id(bodyshop_id);
-		bodyshop.setBodyshop_pw(bodyshop_pw);
-		sqlSession.delete("bodyshopMapper.removeBodyshop", bodyshop);
-	}
-
-	@Override
-	public List<BodyshopVO> searchBodyshop(String bodyshop_address, String bodyshop_name) {
-		System.out.println("SEARCH BODYSHOP");
-		BodyshopVO bodyshop = new BodyshopVO();
-		bodyshop.setBodyshop_address(bodyshop_address);
-		bodyshop.setBodyshop_name(bodyshop_name);
-		return sqlSession.selectList("bodyshopMapper.searchBodyshop", bodyshop);
-	}
-
-	@Override
 	public List<BodyshopVO> getBodyshoplist() {
 		System.out.println("GET BODYSHOP LIST");
 		return sqlSession.selectList("bodyshopMapper.getBodyshoplist");
