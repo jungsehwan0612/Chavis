@@ -4,6 +4,7 @@
 
 	<select id="memberLogin" parameterType="MemberVO"
 		resultType="MemberVO">
+		/* memberMapper.memberLogin */
 		SELECT member.member_no, member.member_id,
 		member.member_pw,
 		member_mname, member_phonenumber, car.car_no,
@@ -18,17 +19,20 @@
 	</select>
 
 	<select id="dupcheck" resultType="MemberVO">
+		/* memberMapper.dupcheck */
 		select member_id from member
 		where member_id = #{member_id}
 	</select>
 
 	<select id="getMember" parameterType="MemberVO"
 		resultType="MemberVO">
+		/* memberMapper.getMember */
 		select * from member
 		where member_id = #{member_id}
 	</select>
 
 	<insert id="addMember" parameterType="MemberVO">
+		/* memberMapper.addMember */
 		insert all
 		into member
 		(member_no, member_id, member_pw,
@@ -44,6 +48,7 @@
 	</insert>
 
 	<select id="listMember" resultType="MemberVO">
+		/* memberMapper.listMember */
 		select *
 		from member
 		order by
@@ -53,6 +58,7 @@
 	<!-- getMemberList -->
 	<select id="getMemberList"
 		resultType="com.chavis.biz.vo.MemberListVO">
+		/* memberMapper.getMemberList */
 		SELECT reservation_no, bodyshop_no, repaired_person,
 		reservation_time, repaired_time, key
 		FROM RESERVATION JOIN MEMBER ON
@@ -65,6 +71,7 @@
 
 	<select id="getMemberReserveList"
 		resultType="com.chavis.biz.vo.ReservationVO">
+		/* memberMapper.getMemberReserveList */
 		SELECT RESERVATION.reservation_no, BODYSHOP.bodyshop_name,
 		RESERVATION.repaired_person,
 		RESERVATION.reservation_time,
@@ -90,6 +97,7 @@
 
 	<update id="updateMember"
 		parameterType="com.chavis.biz.vo.MemberVO">
+		/* memberMapper.updateMember */
 		update member set
 		member_pw = #{member_pw},
 		member_mname =
@@ -98,6 +106,7 @@
 		member_id =#{member_id}
 	</update>
 	<update id="updateCar" parameterType="CarVO">
+		/* memberMapper.updateCar */
 		update car set
 		car_id =
 		#{car_id},
@@ -109,10 +118,12 @@
 	</update>
 
 	<update id="removeMember">
+		/* memberMapper.removeMember */
 		delete from member where member_id = #{member_id}
 	</update>
 	<select id="getNotificationList"
 		resultType="com.chavis.biz.vo.NotificationVO">
+		/* memberMapper.getNotificationList */
 		SELECT * FROM notification n
 		JOIN member m
 		ON n.member_no =
@@ -122,6 +133,7 @@
 	</select>
 	<select id="selectMemberList" parameterType="map"
 		resultType="MemberVO">
+		/* memberMapper.selectMemberList */
 		select *
 		from (
 		select ROWNUM AS rnum, A.* from member A

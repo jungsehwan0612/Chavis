@@ -33,35 +33,22 @@ public class ReservationController {
 
 	@RequestMapping(value = "/Reservation/add.do", method = RequestMethod.POST, consumes = "application/json")
 	public List<ReservationVO> addReservation(@RequestBody Map<String, String> map) {
-		// {"member_id":"111","reservation_time":"2019101010","key":"0"}
 		map.put("repaired_time", "NO");
 
 		log.info("add.do : " + map);
 
-		map.put("key_expire_time", "NO");
-		if (map.get("key").equals("0") || map.get("key").equals(null)) {
-			map.replace("key", "NO");
-		}
-		map.put("bodyshop_no", Integer.toString((int) (Math.random() * 11) + 1));
-
 		service.addReservation(map);
-		log.info("member_id : " + map.get("member_id"));
 		return service.getReservationByID(map.get("member_id"));
 	}
 
 	@RequestMapping(value = "/Reservation/list.do")
-	// 리스트 부르면 조인을 해서
 	public List<ReservationVO> getReservationList() {
 		return service.getReservationToday();
 	}
 
 	@RequestMapping(value = "/Reservation/view.do", method = RequestMethod.POST)
 	public ReservationVO getReserve(@RequestBody Map<String, String> map) {
-		int reserve_no = Integer.parseInt(map.get("reservation_time"));
-		System.out.println("view.do");
-		System.out.println(map);
-		System.out.println(reserve_no);
-		return service.getReservation(reserve_no);
+		return service.getReservation(Integer.parseInt(map.get("reservation_time")));
 	}
 
 	@RequestMapping(value = "/Reservation/chart.do", method = RequestMethod.GET)
@@ -85,8 +72,7 @@ public class ReservationController {
 
 	@RequestMapping(value = "/Reservation/remove.do", method = RequestMethod.POST)
 	public int removeReservation(@RequestBody Map<String, String> map) {
-		int reserve_no = Integer.parseInt(map.get("reservation_no"));
-		return service.removeReservation(reserve_no);
+		return service.removeReservation(Integer.parseInt(map.get("reservation_no")));
 	}
 
 	@RequestMapping("/Reservation/update.do")
@@ -96,8 +82,6 @@ public class ReservationController {
 
 	@RequestMapping(value = "/Reservation/finishrepair.do", method = RequestMethod.POST)
 	public List<ReservationListVO> finishRepair(@RequestBody Map<String, String> map) {
-		System.out.println("reservation controller");
-		System.out.println(map);
 		int reservation_no = Integer.parseInt(map.get("reservation_no"));
 		String repaired_time = map.get("repaired_time");
 		String repaired_person = map.get("repaired_person");

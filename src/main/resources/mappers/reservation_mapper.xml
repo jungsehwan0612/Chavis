@@ -4,6 +4,7 @@
 
 	<!-- CREATE -->
 	<insert id="addReservation" parameterType="map">
+		/* reservationMapper.addReservation */
 		INSERT INTO
 		RESERVATION (RESERVATION_NO, BODYSHOP_NO, MEMBER_NO, KEY,
 		RESERVATION_TIME, REPAIRED_TIME)
@@ -15,6 +16,7 @@
 
 	<!-- READ -->
 	<select id="getReservation" resultType="ReservationVO">
+		/* reservationMapper.getReservation */
 		SELECT * FROM RESERVATION
 		WHERE
 		RESERVATION_NO = #{RESERVATION_NO}
@@ -26,7 +28,7 @@
 		<!-- SELECT key,key_expire_time,member_mname,car_type,car_id,reservation_time,repaired_time,repaired_person 
 			FROM member join reservation on member.member_no = reservation.member_no 
 			JOIN car on member.member_no = car.car_no where member_id = #{member_id}; -->
-
+		/* reservationMapper.getReservationList */
 		SELECT reservation_no, key,key_expire_time,member_mname,
 		reservation.member_no,
 		car_type,car_id,reservation_time,repaired_time,repaired_person
@@ -38,6 +40,7 @@
 	</select>
 	<!-- LIST -->
 	<select id="listReservation" resultType="ReservationVO">
+		/* reservationMapper.listResrvation */
 		SELECT * FROM
 		RESERVATION ORDER BY RESERVATION_NO DESC
 	</select>
@@ -45,6 +48,7 @@
 	<!-- ListByID -->
 	<select id="listReservationByID" parameterType="String"
 		resultType="ReservationVO">
+		/* reservationMapper.listReservaitonByID */
 		SELECT reservation.reservation_time, member.member_mname,
 		reservation.key,
 		reservation.repaired_person, reservation.repaired_time
@@ -57,17 +61,20 @@
 
 	<!-- UPDATE -->
 	<update id="updateReservation" parameterType="ReservationVO">
+		/* reservationMapper.updateReservation */
 		UPDATE RESERVATION
 		SET KEY=#{KEY} where RESERVATION_NO =#{RESERVATION_NO}
 	</update>
 
 	<!-- DELETE -->
 	<delete id="removeReservation">
+		/* reservationMapper.removeReservation */
 		DELETE FROM RESERVATION WHERE RESERVATION_NO =
 		#{RESERVATION_NO}
 	</delete>
 
 	<update id="finishRepair" parameterType="ReservationVO">
+		/* reservationMapper.finishRepair */
 		UPDATE RESERVATION
 		SET
 		REPAIRED_PERSON = #{repaired_person}, REPAIRED_TIME = #{repaired_time}
