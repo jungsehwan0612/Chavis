@@ -3,12 +3,12 @@ package com.chavis.biz.dao;
 import java.util.List;
 import java.util.Map;
 
+import com.chavis.biz.vo.ReservationVO;
+import com.chavis.biz.vo.WebTableVO;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import com.chavis.biz.vo.ReservationListVO;
-import com.chavis.biz.vo.ReservationVO;
 
 @Component("reservationmybatis")
 public class ReservationDAO_MyBatis implements ReservationDAO {
@@ -26,36 +26,13 @@ public class ReservationDAO_MyBatis implements ReservationDAO {
 	}
 
 	@Override
-	public ReservationVO getReservation(int reservation_no) {
-
-		return sqlSession.selectOne("reservationMapper.getReservation", reservation_no);
-
+	public List<ReservationVO> getReservationByBodyshopNo(int bodyshop_no) {
+		return sqlSession.selectList("reservationMapper.getReservationByBodyshopNo", bodyshop_no);
 	}
 
 	@Override
-	public List<ReservationVO> getReservationToday() {
-
-		return sqlSession.selectList("reservationMapper.listReservation");
-
-	}
-
-	public List<ReservationVO> getReservationWeek() {
-		return sqlSession.selectList("reserveMapper.listReservation");
-	}
-
-	@Override
-	public int updateReservation(ReservationVO reservation) {
-		reservation.setReservation_no(reservation.getBodyshop_no());
-		reservation.setRepaired_time(reservation.getRepaired_time());
-		reservation.setRepaired_person(reservation.getRepaired_person());
-		return sqlSession.insert("reserveMapper.updateReservation", reservation);
-	}
-
-	@Override
-
-	public int removeReservation(int reservation_no) {
-		return sqlSession.delete("reservationMapper.removeReservation", reservation_no);
-
+	public List<WebTableVO> getReservationForWeb(int bodyshop_no) {
+		return sqlSession.selectList("reservationMapper.getReservationForWeb");
 	}
 
 	@Override
@@ -63,17 +40,4 @@ public class ReservationDAO_MyBatis implements ReservationDAO {
 		return sqlSession.selectList("reservationMapper.listReservationByID", member_id);
 	}
 
-	@Override
-	public List<ReservationListVO> getReservationList(String id) {
-		return sqlSession.selectList("reservationMapper.getReservationList", id);
-	}
-
-	@Override
-	public int finishRepair(int reservation_no, String repaired_time, String repaired_person) {
-		ReservationVO vo = new ReservationVO();
-		vo.setReservation_no(reservation_no);
-		vo.setRepaired_time(repaired_time);
-		vo.setRepaired_person(repaired_person);
-		return sqlSession.update("reservationMapper.finishRepair", vo);
-	}
 }

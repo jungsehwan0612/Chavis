@@ -14,35 +14,11 @@
 		#{reservation_time}, #{repaired_time})
 	</insert>
 
-	<!-- READ -->
-	<select id="getReservation" resultType="ReservationVO">
-		/* reservationMapper.getReservation */
-		SELECT * FROM RESERVATION
-		WHERE
-		RESERVATION_NO = #{RESERVATION_NO}
-	</select>
-
-	<!-- getReservationList -->
-	<select id="getReservationList"
-		resultType="com.chavis.biz.vo.ReservationListVO">
-		<!-- SELECT key,key_expire_time,member_mname,car_type,car_id,reservation_time,repaired_time,repaired_person 
-			FROM member join reservation on member.member_no = reservation.member_no 
-			JOIN car on member.member_no = car.car_no where member_id = #{member_id}; -->
-		/* reservationMapper.getReservationList */
-		SELECT reservation_no, key,key_expire_time,member_mname,
-		reservation.member_no,
-		car_type,car_id,reservation_time,repaired_time,repaired_person
-		FROM member join reservation on member.member_no = reservation.member_no
-		JOIN car
-		ON member.member_no = car.car_no
-		WHERE bodyshop_no = #{bodyshop_no}
-
-	</select>
-	<!-- LIST -->
-	<select id="listReservation" resultType="ReservationVO">
-		/* reservationMapper.listResrvation */
-		SELECT * FROM
-		RESERVATION ORDER BY RESERVATION_NO DESC
+	<!-- getReservationByBodyshopNo -->
+	<select id="getReservationByBodyshopNo" resultType="ReservationVO">
+		SELECT * 
+		FROM RESERVATION
+		WHERE BODYSHOP_NO = #{bodyshop_no}
 	</select>
 
 	<!-- ListByID -->
@@ -59,25 +35,4 @@
 		WHERE member.member_id = #{member_id}
 	</select>
 
-	<!-- UPDATE -->
-	<update id="updateReservation" parameterType="ReservationVO">
-		/* reservationMapper.updateReservation */
-		UPDATE RESERVATION
-		SET KEY=#{KEY} where RESERVATION_NO =#{RESERVATION_NO}
-	</update>
-
-	<!-- DELETE -->
-	<delete id="removeReservation">
-		/* reservationMapper.removeReservation */
-		DELETE FROM RESERVATION WHERE RESERVATION_NO =
-		#{RESERVATION_NO}
-	</delete>
-
-	<update id="finishRepair" parameterType="ReservationVO">
-		/* reservationMapper.finishRepair */
-		UPDATE RESERVATION
-		SET
-		REPAIRED_PERSON = #{repaired_person}, REPAIRED_TIME = #{repaired_time}
-		WHERE RESERVATION_NO = #{reservation_no}
-	</update>
 </mapper>

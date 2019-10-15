@@ -24,28 +24,6 @@
 		values(#{bodyshop_no},#{bodyshop_id},#{bodyshop_pw},#{bodyshop_name},#{bodyshop_address})
 	</insert>
 
-	<update id="updateBodyshopPassword" parameterType="BodyshopVO">
-		/* bodyshopMapper.updateBodyshopPassword */
-		update
-		bodyshop set bodyshop_pw = #{bodyshop_pw}
-	</update>
-
-	<delete id="removeBodyshop" parameterType="BodyshopVO">
-		/* bodyshopMapper.removeBodyshop */
-		delete from bodyshop
-		where bodyshop_id=#{bodyshop_id} and bodyshop_pw=#{bodyshop_pw}
-	</delete>
-
-	<select id="searchBodyshop" parameterType="BodyshopVO"
-		resultType="BodyshopVO">
-		/* bodyshopMapper.searchBodyshop */
-		select * from bodyshop where
-		bodyshop_address like
-		'%'||#{bodyshop_address}||'%' and
-		bodyshop_name like
-		'%'||#{bodyshop_name}||'%'
-	</select>
-
 	<select id="getBodyshoplist" resultType="Bodyshopvo">
 		/* bodyshopMapper.getBodyshoplist */
 		select * from bodyshop

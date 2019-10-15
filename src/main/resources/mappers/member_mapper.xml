@@ -5,28 +5,22 @@
 	<select id="memberLogin" parameterType="MemberVO"
 		resultType="MemberVO">
 		/* memberMapper.memberLogin */
-		SELECT member.member_no, member.member_id, member.member_pw,
-				member_mname, member_phonenumber, car.car_no,
-				car.car_id, car.car_type, car.car_color
+		SELECT member.member_no, member.member_id,
+		member.member_pw,
+		member_mname, member_phonenumber, car.car_no,
+		car.car_id, car.car_type ,
+		car.car_color
 		FROM member
 		JOIN car
-		ON member.member_no = car.member_no
+		ON
+		member.member_no = car.member_no
 		WHERE member_id = #{member_id} and
 		member_pw = #{member_pw}
 	</select>
 
 	<select id="dupcheck" resultType="MemberVO">
 		/* memberMapper.dupcheck */
-		select member_id 
-		from member
-		where member_id = #{member_id}
-	</select>
-
-	<select id="getMember" parameterType="MemberVO"
-		resultType="MemberVO">
-		/* memberMapper.getMember */
-		select * 
-		from member
+		select member_id from member
 		where member_id = #{member_id}
 	</select>
 
@@ -34,38 +28,17 @@
 		/* memberMapper.addMember */
 		insert all
 		into member
-		(member_no, member_id, member_pw, member_mname, member_phonenumber)
+		(member_no, member_id, member_pw,
+		member_mname,member_phonenumber)
 		values ((select nvl(max(member_no),0)+1 from member),#{member_id},
-						#{member_pw}, #{member_mname}, #{member_phonenumber})
+		#{member_pw}, #{member_mname}, #{member_phonenumber})
 		into car
 		(car_no,car_type,car_id,car_color,member_no)
-		values ((select nvl(max(car_no),0)+1 from car), #{car_type},
-				#{car_id},#{car_color},(select nvl(max(member_no),0) from member))
+		values ((select
+		nvl(max(car_no),0)+1 from car), #{car_type},
+		#{car_id},#{car_color},(select nvl(max(member_no),0) from member))
 		select * from dual
 	</insert>
-
-	<select id="listMember" resultType="MemberVO">
-		/* memberMapper.listMember */
-		select *
-		from member
-		order by
-		to_number(member_no)
-	</select>
-
-	<!-- getMemberList -->
-	<select id="getMemberList"
-		resultType="com.chavis.biz.vo.MemberListVO">
-		/* memberMapper.getMemberList */
-		SELECT reservation_no, bodyshop_no, repaired_person,
-				reservation_time, repaired_time, key
-		FROM RESERVATION 
-		JOIN MEMBER 
-		ON RESERVATION.member_no = MEMBER.member_no
-		WHERE MEMBER.member_no =
-		(select member_no from member where member_id= #{member_id})
-		ORDER BY
-		reservation_no
-	</select>
 
 	<select id="getMemberReserveList"
 		resultType="com.chavis.biz.vo.ReservationVO">
@@ -76,17 +49,20 @@
 		RESERVATION.repaired_time, RESERVATION.key,
 		REPAIREDLIST.tire,
 		REPAIREDLIST.wiper, REPAIREDLIST.cooler, REPAIREDLIST.engine_oil
-		FROM RESERVATION
+		FROM
+		RESERVATION
 		LEFT JOIN MEMBER
 		ON RESERVATION.member_no = MEMBER.member_no
-		LEFT JOIN REPAIREDLIST
-		ON RESERVATION.reservation_no =	REPAIREDLIST.reservation_no
+		LEFT JOIN
+		REPAIREDLIST
+		ON RESERVATION.reservation_no =
+		REPAIREDLIST.reservation_no
 		JOIN BODYSHOP
-		ON BODYSHOP.bodyshop_no = RESERVATION.bodyshop_no
+		ON BODYSHOP.bodyshop_no =
+		RESERVATION.bodyshop_no
 		WHERE MEMBER.member_no = (select member_no
 		from
-		member 
-		where member_id= #{member_id})
+		member where member_id= #{member_id})
 		ORDER BY reservation_no desc
 	</select>
 
@@ -112,10 +88,6 @@
 		#{member_id})
 	</update>
 
-	<update id="removeMember">
-		/* memberMapper.removeMember */
-		delete from member where member_id = #{member_id}
-	</update>
 	<select id="getNotificationList"
 		resultType="com.chavis.biz.vo.NotificationVO">
 		/* memberMapper.getNotificationList */
@@ -125,22 +97,5 @@
 		m.member_no
 		where m.member_no = (select member_no from member where
 		member_id=#{member_id})
-	</select>
-	<select id="selectMemberList" parameterType="map"
-		resultType="MemberVO">
-		/* memberMapper.selectMemberList */
-		select *
-		from 
-		(select ROWNUM AS rnum, A.* 
-		from member A)
-		<where>
-			<if test="member_id != null and member_id != ''">member_id = #{member_id}</if>
-			<if test="member_name != null and member_name != ''">member_name like '%' || #{member_name} || '%' </if>
-		</where>
-		) T
-		<!-- < 부등호를 사용하기 위해서는 cdata를 이용해야함 -->
-		WHERE T.rnum >= #{startIndex} and T.rnum
-		<![CDATA[<]]>
-		#{lastIndex}
 	</select>
 </mapper>

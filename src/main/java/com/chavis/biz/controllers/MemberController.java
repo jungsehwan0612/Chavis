@@ -5,10 +5,13 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.chavis.biz.service.MemberService;
+import com.chavis.biz.validator.MemberValidator;
+import com.chavis.biz.vo.MemberVO;
+import com.chavis.biz.vo.NotificationVO;
+import com.chavis.biz.vo.ReservationVO;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,16 +21,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.chavis.biz.service.MemberService;
-import com.chavis.biz.validator.MemberValidator;
-import com.chavis.biz.vo.MemberVO;
-import com.chavis.biz.vo.NotificationVO;
-import com.chavis.biz.vo.ReservationVO;
-
 @RestController
 public class MemberController {
-
-	private static Logger log = LoggerFactory.getLogger(MemberController.class);
 
 	@Autowired
 	MemberService service;
@@ -41,12 +36,10 @@ public class MemberController {
 		MemberVO vo = null;
 		vo = service.login(member_id, member_pw);
 		if (vo == null) {
-			log.info("로그인 실패");
 			map.put("code", "100");
 
 			return map;
 		} else {
-			log.info("로그인 성공");
 			map.put("member_id", vo.getMember_id());
 			map.put("member_pw", vo.getMember_pw());
 			map.put("member_mname", vo.getMember_mname());
@@ -78,23 +71,7 @@ public class MemberController {
 		map2.put("car_id", map.getCar_id());
 		map2.put("car_type", map.getCar_type());
 
-		log.info("member/update.do");
-		log.info("map1 : " + map1);
-		log.info("map2 : " + map2);
-
 		return service.updateMember(map1) & service.updateCar(map2);
-	}
-
-	@RequestMapping("/Member/logout.do")
-	public String logout(HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		if (session != null)
-			session.invalidate();
-
-		request.setAttribute("msg", "로그아웃 되었습니다.");
-		log.info("로그아웃");
-
-		return "로그인 화면으로";
 	}
 
 	@RequestMapping(value = "/Member/dupcheck.do", method = RequestMethod.POST)
@@ -129,16 +106,6 @@ public class MemberController {
 		return true;
 	}
 
-	@RequestMapping(value = "/Member/list.do", method = RequestMethod.POST)
-	public List<MemberVO> getMemberList() {
-		return service.getMemberList();
-	}
-
-	@RequestMapping(value = "/Member/view.do", method = RequestMethod.POST)
-	public MemberVO getMember(@RequestBody Map<String, String> map) {
-		return service.getMember(map.get("member_id"));
-	}
-
 	@RequestMapping(method = RequestMethod.GET, value = "/Member/nlist.do")
 	public List<NotificationVO> getNotificationList(HttpServletRequest httpServletRequest) {
 		return service.getNotificationList(httpServletRequest.getParameter("member_id"));
@@ -149,11 +116,6 @@ public class MemberController {
 		return service.getMemberReserveList(httpServletRequest.getParameter("id"));
 	}
 
-	@RequestMapping(value = "/Member/remove.do", method = RequestMethod.POST)
-	public int removeMember(@RequestBody Map<String, String> map) {
-		return service.removeMember(map.get("member_id"));
-	}
-
 	@ExceptionHandler(Exception.class)
 	public String Ex(Exception exception, Model model) {
 		// MemberController 예외발생시 호출됨
@@ -162,9 +124,4 @@ public class MemberController {
 		return "error";
 	}
 
-	// 페이징 보류
-	@RequestMapping(value = "/Member/Memberlist", method = RequestMethod.POST)
-	public List<MemberVO> selectMemberList(@RequestBody Map<String, Object> param) {
-		return service.selectMemberList(param);
-	}
 }

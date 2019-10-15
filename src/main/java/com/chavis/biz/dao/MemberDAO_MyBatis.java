@@ -36,14 +36,6 @@ public class MemberDAO_MyBatis implements MemberDAO {
 		return sqlSession.selectOne("memberMapper.memberLogin", membervo);
 	}
 
-	public MemberVO getMember(String member_id) {
-		return sqlSession.selectOne("memberMapper.getMember", member_id);
-	}
-
-	public List<MemberVO> getMemberList() {
-		return sqlSession.selectList("memberMapper.listMember");
-	}
-
 	public int addMember(MemberVO member) {
 		return sqlSession.insert("memberMapper.addMember", member);
 	}
@@ -53,28 +45,8 @@ public class MemberDAO_MyBatis implements MemberDAO {
 		return sqlSession.update("memberMapper.updateCar", member);
 	}
 
-	public int removeMember(String member_id) {
-		return sqlSession.update("memberMapper.removeMember", member_id);
-	}
-
 	public List<NotificationVO> getNotificationList(String member_id) {
 		return sqlSession.selectList("memberMapper.getNotificationList", member_id);
-	}
-
-	@Override
-	public List<MemberVO> selectMemberList(Map<String, Object> param) {
-		int startIndex = 1;
-		int endIndex = 20;
-		if (param.containsKey("pageSize") && param.containsKey("pageIndex")) {
-			int pageSize = (int) param.get("pageSize");
-			int pageIndex = (int) param.get("pageIndex");
-
-			startIndex = pageSize * (pageIndex - 1) + 1;
-			endIndex = startIndex + pageSize;
-		}
-		param.put("startIndex", startIndex);
-		param.put("lastIndex", endIndex);
-		return sqlSession.selectList("memberMapper.selectMemberList", param);
 	}
 
 	public List<ReservationVO> getMemberReserveList(String id) {
