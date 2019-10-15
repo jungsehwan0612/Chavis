@@ -14,10 +14,10 @@ public class ReservationListVO {
 
 	public ReservationListVO() {
 	}
-	
 
-	public ReservationListVO(int reservation_no, String key, String key_expire_time, String member_mname, String member_no,
-			String car_type, String car_id, String reservation_time, String repaired_time, String repaired_person) {
+	public ReservationListVO(int reservation_no, String key, String key_expire_time, String member_mname,
+			String member_no, String car_type, String car_id, String reservation_time, String repaired_time,
+			String repaired_person) {
 		super();
 		this.reservation_no = reservation_no;
 		this.key = key;
@@ -31,17 +31,13 @@ public class ReservationListVO {
 		this.repaired_person = repaired_person;
 	}
 
-	
-
 	public String getMember_no() {
 		return member_no;
 	}
 
-
 	public void setMember_no(String member_no) {
 		this.member_no = member_no;
 	}
-
 
 	public int getReservation_no() {
 		return reservation_no;
@@ -115,5 +111,4 @@ public class ReservationListVO {
 		this.repaired_person = repaired_person;
 	}
 
-	
 }

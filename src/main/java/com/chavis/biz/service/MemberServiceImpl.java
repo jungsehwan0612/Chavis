@@ -7,13 +7,14 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
-import com.chavis.biz.dao.MemberDAO;
-import com.chavis.biz.vo.MemberVO;
-import com.chavis.biz.vo.ReservationVO;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
+
+import com.chavis.biz.dao.MemberDAO;
+import com.chavis.biz.vo.MemberVO;
+import com.chavis.biz.vo.NotificationVO;
+import com.chavis.biz.vo.ReservationVO;
 
 @Service("memberservice")
 public class MemberServiceImpl implements MemberService {
@@ -31,7 +32,7 @@ public class MemberServiceImpl implements MemberService {
 	public void setDao(MemberDAO dao) {
 		this.dao = dao;
 	}
-	
+
 	public int dupcheck(String member_id) {
 		String msg = "";
 		int flag = 0;
@@ -58,7 +59,7 @@ public class MemberServiceImpl implements MemberService {
 			Map<String, String> log = new HashMap<String, String>();
 			if (vo != null) {
 				msg = context.getMessage("login.success", new Object[] { vo.getMember_mname() }, Locale.KOREA);
-				
+
 				log.put("code", "200");
 				log.put("message", "login success");
 			} else {
@@ -85,7 +86,7 @@ public class MemberServiceImpl implements MemberService {
 		System.out.println(member);
 		return dao.updateMember(member);
 	}
-	
+
 	public int removeMember(String member_id) {
 		return dao.removeMember(member_id);
 	}
@@ -94,17 +95,22 @@ public class MemberServiceImpl implements MemberService {
 		return dao.getMemberList();
 	}
 
-	public List<MemberVO> selectMemberList(Map<String, Object> param) {		
+	public List<NotificationVO> getNotificationList(String member_id) {
+		return dao.getNotificationList(member_id);
+	}
+
+	public List<MemberVO> selectMemberList(Map<String, Object> param) {
 		return dao.selectMemberList(param);
 	}
+
 	@Override
 	public List<ReservationVO> getMemberReserveList(String id) {
 		return dao.getMemberReserveList(id);
 	}
+
 	@Override
 	public int updateCar(Map<String, String> map2) {
 		return dao.updateCar(map2);
 	}
-	
-	
+
 }

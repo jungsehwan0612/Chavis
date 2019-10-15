@@ -191,7 +191,4 @@ public class CarVO {
 				+ ", wiper_change_distance=" + wiper_change_distance + "]";
 	}
 
-	
-
-	
 }

@@ -270,7 +270,7 @@ public class AddressMethod {
 		case "동래구":
 			return "DRG";
 		case "부산진구":
-			return "BSJG";			
+			return "BSJG";
 		case "북구":
 			return "BG";
 		case "사상구":
@@ -374,7 +374,7 @@ public class AddressMethod {
 		case "수성구":
 			return "SSG";
 		case "광산구":
-			return "GSG";			
+			return "GSG";
 		case "강진군":
 			return "GJG";
 		case "고흥군":
@@ -396,7 +396,7 @@ public class AddressMethod {
 		case "보성군":
 			return "BSG";
 		case "순천시":
-			return "SCC";			
+			return "SCC";
 		case "신안군":
 			return "SAG";
 		case "여수시":

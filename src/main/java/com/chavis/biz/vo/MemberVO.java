@@ -10,9 +10,10 @@ public class MemberVO {
 	private String car_id;
 	private String car_type;
 	private String car_color;
-	
+
 	public MemberVO() {
 		super();
+
 	}
 
 	public MemberVO(int member_no, String member_id, String member_pw, String member_mname, String member_phonenumber,
@@ -28,8 +29,6 @@ public class MemberVO {
 		this.car_type = car_type;
 		this.car_color = car_color;
 	}
-
-
 
 	public int getMember_no() {
 		return member_no;

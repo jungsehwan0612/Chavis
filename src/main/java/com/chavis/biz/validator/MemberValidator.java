@@ -23,7 +23,8 @@ public class MemberValidator implements Validator {
 			errors.rejectValue("member_pw", "required");
 		}
 		if (vo.getMember_phonenumber() == null || vo.getMember_phonenumber().trim().isEmpty()) {
-			errors.rejectValue("member_phonenumber", "required", new Object[] { "member_phonenumber" }, "input member_phonenumber");
+			errors.rejectValue("member_phonenumber", "required", new Object[] { "member_phonenumber" },
+					"input member_phonenumber");
 		}
 	}
 }

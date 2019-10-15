@@ -13,11 +13,11 @@ public class CarDAO_MyBatis implements CarDAO {
 
 	@Autowired
 	SqlSession sqlSession;
-	
-	
+
 	public CarDAO_MyBatis() {
 		System.out.println("CarDAO 시작");
 	}
+
 	// CREATE
 	@Override
 	public int registerCar(CarVO car) {
@@ -31,7 +31,6 @@ public class CarDAO_MyBatis implements CarDAO {
 	public CarVO getCar(int car_no) {
 		return sqlSession.selectOne("carMapper.getCar", car_no);
 	}
-	
 
 	@Override
 	public List<CarVO> getCarList() {
@@ -70,8 +69,6 @@ public class CarDAO_MyBatis implements CarDAO {
 		sqlSession.commit();
 		return result;
 	}
-
-
 
 	@Override
 	public int resetEngineOil(int car_no) {
@@ -143,11 +140,12 @@ public class CarDAO_MyBatis implements CarDAO {
 		sqlSession.commit();
 		return result;
 	}
-	
+
 	@Override
 	public int getCarNo(String car_id) {
 		return sqlSession.selectOne("carMapper.getCarNo", car_id);
 	}
+
 	@Override
 	public CarVO getPersonalCar(String member_id) {
 		return sqlSession.selectOne("carMapper.getPersonalCar", member_id);

@@ -11,66 +11,64 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
-import com.chavis.biz.controllers.ReservationController;
 import com.chavis.biz.dao.ReservationDAO;
 import com.chavis.biz.vo.ReservationVO;
 
 @Service("reservationservice")
 public class ReservationServiceImpl implements ReservationService {
-	
-	private static Logger log = LoggerFactory.getLogger(ReservationServiceImpl.class); 
 
-    @Resource(name = "reservationmybatis")
-    ReservationDAO dao;
+	private static Logger log = LoggerFactory.getLogger(ReservationServiceImpl.class);
 
-    @Autowired
-    ApplicationContext context;
+	@Resource(name = "reservationmybatis")
+	ReservationDAO dao;
 
-    public ReservationServiceImpl() {
-    	log.debug("ReservationService 시작"); 
-    	
-    }
+	@Autowired
+	ApplicationContext context;
 
-    public ReservationServiceImpl(ReservationDAO dao) {
-        this.dao = dao;
-    }
+	public ReservationServiceImpl() {
+		log.debug("ReservationService 시작");
 
-    @Override
-    public int addReservation(Map<String, String> reservation) {
-        return dao.addReservation(reservation);
-    }
+	}
 
-    @Override
-    public ReservationVO getReservation(int reservation_no) {
-        return dao.getReservation(reservation_no);
-    }
+	public ReservationServiceImpl(ReservationDAO dao) {
+		this.dao = dao;
+	}
 
-    @Override
-    public List<ReservationVO> getReservationToday() {
-        return dao.getReservationToday();
-    }
+	@Override
+	public int addReservation(Map<String, String> reservation) {
+		return dao.addReservation(reservation);
+	}
 
-    @Override
-    public int updateReservation(ReservationVO reservation) {
-        return dao.updateReservation(reservation);
-    }
+	@Override
+	public ReservationVO getReservation(int reservation_no) {
+		return dao.getReservation(reservation_no);
+	}
 
-    @Override
-    public int removeReservation(int reserve_no) {
-        return dao.removeReservation(reserve_no);
-    }
+	@Override
+	public List<ReservationVO> getReservationToday() {
+		return dao.getReservationToday();
+	}
+
+	@Override
+	public int updateReservation(ReservationVO reservation) {
+		return dao.updateReservation(reservation);
+	}
+
+	@Override
+	public int removeReservation(int reserve_no) {
+		return dao.removeReservation(reserve_no);
+	}
 
 	@Override
 	public List<ReservationVO> getReservationByID(String member_id) {
 		System.out.println("service reservationid" + member_id);
 		return dao.getReservationByID(member_id);
 	}
-	
+
 	@Override
 	public int finishRepair(int reservation_no, String repaired_time, String repaired_person) {
 		System.out.println("serviceimpl");
 		return dao.finishRepair(reservation_no, repaired_time, repaired_person);
 	}
-	
 
 }
