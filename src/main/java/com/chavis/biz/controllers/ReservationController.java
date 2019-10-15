@@ -1,8 +1,12 @@
 package com.chavis.biz.controllers;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import com.chavis.biz.service.BodyshopService;
+import com.chavis.biz.service.ReservationService;
+import com.chavis.biz.vo.ReservationListVO;
+import com.chavis.biz.vo.ReservationVO;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,11 +18,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.chavis.biz.service.BodyshopService;
-import com.chavis.biz.service.ReservationService;
-import com.chavis.biz.vo.ReservationListVO;
-import com.chavis.biz.vo.ReservationVO;
 
 @CrossOrigin("*")
 @RestController
@@ -51,48 +50,7 @@ public class ReservationController {
 	@RequestMapping(value = "/Reservation/list.do")
 	// 리스트 부르면 조인을 해서
 	public List<ReservationVO> getReservationList() {
-		return service.getReservationToday();
-	}
-
-	@RequestMapping(value = "/Reservation/view.do", method = RequestMethod.POST)
-	public ReservationVO getReserve(@RequestBody Map<String, String> map) {
-		int reserve_no = Integer.parseInt(map.get("reservation_time"));
-		System.out.println("view.do");
-		System.out.println(map);
-		System.out.println(reserve_no);
-		return service.getReservation(reserve_no);
-	}
-
-	@RequestMapping(value = "/Reservation/chart.do", method = RequestMethod.GET)
-	public Map<String, Integer> getChart() {
-		Map<String, Integer> map = new HashMap<>();
-		int midnightToSix = 0;
-		int sixToNoon = 0;
-		int noonToSix = 0;
-		int sixToMidnight = 0;
-		
-		for (ReservationVO reserve : service.getReservationToday()) {
-			String time = reserve.getReservation_time().split(" ")[1];
-			int hour = Integer.parseInt(time.split(":")[0]);
-			if(hour >= 0 && hour < 6)
-				midnightToSix ++;
-			if(hour >= 6 && hour < 12)
-				sixToNoon ++;
-			if(hour >= 12 && hour < 18)
-				noonToSix ++;
-			if(hour >= 18 && hour < 24)
-				sixToMidnight ++;
-		}
-		map.put("0~6", midnightToSix);
-		map.put("6~12", sixToNoon);
-		map.put("12~18", noonToSix);
-		map.put("18~24", sixToMidnight);
-		return map;
-	}
-
-	@RequestMapping(value = "/Reservation/listToday.do")
-	public List<ReservationVO> getReservationToday() {
-		return service.getReservationToday();
+		return service.getReservationList();
 	}
 
 	@RequestMapping(value = "/Reservation/remove.do", method = RequestMethod.POST)

@@ -84,18 +84,6 @@ public class MemberController {
 		return service.updateMember(map1) & service.updateCar(map2);
 	}
 
-	@RequestMapping("/Member/logout.do")
-	public String logout(HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		if (session != null)
-			session.invalidate();
-
-		request.setAttribute("msg", "로그아웃 되었습니다.");
-		log.info("로그아웃");
-
-		return "로그인 화면으로";
-	}
-
 	@RequestMapping(value = "/Member/dupcheck.do", method = RequestMethod.POST)
 	public int dupcheck(@RequestBody Map<String, String> map, HttpServletRequest request) throws Exception {
 		log.info("/Member/dupcheck.do : " + map);
@@ -129,12 +117,6 @@ public class MemberController {
 		return true;
 	}
 
-	@RequestMapping(value = "/Member/list.do", method = RequestMethod.POST)
-	public List<MemberVO> getMemberList() {
-		System.out.println("member list controller");
-		return service.getMemberList();
-	}
-
 	@RequestMapping(value = "/Member/view.do", method = RequestMethod.POST)
 	public MemberVO getMember(@RequestBody Map<String, String> map) {
 		System.out.println(map);
@@ -155,11 +137,6 @@ public class MemberController {
 		return res;
 	}
 
-	@RequestMapping(value = "/Member/remove.do", method = RequestMethod.POST)
-	public int removeMember(@RequestBody Map<String, String> map) {
-		return service.removeMember(map.get("member_id"));
-	}
-
 	@ExceptionHandler(Exception.class)
 	public String Ex(Exception exception, Model model) {
 		// MemberController 예외발생시 호출됨
@@ -168,9 +145,4 @@ public class MemberController {
 		return "error";
 	}
 
-	// 페이징 보류
-	@RequestMapping(value = "/Member/Memberlist", method = RequestMethod.POST)
-	public List<MemberVO> selectMemberList(@RequestBody Map<String, Object> param) {
-		return service.selectMemberList(param);
-	}
 }

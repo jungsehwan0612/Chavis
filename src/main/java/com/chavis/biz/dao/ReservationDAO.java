@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.chavis.biz.vo.ReservationListVO;
 import com.chavis.biz.vo.ReservationVO;
+import com.chavis.biz.vo.WebTableVO;
 
 public interface ReservationDAO {
 	// Create
@@ -13,14 +14,15 @@ public interface ReservationDAO {
 	// Read
 	ReservationVO getReservation(int reservation_no);
 
-	// List
-	List<ReservationVO> getReservationToday();
-
 	// ListByID
 	List<ReservationVO> getReservationByID(String member_id);
 
-	//	ListByBodyshopNo
+	// ListByBodyshopNo
 	List<ReservationVO> getReservationByBodyshopNo(int bodyshop_no);
+
+	// ListReservationForWeb
+	List<WebTableVO> getReservationForWeb(int bodyshop_no);
+
 	// Update
 	int updateReservation(ReservationVO reservation);
 

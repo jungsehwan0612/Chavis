@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import com.chavis.biz.vo.ReservationListVO;
 import com.chavis.biz.vo.ReservationVO;
+import com.chavis.biz.vo.WebTableVO;
 
 @Component("reservationmybatis")
 public class ReservationDAO_MyBatis implements ReservationDAO {
@@ -40,14 +41,8 @@ public class ReservationDAO_MyBatis implements ReservationDAO {
 	}
 
 	@Override
-	public List<ReservationVO> getReservationToday() {
-
-		return sqlSession.selectList("reservationMapper.listReservation");
-
-	}
-
-	public List<ReservationVO> getReservationWeek() {
-		return sqlSession.selectList("reserveMapper.listReservation");
+	public List<WebTableVO> getReservationForWeb(int bodyshop_no) {
+		return sqlSession.selectList("reservationMapper.getReservationForWeb");
 	}
 
 	@Override

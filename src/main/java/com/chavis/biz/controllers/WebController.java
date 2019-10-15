@@ -5,6 +5,11 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import com.chavis.biz.service.BodyshopService;
+import com.chavis.biz.service.ReservationService;
+import com.chavis.biz.vo.BodyshopVO;
+import com.chavis.biz.vo.ReservationVO;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,20 +17,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.chavis.biz.method.AddressMethod;
-import com.chavis.biz.service.BodyshopService;
-import com.chavis.biz.service.ReservationService;
-import com.chavis.biz.vo.BodyshopVO;
-import com.chavis.biz.vo.ReservationVO;
-
 @RestController
 public class WebController {
 	@Autowired
 	BodyshopService bService;
 	@Autowired
 	ReservationService rService;
-	int bodyshop_no;
-	AddressMethod am = new AddressMethod();
 
 	@RequestMapping(value = "/home.do", method = RequestMethod.GET)
 	public ModelAndView home(ModelAndView mv) {
@@ -49,7 +46,7 @@ public class WebController {
 		int noonToSix = 0;
 		int sixToMidnight = 0;
 		
-		for (ReservationVO reserve : rService.getReservationToday()) {
+		for (ReservationVO reserve : rService.getReservationByBodyshopNo(bodyshop.getBodyshop_no())) {
 			String time = reserve.getReservation_time().split(" ")[1];
 			int hour = Integer.parseInt(time.split(":")[0]);
 			if(hour >= 0 && hour < 6)

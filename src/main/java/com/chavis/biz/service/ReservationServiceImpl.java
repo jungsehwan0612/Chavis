@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.chavis.biz.dao.ReservationDAO;
 import com.chavis.biz.vo.ReservationVO;
+import com.chavis.biz.vo.WebTableVO;
 
 @Service("reservationservice")
 public class ReservationServiceImpl implements ReservationService {
@@ -45,8 +46,8 @@ public class ReservationServiceImpl implements ReservationService {
 	}
 
 	@Override
-	public List<ReservationVO> getReservationToday() {
-		return dao.getReservationToday();
+	public List<ReservationVO> getReservationList() {
+		return dao.getReservationList();
 	}
 
 	@Override
@@ -71,4 +72,10 @@ public class ReservationServiceImpl implements ReservationService {
 		return dao.finishRepair(reservation_no, repaired_time, repaired_person);
 	}
 
+	@Override
+	public List<WebTableVO> getReservationForWeb(int bodyshop_no) {
+		return dao.getReservationForWeb(bodyshop_no);
+	}
+
+	
 }

@@ -21,4 +21,5 @@ public interface BodyshopDAO {
 	List<BodyshopVO> getBodyshoplist();
 
 	List<ReservationListVO> getReservationList(int member_no);
+	
 }

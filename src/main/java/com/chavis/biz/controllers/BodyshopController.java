@@ -50,18 +50,6 @@ public class BodyshopController {
 		}
 	}
 
-	@RequestMapping("/Bodyshop/logout.do")
-	public String logout(HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		if (session != null)
-			session.invalidate();
-
-		request.setAttribute("msg", "로그아웃 되었습니다.");
-		System.out.println("로그아웃 되었습니다.");
-
-		return "로그인 화면으로";
-	}
-
 	@RequestMapping(value = "/Bodyshop/regist.do", method = RequestMethod.POST)
 	public String addBodyshop(@RequestBody Map<String, String> map, HttpServletRequest request, BindingResult errors) {
 		System.out.println(map);
@@ -86,36 +74,9 @@ public class BodyshopController {
 		return bodyshop_id;
 	}
 
-	@RequestMapping(value = "/Bodyshop/update.do", method = RequestMethod.POST)
-	public String updateBodyshopPassword(String pw, HttpServletRequest request) {
-		if (pw == null | pw.equals("")) {
-			return "비밀번호 수정 창으로";
-		}
-		service.updateBodyshopPassword(pw);
-		request.setAttribute("msg", "비밀번호가 수정되었습니다.");
-		return "로그인 화면으로";
-	}
-
-	@RequestMapping(value = "/Bodyshop/remove.do", method = RequestMethod.POST)
-	public String removeBodyshop(@ModelAttribute("bodyshop") BodyshopVO carBodyshopVO, HttpServletRequest request) {
-		if (carBodyshopVO != null) {
-			service.removeBodyshop(carBodyshopVO.getBodyshop_id(), carBodyshopVO.getBodyshop_pw());
-			request.setAttribute("msg", "정비소정보가 삭제되었습니다.");
-		} else {
-			request.setAttribute("msg", "다시 시도해주세요.");
-		}
-		return "로그인 화면으로";
-	}
-
 	@RequestMapping(value = "/Bodyshop/list.do", method = RequestMethod.POST)
 	public List<BodyshopVO> getCarBodyshopList() {
 		return service.getBodyshoplist();
-	}
-
-	@RequestMapping(value = "/Bodyshop/search.do", method = RequestMethod.POST)
-	public List<BodyshopVO> searchBodyshop(@RequestParam("bodyshopaddress") String bodyshop_address,
-			@RequestParam("bodyshopname") String bodyshop_name) {
-		return service.searchBodyshop(bodyshop_address, bodyshop_name);
 	}
 
 	@RequestMapping(value = "/Bodyshop/blist.do", method = RequestMethod.POST)
