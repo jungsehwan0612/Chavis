@@ -38,7 +38,6 @@ public class CarController {
 
 	@RequestMapping(value = "/Car/personalview.do", method = RequestMethod.POST)
 	public CarVO getPersonalCar(@RequestBody Map<String, String> map) {
-		System.out.println(map);
 		return service.getPersonalCar(map.get("member_id"));
 	}
 

@@ -81,8 +81,6 @@ public class BodyshopController {
 
 	@RequestMapping(value = "/Bodyshop/blist.do", method = RequestMethod.POST)
 	public List<ReservationListVO> getReservationList(@RequestBody Map<String, String> map) {
-		System.out.println("blist" + map);
-		int member_no = Integer.parseInt(map.get("bodyshop_no"));
-		return service.getReservationList(member_no);
+		return service.getReservationList(Integer.parseInt(map.get("bodyshop_no")));
 	}
 }

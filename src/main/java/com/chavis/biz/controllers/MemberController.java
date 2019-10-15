@@ -86,7 +86,6 @@ public class MemberController {
 
 	@RequestMapping(value = "/Member/dupcheck.do", method = RequestMethod.POST)
 	public int dupcheck(@RequestBody Map<String, String> map, HttpServletRequest request) throws Exception {
-		log.info("/Member/dupcheck.do : " + map);
 		return service.dupcheck(map.get("member_id"));
 	}
 
@@ -117,12 +116,14 @@ public class MemberController {
 		return true;
 	}
 
+	@RequestMapping(value = "/Member/list.do", method = RequestMethod.POST)
+	public List<MemberVO> getMemberList() {
+		return service.getMemberList();
+	}
+
 	@RequestMapping(value = "/Member/view.do", method = RequestMethod.POST)
 	public MemberVO getMember(@RequestBody Map<String, String> map) {
-		System.out.println(map);
-		String member_id = map.get("member_id");
-		System.out.println(member_id);
-		return service.getMember(member_id);
+		return service.getMember(map.get("member_id"));
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/Member/nlist.do")
@@ -132,9 +133,7 @@ public class MemberController {
 
 	@RequestMapping(method = RequestMethod.GET, value = "/Member/rlist.do")
 	public List<ReservationVO> getMemberReserveList(HttpServletRequest httpServletRequest, Model model) {
-		String id = httpServletRequest.getParameter("id");
-		List<ReservationVO> res = service.getMemberReserveList(id);
-		return res;
+		return service.getMemberReserveList(httpServletRequest.getParameter("id"));
 	}
 
 	@ExceptionHandler(Exception.class)
