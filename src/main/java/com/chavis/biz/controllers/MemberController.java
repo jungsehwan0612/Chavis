@@ -37,7 +37,6 @@ public class MemberController {
 		vo = service.login(member_id, member_pw);
 		if (vo == null) {
 			map.put("code", "100");
-
 			return map;
 		} else {
 			map.put("member_id", vo.getMember_id());
@@ -49,7 +48,6 @@ public class MemberController {
 			map.put("car_type", vo.getCar_type());
 			map.put("car_color", vo.getCar_color());
 			map.put("code", "200");
-
 			return map;
 		}
 	}

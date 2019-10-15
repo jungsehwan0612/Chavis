@@ -16,12 +16,14 @@
 
 	<!-- getReservationByBodyshopNo -->
 	<select id="getReservationByBodyshopNo" resultType="ReservationVO">
+		/* reservationMapper.getReservationByBodyshopNo */
 		SELECT * 
 		FROM RESERVATION
 		WHERE BODYSHOP_NO = #{bodyshop_no}
 	</select>
 
 	<select id="getReservationForWeb" resultType="WebTableVO">
+		/* reservationMapper.getReservationForWeb */
 		SELECT reservation_time, member_mname, member_phonenumber, car_id, car_type, key, repaired_person, repaired_time
 		FROM member
 		JOIN reservation

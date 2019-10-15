@@ -13,13 +13,15 @@
 	</select>
 	<select id="getNo" resultType="Integer">
 		/* bodyshopMapper.getNo */
-		select nvl(max(bodyshop_no),0)+1
+		select
+		nvl(max(bodyshop_no),0)+1
 		from bodyshop
 	</select>
 	<insert id="addBodyshop" parameterType="BodyshopVO">
 		/* bodyshopMapper.addBodyshop */
 		insert into
-		bodyshop(bodyshop_no, bodyshop_id, bodyshop_pw, bodyshop_name,
+		bodyshop(bodyshop_no,
+		bodyshop_id, bodyshop_pw, bodyshop_name,
 		bodyshop_address)
 		values(#{bodyshop_no},#{bodyshop_id},#{bodyshop_pw},#{bodyshop_name},#{bodyshop_address})
 	</insert>
