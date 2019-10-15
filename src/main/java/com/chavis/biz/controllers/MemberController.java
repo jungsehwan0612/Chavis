@@ -52,6 +52,7 @@ public class MemberController {
 			map.put("member_mname", vo.getMember_mname());
 			map.put("member_phonenumber", vo.getMember_phonenumber());
 			map.put("car_id", vo.getCar_id());
+			map.put("member_no", Integer.toString(vo.getMember_no()));
 			map.put("car_type", vo.getCar_type());
 			map.put("car_color", vo.getCar_color());
 			map.put("code", "200");

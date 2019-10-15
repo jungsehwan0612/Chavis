@@ -70,15 +70,10 @@ public class ReservationDAO_MyBatis implements ReservationDAO {
 
 	@Override
 	public int finishRepair(int reservation_no, String repaired_time, String repaired_person) {
-		System.out.println("reservationDAO");
 		ReservationVO vo = new ReservationVO();
 		vo.setReservation_no(reservation_no);
 		vo.setRepaired_time(repaired_time);
 		vo.setRepaired_person(repaired_person);
-		System.out.println("vo" + vo.getReservation_no());
-		System.out.println("vo" + vo.getRepaired_time());
-		System.out.println("vo" + vo.getRepaired_person());
-		System.out.println(vo.toString());
 		return sqlSession.update("reservationMapper.finishRepair", vo);
 	}
 }
