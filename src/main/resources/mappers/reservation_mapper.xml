@@ -21,9 +21,21 @@
 		WHERE BODYSHOP_NO = #{bodyshop_no}
 	</select>
 
+	<select id="getReservationForWeb" resultType="WebTableVO">
+		SELECT reservation_time, member_mname, member_phonenumber, car_id, car_type, key, repaired_person, repaired_time
+		FROM member
+		JOIN reservation
+		ON member.member_no = reservation.member_no
+		JOIN car
+		ON member.member_no = car.member_no
+		JOIN bodyshop
+		ON reservation.bodyshop_no = bodyshop.bodyshop_no
+		WHERE
+		BODYSHOP_NO = #{bodyshop_no}
+
+	</select>
 	<!-- ListByID -->
-	<select id="listReservationByID" parameterType="String"
-		resultType="ReservationVO">
+	<select id="listReservationByID" parameterType="String" resultType="ReservationVO">
 		/* reservationMapper.listReservaitonByID */
 		SELECT reservation.reservation_time, member.member_mname,
 		reservation.key,
