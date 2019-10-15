@@ -10,7 +10,7 @@ public interface CarService {
 
 	// READ (단일 차량 정보 조회, 전체 차량 정보 조회)
 	CarVO getCar(int car_no);
-	
+
 	CarVO getPersonalCar(String member_id);
 
 	List<CarVO> getCarList();
@@ -36,7 +36,7 @@ public interface CarService {
 
 	// DELETE(차량 정보 삭제)
 	int deleteCar(int car_no);
-	
+
 	// GET CAR_NO
-    public int getCarNo(String car_id);
+	public int getCarNo(String car_id);
 }

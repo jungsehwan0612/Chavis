@@ -6,17 +6,17 @@ import java.util.Map;
 import com.chavis.biz.vo.ReservationVO;
 
 public interface ReservationService {
-    // Create
-    int addReservation(Map<String, String> map);
+	// Create
+	int addReservation(Map<String, String> map);
 
-    // Read
-    ReservationVO getReservation(int reservation_no);
+	// Read
+	ReservationVO getReservation(int reservation_no);
 
-    // List
-    List<ReservationVO> getReservationToday();
+	// List
+	List<ReservationVO> getReservationToday();
 
-    // ListByID
-    List<ReservationVO> getReservationByID(String member_id);
+	// ListByID
+	List<ReservationVO> getReservationByID(String member_id);
 
     
     // ListByBodyshopNo
@@ -24,8 +24,8 @@ public interface ReservationService {
     // Update
     int updateReservation(ReservationVO reservation);
 
-    // Delete
-    int removeReservation(int reserve_no);
+	// Delete
+	int removeReservation(int reserve_no);
 
-    public int finishRepair(int reservation_no, String repaired_time, String repaired_person);
+	public int finishRepair(int reservation_no, String repaired_time, String repaired_person);
 }

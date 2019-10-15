@@ -1,4 +1,5 @@
 package com.chavis.biz.vo;
+
 public class BodyshopVO {
    
    private int bodyshop_no;

@@ -12,12 +12,12 @@ import org.springframework.stereotype.Component;
 @Component("bodyshopmybatis")
 public class BodyshopDAO_MyBatis implements BodyshopDAO {
 	@Autowired
-    SqlSession sqlSession;
+	SqlSession sqlSession;
 
 	public BodyshopDAO_MyBatis() {
 		System.out.println("BodyshopDAO 시작");
 	}
-	
+
 	@Override
 	public BodyshopVO bodyshopLogin(String bodyshop_id, String bodyshop_pw) {
 		System.out.println("BODYSHOP LOGIN");
@@ -27,20 +27,16 @@ public class BodyshopDAO_MyBatis implements BodyshopDAO {
 		return sqlSession.selectOne("bodyshopMapper.bodyshopLogin", bodyshop);
 	}
 
-	
-	
 	@Override
 	public void addBodyshop(BodyshopVO bodyshop) {
 		System.out.println("ADD BODYSHOP");
 		sqlSession.insert("bodyshopMapper.addBodyshop", bodyshop);
-//		sqlSession.commit();
 	}
 
 	@Override
 	public void updateBodyshopPassword(String pw) {
 		System.out.println("UPDATE BODYSHOP PASSWORD");
 		sqlSession.update("bodyshopMapper.updateBodyshop", pw);
-//		sqlSession.commit();
 	}
 
 	@Override
@@ -50,7 +46,6 @@ public class BodyshopDAO_MyBatis implements BodyshopDAO {
 		bodyshop.setBodyshop_id(bodyshop_id);
 		bodyshop.setBodyshop_pw(bodyshop_pw);
 		sqlSession.delete("bodyshopMapper.removeBodyshop", bodyshop);
-//		sqlSession.commit();
 	}
 
 	@Override
@@ -59,18 +54,17 @@ public class BodyshopDAO_MyBatis implements BodyshopDAO {
 		BodyshopVO bodyshop = new BodyshopVO();
 		bodyshop.setBodyshop_address(bodyshop_address);
 		bodyshop.setBodyshop_name(bodyshop_name);
-		return sqlSession.selectList("bodyshopMapper.searchBodyshop",bodyshop);
+		return sqlSession.selectList("bodyshopMapper.searchBodyshop", bodyshop);
 	}
 
-	
-	
 	@Override
 	public List<BodyshopVO> getBodyshoplist() {
 		System.out.println("GET BODYSHOP LIST");
 		return sqlSession.selectList("bodyshopMapper.getBodyshoplist");
 	}
+
 	@Override
-    public List<ReservationListVO> getReservationList(int id) {
+	public List<ReservationListVO> getReservationList(int id) {
 		return sqlSession.selectList("reservationMapper.getReservationList", id);
 	}
 
@@ -78,5 +72,5 @@ public class BodyshopDAO_MyBatis implements BodyshopDAO {
 	public int getNo() {
 		return sqlSession.selectOne("bodyshopMapper.getNo");
 	}
-    
+
 }

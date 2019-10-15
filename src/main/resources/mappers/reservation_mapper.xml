@@ -3,11 +3,14 @@
 <mapper namespace="reservationMapper">
 
 	<!-- CREATE -->
-	<insert id="addReservation" parameterType="ReservationVO">
+	<insert id="addReservation" parameterType="map">
 		INSERT INTO
-		RESERVATION (RESERVATION_NO, BODYSHOP_NO, MEMBER_NO, KEY, RESERVATION_TIME, REPAIRED_TIME)
-		VALUES ((select nvl(max(reservation_no),0)+1 from reservation), #{bodyshop_no},
-				(select member_no from member where member_id = #{member_id}), #{key}, #{reservation_time}, #{repaired_time})
+		RESERVATION (RESERVATION_NO, BODYSHOP_NO, MEMBER_NO, KEY,
+		RESERVATION_TIME, REPAIRED_TIME)
+		VALUES ((select
+		nvl(max(reservation_no),0)+1 from reservation), #{bodyshop_no},
+		(select member_no from member where member_id = #{member_id}), #{key},
+		#{reservation_time}, #{repaired_time})
 	</insert>
 
 	<!-- READ -->
@@ -18,18 +21,20 @@
 	</select>
 
 	<!-- getReservationList -->
-	<select id="getReservationList" resultType="com.chavis.biz.vo.ReservationListVO">
-		<!-- SELECT key,key_expire_time,member_mname,car_type,car_id,reservation_time,repaired_time,repaired_person
+	<select id="getReservationList"
+		resultType="com.chavis.biz.vo.ReservationListVO">
+		<!-- SELECT key,key_expire_time,member_mname,car_type,car_id,reservation_time,repaired_time,repaired_person 
+			FROM member join reservation on member.member_no = reservation.member_no 
+			JOIN car on member.member_no = car.car_no where member_id = #{member_id}; -->
+
+		SELECT reservation_no, key,key_expire_time,member_mname,
+		reservation.member_no,
+		car_type,car_id,reservation_time,repaired_time,repaired_person
 		FROM member join reservation on member.member_no = reservation.member_no
-		JOIN car on member.member_no =  car.car_no 
-		where member_id = #{member_id}; -->
-		
-		SELECT reservation_no, key,key_expire_time,member_mname, reservation.member_no, car_type,car_id,reservation_time,repaired_time,repaired_person
-        FROM member join reservation on member.member_no = reservation.member_no 
-        JOIN car
-        	ON member.member_no =  car.car_no 
-        WHERE bodyshop_no = #{bodyshop_no}
-		
+		JOIN car
+		ON member.member_no = car.car_no
+		WHERE bodyshop_no = #{bodyshop_no}
+
 	</select>
 	
 	<!-- getReservationByBodyshopNo -->
@@ -45,7 +50,8 @@
 	</select>
 
 	<!-- ListByID -->
-	<select id="listReservationByID" parameterType="String" resultType="ReservationVO">
+	<select id="listReservationByID" parameterType="String"
+		resultType="ReservationVO">
 		SELECT reservation.reservation_time, member.member_mname,
 		reservation.key,
 		reservation.repaired_person, reservation.repaired_time
@@ -67,10 +73,11 @@
 		DELETE FROM RESERVATION WHERE RESERVATION_NO =
 		#{RESERVATION_NO}
 	</delete>
-	
+
 	<update id="finishRepair" parameterType="ReservationVO">
 		UPDATE RESERVATION
-		SET REPAIRED_PERSON = #{repaired_person}, REPAIRED_TIME = #{repaired_time}
+		SET
+		REPAIRED_PERSON = #{repaired_person}, REPAIRED_TIME = #{repaired_time}
 		WHERE RESERVATION_NO = #{reservation_no}
 	</update>
 </mapper>

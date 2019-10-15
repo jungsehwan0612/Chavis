@@ -13,20 +13,21 @@ import com.chavis.biz.vo.CarVO;
 
 @Service("carservice")
 public class CarServiceImpl implements CarService {
-	
+
 	@Resource(name = "carmybatis")
 	CarDAO dao;
 
 	@Autowired
 	ApplicationContext context;
 
-	
 	public CarServiceImpl() {
 		System.out.println("CarService 시작");
 	}
+
 	public CarServiceImpl(CarDAO dao) {
 		this.dao = dao;
 	}
+
 	// CREATE
 	@Override
 	public int registerCar(CarVO car) {
@@ -38,8 +39,6 @@ public class CarServiceImpl implements CarService {
 	public CarVO getCar(int car_no) {
 		return dao.getCar(car_no);
 	}
-	
-	
 
 	@Override
 	public List<CarVO> getCarList() {
@@ -102,6 +101,7 @@ public class CarServiceImpl implements CarService {
 	public int getCarNo(String car_id) {
 		return dao.getCarNo(car_id);
 	}
+
 	@Override
 	public CarVO getPersonalCar(String member_id) {
 		return dao.getPersonalCar(member_id);

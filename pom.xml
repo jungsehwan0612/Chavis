@@ -21,7 +21,6 @@
 		</repository>
 	</repositories>
 	<dependencies>
-
 		<!--file upload -->
 		<dependency>
 			<groupId>commons-fileupload</groupId>
@@ -117,6 +116,28 @@
 			<artifactId>spring-jdbc</artifactId>
 			<version>${spring-framework.version}</version>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.bgee.log4jdbc-log4j2/log4jdbc-log4j2-jdbc4 -->
+		
+		<!-- log4j -->
+		<dependency>
+			<groupId>org.bgee.log4jdbc-log4j2</groupId>
+			<artifactId>log4jdbc-log4j2-jdbc4</artifactId>
+			<version>1.16</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.slf4j</groupId>
+		    <artifactId>slf4j-api</artifactId>
+		    <version>1.7.28</version>
+		</dependency>
+	
+	    <dependency>
+	        <groupId>ch.qos.logback</groupId>
+	        <artifactId>logback-classic</artifactId>
+	        <version>1.1.7</version>
+	    </dependency>
+		
 
 		<!-- @Test -->
 		<dependency>

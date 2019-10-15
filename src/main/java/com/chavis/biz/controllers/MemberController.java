@@ -7,62 +7,46 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.chavis.biz.service.MemberService;
 import com.chavis.biz.validator.MemberValidator;
 import com.chavis.biz.vo.MemberVO;
+import com.chavis.biz.vo.NotificationVO;
 import com.chavis.biz.vo.ReservationVO;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RestController
 public class MemberController {
+
+	private static Logger log = LoggerFactory.getLogger(MemberController.class);
+
 	@Autowired
 	MemberService service;
 
-//	 @GetMapping("/login.do")
-//     public MemberVO getParameters(@RequestBody Map<String, String> map){
-//		 return service.login(map.get("member_id"), map.get("member_pw"));
-//     }
-//	 
-//	 @RequestMapping(method=RequestMethod.GET, value="/login1.do")
-//	 public MemberVO login(HttpServletRequest httpServletRequest, Model model) {
-//	     System.out.println("RequestMethod.GET");
-//	    
-//	     String id = httpServletRequest.getParameter("id");
-//	     String pw = httpServletRequest.getParameter("pw");
-//	    
-//	     System.out.println("id:" +id);
-//	    
-//	     MemberVO vo = service.login(id,pw);
-//	     System.out.println("gid:" +vo.getMember_id());
-//
-//	     return vo;
-//	 }
-	 
 	@RequestMapping(value = "/Member/login.do", method = RequestMethod.POST)
-	public Map<String, String> loginProc(@RequestBody Map<String, String> map, HttpServletRequest request) throws Exception {
+	public Map<String, String> loginProc(@RequestBody Map<String, String> map, HttpServletRequest request)
+			throws Exception {
 		String member_id = map.get("member_id");
 		String member_pw = map.get("member_pw");
 
 		MemberVO vo = null;
 		vo = service.login(member_id, member_pw);
 		if (vo == null) {
-			System.out.println("로그인 실패");
+			log.info("로그인 실패");
 			map.put("code", "100");
-			
+
 			return map;
 		} else {
-			System.out.println("로그인 성공");
+			log.info("로그인 성공");
 			map.put("member_id", vo.getMember_id());
 			map.put("member_pw", vo.getMember_pw());
 			map.put("member_mname", vo.getMember_mname());
@@ -71,9 +55,9 @@ public class MemberController {
 			map.put("car_type", vo.getCar_type());
 			map.put("car_color", vo.getCar_color());
 			map.put("code", "200");
-			
+
 			return map;
-		}		
+		}
 	}
 
 	@RequestMapping(value = "/Member/update.do", method = RequestMethod.POST)
@@ -93,8 +77,9 @@ public class MemberController {
 		map2.put("car_id", map.getCar_id());
 		map2.put("car_type", map.getCar_type());
 
-		System.out.println(map1);
-		System.out.println(map2);
+		log.info("member/update.do");
+		log.info("map1 : " + map1);
+		log.info("map2 : " + map2);
 
 		return service.updateMember(map1) & service.updateCar(map2);
 	}
@@ -106,17 +91,15 @@ public class MemberController {
 			session.invalidate();
 
 		request.setAttribute("msg", "로그아웃 되었습니다.");
-		System.out.println("로그아웃 되었습니다.");
+		log.info("로그아웃");
 
 		return "로그인 화면으로";
 	}
 
 	@RequestMapping(value = "/Member/dupcheck.do", method = RequestMethod.POST)
 	public int dupcheck(@RequestBody Map<String, String> map, HttpServletRequest request) throws Exception {
-		String member_id = map.get("member_id");
-		System.out.println(map);
-		System.out.println(member_id);
-		return service.dupcheck(member_id);
+		log.info("/Member/dupcheck.do : " + map);
+		return service.dupcheck(map.get("member_id"));
 	}
 
 	// 회원가입
@@ -160,12 +143,18 @@ public class MemberController {
 		return service.getMember(member_id);
 	}
 
-	@RequestMapping(method=RequestMethod.GET, value="/Member/rlist.do")
-	public List<ReservationVO> getMemberReserveList(HttpServletRequest httpServletRequest, Model model) {
-	    String id = httpServletRequest.getParameter("id");
-	    List<ReservationVO> res = service.getMemberReserveList(id);
-	    return res;
+	@RequestMapping(method = RequestMethod.GET, value = "/Member/nlist.do")
+	public List<NotificationVO> getNotificationList(HttpServletRequest httpServletRequest) {
+		return service.getNotificationList(httpServletRequest.getParameter("member_id"));
 	}
+
+	@RequestMapping(method = RequestMethod.GET, value = "/Member/rlist.do")
+	public List<ReservationVO> getMemberReserveList(HttpServletRequest httpServletRequest, Model model) {
+		String id = httpServletRequest.getParameter("id");
+		List<ReservationVO> res = service.getMemberReserveList(id);
+		return res;
+	}
+
 	@RequestMapping(value = "/Member/remove.do", method = RequestMethod.POST)
 	public int removeMember(@RequestBody Map<String, String> map) {
 		return service.removeMember(map.get("member_id"));
