@@ -1,6 +1,5 @@
 package com.chavis.biz.controllers;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -17,13 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.chavis.biz.method.AddressMethod;
 import com.chavis.biz.service.BodyshopService;
 import com.chavis.biz.vo.BodyshopVO;
 import com.chavis.biz.vo.ReservationListVO;
-import com.chavis.biz.vo.ReservationVO;
 
 @RestController
 public class BodyshopController {
@@ -49,7 +46,6 @@ public class BodyshopController {
 			return service.bodyshopLogin(bodyshop_id, bodyshop_pw);
 		} else {
 			request.setAttribute("msg", "로그인 정보를 다시 입력하세요.");
-			System.out.println(bodyshop);
 			return service.bodyshopLogin(bodyshop_id, bodyshop_pw);
 		}
 	}
