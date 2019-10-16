@@ -6,12 +6,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.chavis.biz.service.MemberService;
-import com.chavis.biz.validator.MemberValidator;
-import com.chavis.biz.vo.MemberVO;
-import com.chavis.biz.vo.NotificationVO;
-import com.chavis.biz.vo.ReservationVO;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -21,8 +17,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.chavis.biz.service.MemberService;
+import com.chavis.biz.validator.MemberValidator;
+import com.chavis.biz.vo.MemberVO;
+import com.chavis.biz.vo.NotificationVO;
+import com.chavis.biz.vo.ReservationVO;
+
 @RestController
 public class MemberController {
+
+	public static Logger log = LoggerFactory.getLogger(MemberController.class);
 
 	@Autowired
 	MemberService service;
@@ -30,13 +34,11 @@ public class MemberController {
 	@RequestMapping(value = "/Member/login.do", method = RequestMethod.POST)
 	public Map<String, String> loginProc(@RequestBody Map<String, String> map, HttpServletRequest request)
 			throws Exception {
-		String member_id = map.get("member_id");
-		String member_pw = map.get("member_pw");
-
 		MemberVO vo = null;
-		vo = service.login(member_id, member_pw);
+		vo = service.login(map.get("member_id"), map.get("member_pw"));
 		if (vo == null) {
 			map.put("code", "100");
+			
 			return map;
 		} else {
 			map.put("member_id", vo.getMember_id());
@@ -48,14 +50,13 @@ public class MemberController {
 			map.put("car_type", vo.getCar_type());
 			map.put("car_color", vo.getCar_color());
 			map.put("code", "200");
+			
 			return map;
 		}
 	}
 
 	@RequestMapping(value = "/Member/update.do", method = RequestMethod.POST)
 	public int updateMember(@RequestBody MemberVO map) {
-		System.out.println(map);
-
 		Map<String, String> map1 = new HashMap<String, String>();
 		Map<String, String> map2 = new HashMap<String, String>();
 
@@ -106,6 +107,7 @@ public class MemberController {
 
 	@RequestMapping(method = RequestMethod.GET, value = "/Member/nlist.do")
 	public List<NotificationVO> getNotificationList(HttpServletRequest httpServletRequest) {
+		log.info(httpServletRequest.getParameter("id"));
 		return service.getNotificationList(httpServletRequest.getParameter("member_id"));
 	}
 
@@ -118,7 +120,7 @@ public class MemberController {
 	public String Ex(Exception exception, Model model) {
 		// MemberController 예외발생시 호출됨
 		model.addAttribute("exception", exception);
-		System.out.println(exception);
+		log.info(exception.toString());
 		return "error";
 	}
 

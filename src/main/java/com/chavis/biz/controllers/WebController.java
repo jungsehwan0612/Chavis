@@ -1,11 +1,12 @@
 package com.chavis.biz.controllers;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,10 +18,12 @@ import com.chavis.biz.service.BodyshopService;
 import com.chavis.biz.service.ReservationService;
 import com.chavis.biz.vo.BodyshopVO;
 import com.chavis.biz.vo.ReservationVO;
-import com.chavis.biz.vo.WebTableVO;
 
 @RestController
 public class WebController {
+	
+	public static Logger log = LoggerFactory.getLogger(WebController.class);
+	
 	@Autowired
 	BodyshopService bService;
 	@Autowired

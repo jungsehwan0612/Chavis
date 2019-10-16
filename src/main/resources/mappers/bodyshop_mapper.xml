@@ -3,32 +3,32 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="bodyshopMapper">
+
 	<select id="bodyshopLogin" parameterType="BodyshopVO"
 		resultType="BodyshopVO">
 		/* bodyshopMapper.bodyshopLogin */
-		select * from bodyshop
-		where bodyshop_id = #{bodyshop_id}
-		and
-		bodyshop_pw = #{bodyshop_pw}
+		SELECT * 
+		FROM BODYSHOP
+		WHERE bodyshop_id = #{bodyshop_id}
+		AND	bodyshop_pw = #{bodyshop_pw}
 	</select>
+	
 	<select id="getNo" resultType="Integer">
 		/* bodyshopMapper.getNo */
-		select
-		nvl(max(bodyshop_no),0)+1
-		from bodyshop
+		SELECT NVL(MAX(bodyshop_no), 0) + 1
+		FROM BODYSHOP
 	</select>
+	
 	<insert id="addBodyshop" parameterType="BodyshopVO">
 		/* bodyshopMapper.addBodyshop */
-		insert into
-		bodyshop(bodyshop_no,
-		bodyshop_id, bodyshop_pw, bodyshop_name,
-		bodyshop_address)
-		values(#{bodyshop_no},#{bodyshop_id},#{bodyshop_pw},#{bodyshop_name},#{bodyshop_address})
+		INSERT INTO
+		BODYSHOP(bodyshop_no, bodyshop_id, bodyshop_pw, bodyshop_name, bodyshop_address)
+		VALUES(#{bodyshop_no}, #{bodyshop_id}, #{bodyshop_pw}, #{bodyshop_name}, #{bodyshop_address})
 	</insert>
 
 	<select id="getBodyshoplist" resultType="Bodyshopvo">
 		/* bodyshopMapper.getBodyshoplist */
-		select * from bodyshop
+		SELECT * FROM BODYSHOP
 	</select>
 
 </mapper>
