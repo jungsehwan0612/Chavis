@@ -7,10 +7,13 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
+import com.chavis.biz.dao.CarDAO_MyBatis;
 import com.chavis.biz.dao.MemberDAO;
 import com.chavis.biz.vo.MemberVO;
 import com.chavis.biz.vo.NotificationVO;
@@ -19,6 +22,8 @@ import com.chavis.biz.vo.ReservationVO;
 @Service("memberservice")
 public class MemberServiceImpl implements MemberService {
 
+	public static Logger log = LoggerFactory.getLogger(MemberServiceImpl.class);
+	
 	@Resource(name = "membermybatis")
 	MemberDAO dao;
 
@@ -26,7 +31,7 @@ public class MemberServiceImpl implements MemberService {
 	ApplicationContext context;
 
 	public MemberServiceImpl() {
-		System.out.println("MemberService 시작");
+		log.info("MemberService 시작");
 	}
 
 	public int dupcheck(String member_id) {

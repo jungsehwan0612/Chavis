@@ -30,6 +30,7 @@ public class ReservationController {
 
 	@RequestMapping(value = "/Reservation/add.do", method = RequestMethod.POST, consumes = "application/json")
 	public List<ReservationVO> addReservation(@RequestBody Map<String, String> map) {
+		log.info("/Reservation/add.do 실행");
 		map.put("repaired_time", "NO");
 		service.addReservation(map);
 		return service.getReservationByID(map.get("member_id"));
@@ -37,6 +38,7 @@ public class ReservationController {
 
 	@ExceptionHandler(Exception.class)
 	public String Ex(Exception exception, Model model) {
+		log.info("ReservationController Exception");
 		// ReservationController 예외발생시 호출됨
 		model.addAttribute("exception", exception);
 		return "error";

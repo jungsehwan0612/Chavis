@@ -6,7 +6,7 @@
 	<insert id="addReservation" parameterType="map">
 		/* reservationMapper.addReservation */
 		INSERT INTO
-		RESERVATION	(reservaion_no, bodyshop_no, member_no, key, reservation_time, repaired_time)
+		RESERVATION	(reservation_no, bodyshop_no, member_no, key, reservation_time, repaired_time)
 		VALUES ((SELECT NVL(MAX(reservation_no), 0) + 1 FROM RESERVATION), #{bodyshop_no},
 		        (SELECT member_no FROM MEMBER WHERE member_id = #{member_id}), #{key}, 
 		        #{reservation_time}, #{repaired_time})

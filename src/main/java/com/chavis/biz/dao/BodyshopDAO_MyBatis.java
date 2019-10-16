@@ -3,20 +3,25 @@ package com.chavis.biz.dao;
 import java.util.List;
 import java.util.Map;
 
-import com.chavis.biz.vo.BodyshopVO;
-import com.chavis.biz.vo.ReservationListVO;
-
 import org.apache.ibatis.session.SqlSession;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.chavis.biz.vo.BodyshopVO;
+import com.chavis.biz.vo.ReservationListVO;
+
 @Component("bodyshopmybatis")
 public class BodyshopDAO_MyBatis implements BodyshopDAO {
+	
+	public static Logger log = LoggerFactory.getLogger(BodyshopDAO_MyBatis.class);
+	
 	@Autowired
 	SqlSession sqlSession;
 
 	public BodyshopDAO_MyBatis() {
-		System.out.println("BodyshopDAO 시작");
+		log.info("BodyshopDAO 시작");
 	}
 
 	@Override

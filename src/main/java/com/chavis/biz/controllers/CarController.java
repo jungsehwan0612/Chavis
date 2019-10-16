@@ -27,11 +27,13 @@ public class CarController {
 
 	@RequestMapping(value = "/Car/personalview.do", method = RequestMethod.POST)
 	public CarVO getPersonalCar(@RequestBody Map<String, String> map) {
+		log.info("/Car/personalview.do 실행");
 		return service.getPersonalCar(map.get("member_id"));
 	}
 
 	@ExceptionHandler(Exception.class)
 	public String Ex(Exception exception, Model model) {
+		log.info("CarController Exception");
 		// ReserveController 예외발생시 호출됨
 		model.addAttribute("exception", exception);
 		return "error";

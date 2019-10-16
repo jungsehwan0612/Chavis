@@ -34,11 +34,11 @@ public class MemberController {
 	@RequestMapping(value = "/Member/login.do", method = RequestMethod.POST)
 	public Map<String, String> loginProc(@RequestBody Map<String, String> map, HttpServletRequest request)
 			throws Exception {
+		log.info("/Member/login.do 실행");
 		MemberVO vo = null;
 		vo = service.login(map.get("member_id"), map.get("member_pw"));
 		if (vo == null) {
 			map.put("code", "100");
-			
 			return map;
 		} else {
 			map.put("member_id", vo.getMember_id());
@@ -50,13 +50,13 @@ public class MemberController {
 			map.put("car_type", vo.getCar_type());
 			map.put("car_color", vo.getCar_color());
 			map.put("code", "200");
-			
 			return map;
 		}
 	}
 
 	@RequestMapping(value = "/Member/update.do", method = RequestMethod.POST)
 	public int updateMember(@RequestBody MemberVO map) {
+		log.info("/Member/update.do 실행");
 		Map<String, String> map1 = new HashMap<String, String>();
 		Map<String, String> map2 = new HashMap<String, String>();
 
@@ -75,13 +75,14 @@ public class MemberController {
 
 	@RequestMapping(value = "/Member/dupcheck.do", method = RequestMethod.POST)
 	public int dupcheck(@RequestBody Map<String, String> map, HttpServletRequest request) throws Exception {
+		log.info("/Member/dupcheck.do 실행");
 		return service.dupcheck(map.get("member_id"));
 	}
 
 	// 회원가입
 	@RequestMapping(value = "/Member/add.do", method = RequestMethod.POST)
 	public boolean addMember(@RequestBody Map<String, String> map, HttpServletRequest request, BindingResult errors) {
-
+		log.info("/Member/add.do 실행");
 		MemberVO vo = new MemberVO();
 		vo.setMember_id(map.get("member_id"));
 		vo.setMember_pw(map.get("member_pw"));
@@ -91,7 +92,6 @@ public class MemberController {
 		vo.setCar_color(map.get("car_color"));
 		vo.setCar_id(map.get("car_id"));
 
-		System.out.println(map);
 		new MemberValidator().validate(vo, errors);
 		if (errors.hasErrors()) {
 			return false;
@@ -107,17 +107,19 @@ public class MemberController {
 
 	@RequestMapping(method = RequestMethod.GET, value = "/Member/nlist.do")
 	public List<NotificationVO> getNotificationList(HttpServletRequest httpServletRequest) {
-		log.info(httpServletRequest.getParameter("id"));
+		log.info("/Member/nlist.do 실행");
 		return service.getNotificationList(httpServletRequest.getParameter("member_id"));
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/Member/rlist.do")
 	public List<ReservationVO> getMemberReserveList(HttpServletRequest httpServletRequest, Model model) {
+		log.info("/Member/rlist.do 실행");
 		return service.getMemberReserveList(httpServletRequest.getParameter("id"));
 	}
 
 	@ExceptionHandler(Exception.class)
 	public String Ex(Exception exception, Model model) {
+		log.info("MemberController 실행");
 		// MemberController 예외발생시 호출됨
 		model.addAttribute("exception", exception);
 		log.info(exception.toString());
