@@ -30,5 +30,20 @@
 		/* bodyshopMapper.getBodyshoplist */
 		SELECT * FROM BODYSHOP
 	</select>
+	
+	<select id="findBodyshopID" parameterType="String" resultType="String">
+		/* bodyshopMapper.findBodyshopID */
+		SELECT bodyshop_id
+		FROM BODYSHOP
+		WHERE bodyshop_name = #{bodyshop_name}
+	</select>
+		
+	<select id="findBodyshopPW" parameterType="map" resultType="String">
+		/* bodyshopMapper.findBodyshopPW */
+		SELECT bodyshop_pw
+		FROM BODYSHOP
+		WHERE bodyshop_name = #{bodyshop_name}
+		AND bodyshop_id = #{bodyshop_id}
+	</select>
 
 </mapper>

@@ -72,6 +72,16 @@ public class BodyshopController {
 	public List<BodyshopVO> getCarBodyshopList() {
 		return service.getBodyshoplist();
 	}
+	
+	@RequestMapping(value = "/Bodyshop/findinfo.do", method = RequestMethod.POST)
+	public String getMyInfo(@RequestBody Map<String, String> map){
+		log.info(map.toString());
+		if (map.get("bodyshop_id").equals("NO")) {
+			return service.findBodyshopID(map);
+		} else {
+			return service.findBodyshopPW(map);
+		}
+	}
 
 	@RequestMapping(value = "/Bodyshop/blist.do", method = RequestMethod.POST)
 	public List<ReservationListVO> getReservationList(@RequestBody Map<String, String> map) {
