@@ -31,6 +31,7 @@
 	});
 </script>
 </head>
+<link href="<c:url value="/resources/css/main.css"/>" rel="stylesheet">
 <body>
 	<h2>Chavis 로그인</h2>
 	<form name="form1" method="POST">
