@@ -4,47 +4,73 @@
 
 	<!-- CREATE -->
 	<insert id="addReservation" parameterType="map">
-		/* reservationMapper.addReservation */
+		/*
+		reservationMapper.addReservation */
 		INSERT INTO
-		RESERVATION (RESERVATION_NO, BODYSHOP_NO, MEMBER_NO, KEY,
-		RESERVATION_TIME, REPAIRED_TIME)
+		RESERVATION
+		(RESERVATION_NO, BODYSHOP_NO, MEMBER_NO, KEY,
+		RESERVATION_TIME,
+		REPAIRED_TIME)
 		VALUES ((select
-		nvl(max(reservation_no),0)+1 from reservation), #{bodyshop_no},
-		(select member_no from member where member_id = #{member_id}), #{key},
-		#{reservation_time}, #{repaired_time})
+		nvl(max(reservation_no),0)+1 from
+		reservation), #{bodyshop_no},
+		(select member_no from member where
+		member_id = #{member_id}), #{key},
+		#{reservation_time},
+		#{repaired_time})
 	</insert>
 
 	<!-- getReservationByBodyshopNo -->
-	<select id="getReservationByBodyshopNo" resultType="ReservationVO">
-		SELECT * 
+	<select id="getReservationByBodyshopNo"
+		resultType="ReservationVO">
+		SELECT *
 		FROM RESERVATION
 		WHERE BODYSHOP_NO = #{bodyshop_no}
 	</select>
 
-	<select id="getReservationForWeb" resultType="WebTableVO">
-		SELECT reservation_time, member_mname, member_phonenumber, car_id, car_type, key, repaired_person, repaired_time
+	<select id="getReservationForWeb"
+		resultType="com.chavis.biz.vo.WebTableVO">
+		SELECT reservation_time, member_mname, member_phonenumber,
+		car_id, car_type, key, repaired_person, repaired_time
 		FROM member
-		JOIN reservation
+		JOIN
+		reservation
 		ON member.member_no = reservation.member_no
 		JOIN car
-		ON member.member_no = car.member_no
+		ON
+		member.member_no = car.member_no
 		JOIN bodyshop
-		ON reservation.bodyshop_no = bodyshop.bodyshop_no
+		ON
+		reservation.bodyshop_no = bodyshop.bodyshop_no
 		WHERE
-		BODYSHOP_NO = #{bodyshop_no}
+		BODYSHOP.BODYSHOP_NO = #{bodyshop_no}
 
 	</select>
 	<!-- ListByID -->
-	<select id="listReservationByID" parameterType="String" resultType="ReservationVO">
+	<select id="listReservationByID" parameterType="String"
+		resultType="ReservationVO">
 		/* reservationMapper.listReservaitonByID */
-		SELECT reservation.reservation_time, member.member_mname,
+		SELECT
+		reservation.reservation_time, member.member_mname,
 		reservation.key,
 		reservation.repaired_person, reservation.repaired_time
 		FROM reservation
 		JOIN member
 		ON
 		reservation.member_no = member.member_no
-		WHERE member.member_id = #{member_id}
+		WHERE
+		member.member_id = #{member_id}
+	</select>
+
+	<select id="getReservationList"
+		resultType="com.chavis.biz.vo.ReservationListVO">
+		SELECT reservation_no, key,key_expire_time,member_mname,
+		reservation.member_no,
+		car_type,car_id,reservation_time,repaired_time,repaired_person
+		FROM member join reservation on member.member_no = reservation.member_no
+		JOIN car
+		ON member.member_no = car.car_no
+		WHERE bodyshop_no = #{bodyshop_no}
 	</select>
 
 </mapper>

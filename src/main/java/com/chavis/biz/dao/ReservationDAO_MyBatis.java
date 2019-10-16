@@ -32,7 +32,7 @@ public class ReservationDAO_MyBatis implements ReservationDAO {
 
 	@Override
 	public List<WebTableVO> getReservationForWeb(int bodyshop_no) {
-		return sqlSession.selectList("reservationMapper.getReservationForWeb");
+		return sqlSession.selectList("reservationMapper.getReservationForWeb", bodyshop_no);
 	}
 
 	@Override

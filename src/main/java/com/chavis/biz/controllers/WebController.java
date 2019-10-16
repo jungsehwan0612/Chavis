@@ -1,14 +1,10 @@
 package com.chavis.biz.controllers;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
-
-import com.chavis.biz.service.BodyshopService;
-import com.chavis.biz.service.ReservationService;
-import com.chavis.biz.vo.BodyshopVO;
-import com.chavis.biz.vo.ReservationVO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +12,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.chavis.biz.service.BodyshopService;
+import com.chavis.biz.service.ReservationService;
+import com.chavis.biz.vo.BodyshopVO;
+import com.chavis.biz.vo.ReservationVO;
+import com.chavis.biz.vo.WebTableVO;
 
 @RestController
 public class WebController {
@@ -64,7 +66,7 @@ public class WebController {
 		map.put("18~24", sixToMidnight);
 		
 		session.setAttribute("chartData", map);
-		session.setAttribute("tableData", rService.getReservationByBodyshopNo(bodyshop.getBodyshop_no()));
+		session.setAttribute("tableData", rService.getReservationForWeb(bodyshop.getBodyshop_no()));
 		return mv;
 	}
 

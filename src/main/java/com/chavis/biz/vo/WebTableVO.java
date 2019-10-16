@@ -60,19 +60,28 @@ public class WebTableVO {
 		return key;
 	}
 	public void setKey(String key) {
-		this.key = key;
+		if(key.equals("YES"))
+			this.key = "예";
+		else
+			this.key="아니오";
 	}
 	public String getRepaired_person() {
 		return repaired_person;
 	}
 	public void setRepaired_person(String repaired_person) {
-		this.repaired_person = repaired_person;
+		if(!repaired_person.equals("NO"))
+			this.repaired_person = repaired_person;
+		else
+			this.repaired_person = "";
 	}
 	public String getRepaired_time() {
 		return repaired_time;
 	}
 	public void setRepaired_time(String repaired_time) {
-		this.repaired_time = repaired_time;
+		if(!repaired_time.equals("NO"))
+			this.repaired_time = repaired_time;
+		else
+			this.repaired_time = "";
 	}
 
 

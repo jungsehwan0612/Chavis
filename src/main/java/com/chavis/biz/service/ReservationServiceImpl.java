@@ -32,6 +32,7 @@ public class ReservationServiceImpl implements ReservationService {
 	}
 
 	public ReservationServiceImpl(ReservationDAO dao) {
+		super();
 		this.dao = dao;
 	}
 
