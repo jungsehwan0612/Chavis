@@ -29,7 +29,7 @@
 	</select>
 
 
-	<select id="getReservationForWeb" resultType="WebTableVO">
+	<select id="getReservationForWeb" resultType="com.chavis.biz.vo.WebTableVO">
 		/* reservationMapper.getReservationForWeb */
 		SELECT reservation_time, member_mname, member_phonenumber, car_id, car_type, key, repaired_person, repaired_time
 		FROM member
