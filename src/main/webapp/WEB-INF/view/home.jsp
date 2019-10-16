@@ -34,8 +34,8 @@
 <link href="<c:url value="/resources/css/main.css"/>" rel="stylesheet">
 <body>
 	<h2 style="text-align: center">Chavis 로그인</h2>
-	<div class="tab-content" style="display: table">
-		<form name="form1" method="POST" style="display: table-cell; vertical-align: center;">
+	<div style="text-align: center ">
+		<form name="form1" method="POST" style="width: 250px; margin: 0 auto;">
 
 			<div class="position-relative form-group">
 				<label for="exampleEmail">ID</label> <input name="bodyshop_id"

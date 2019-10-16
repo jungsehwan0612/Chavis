@@ -23,7 +23,7 @@
 
 	<select id="getReservationForWeb" resultType="WebTableVO">
 		/* reservationMapper.getReservationForWeb */
-		SELECT reservation_time, member_mname, member_phonenumber, car_id, car_type, key, repaired_person, repaired_time
+		SELECT reservation_time, member_mname, REGEXP_REPLACE(member_phonenumber,'(02|.{3})(.+)(.{4})', '\1-\2-\3') member_phonenumber, car_id, car_type, key, repaired_person, repaired_time
 		FROM MEMBER
 		JOIN RESERVATION
 		ON MEMBER.member_no = RESERVATION.member_no

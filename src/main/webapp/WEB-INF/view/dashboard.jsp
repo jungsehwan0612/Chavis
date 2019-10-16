@@ -16,50 +16,52 @@
 %>
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<title>Chavis 정비소용 웹 페이지</title>
-<script>
-	window.onload = function() {
+	<meta charset="UTF-8">
+	<title>Chavis 정비소용 웹 페이지</title>
+	<script>
+		window.onload = function () {
 
-		var chart = new CanvasJS.Chart("chartContainer", {
-			animationEnabled : true,
-			data : [ {
-				type : "column",
-				indexLabel : "{y}",
-				indexLabelFontColor : "#5A5757",
-				indexLabelPlacement : "outside",
-				dataPoints : [ {
-					y :
-<%=chartData.get("0~6")%>
+			var chart = new CanvasJS.Chart("chartContainer", {
+				animationEnabled: true,
+				data: [{
+					type: "column",
+					indexLabel: "{y}",
+					indexLabelFontColor: "#5A5757",
+					indexLabelPlacement: "outside",
+					dataPoints: [{
+						y:
+<%=chartData.get("0~6") %>
 	,
-					label : "자정 ~ 오전 06시"
-				}, {
-					y :
-<%=chartData.get("6~12")%>
+						label: "자정 ~ 오전 06시"
+					}, {
+						y:
+<%=chartData.get("6~12") %>
 	,
-					label : "오전 06시 ~ 정오"
-				}, {
-					y :
-<%=chartData.get("12~18")%>
+						label: "오전 06시 ~ 정오"
+					}, {
+						y:
+<%=chartData.get("12~18") %>
 	,
-					label : "정오 ~ 오후 06시"
-				}, {
-					y :
-<%=chartData.get("18~24")%>
+						label: "정오 ~ 오후 06시"
+					}, {
+						y:
+<%=chartData.get("18~24") %>
 	,
-					label : "오후 06시 ~ 자정"
-				}, ]
-			} ]
-		});
-		chart.render();
+						label: "오후 06시 ~ 자정"
+					},]
+				}]
+			});
+			chart.render();
 
-		document.getElementById('year').innerHTML = new Date().getFullYear();
-	}
-</script>
+			document.getElementById('year').innerHTML = new Date().getFullYear();
+		}
+	</script>
 </head>
 <link href="<c:url value="/resources/css/main.css"/>" rel="stylesheet">
 </head>
+
 <body>
 
 	<header style="text-align: center;">
@@ -108,7 +110,8 @@
 		</div>
 	</article>
 	<footer>
-		<div style="text-align: center;">Copyright © Chavis <span id="year"/></div>
+		<div style="text-align: center;">Copyright © Chavis <span id="year" /></div>
 	</footer>
 </body>
+
 </html>
