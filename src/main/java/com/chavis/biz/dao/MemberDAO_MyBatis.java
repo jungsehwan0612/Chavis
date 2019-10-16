@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -14,11 +16,13 @@ import com.chavis.biz.vo.ReservationVO;
 @Component("membermybatis")
 public class MemberDAO_MyBatis implements MemberDAO {
 
+	public static Logger log = LoggerFactory.getLogger(MemberDAO_MyBatis.class);
+	
 	@Autowired
 	SqlSession sqlSession;
 
 	public MemberDAO_MyBatis() {
-		System.out.println("MemberDAO 시작");
+		log.info("MemberDAO 시작");
 	}
 
 	public MemberVO dupcheck(String Member_id) {
@@ -41,7 +45,6 @@ public class MemberDAO_MyBatis implements MemberDAO {
 	}
 
 	public int updateCar(Map<String, String> member) {
-		System.out.println("daocar" + member);
 		return sqlSession.update("memberMapper.updateCar", member);
 	}
 
@@ -55,7 +58,6 @@ public class MemberDAO_MyBatis implements MemberDAO {
 	}
 
 	public int updateMember(Map<String, String> member) {
-		System.out.println("daoupdatemember" + member);
 		return sqlSession.update("memberMapper.updateMember", member);
 	}
 }

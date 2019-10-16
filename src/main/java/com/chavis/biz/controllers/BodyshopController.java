@@ -34,10 +34,8 @@ public class BodyshopController {
 
 	@RequestMapping(value = "/Bodyshop/login.do", method = RequestMethod.POST)
 	public BodyshopVO loginProc(@RequestBody Map<String, String> map, HttpServletRequest request) throws Exception {
-		String bodyshop_id = map.get("id");
-		String bodyshop_pw = map.get("pw");
-		System.out.println("bodyshop id : " + bodyshop_id);
-		BodyshopVO Bodyshop = service.bodyshopLogin(bodyshop_id, bodyshop_pw);
+		log.info("/Bodyshop/login.do 실행");
+		BodyshopVO Bodyshop = service.bodyshopLogin(map.get("id"), map.get("pw"));
 		if (Bodyshop != null) {
 			return Bodyshop;
 		} else {
@@ -49,6 +47,7 @@ public class BodyshopController {
 
 	@RequestMapping(value = "/Bodyshop/regist.do", method = RequestMethod.POST)
 	public String addBodyshop(@RequestBody Map<String, String> map, HttpServletRequest request, BindingResult errors) {
+		log.info("/Bodyshop/regist.do 실행");
 		bodyshop_no = service.getNo();
 		String bodyshop_name = map.get("name");
 		String bodyshop_pw = map.get("pw");
@@ -63,19 +62,18 @@ public class BodyshopController {
 		vo.setBodyshop_pw(bodyshop_pw);
 		vo.setBodyshop_address(bodyshop_address);
 		service.addBodyshop(vo);
-		log.info("/bodyshop/regist.do 실행완료");
-		log.info(vo.toString());
 		return bodyshop_id;
 	}
 	// 이름을 주면 id, id랑 이름 주면 pw
 	@RequestMapping(value = "/Bodyshop/list.do", method = RequestMethod.POST)
 	public List<BodyshopVO> getCarBodyshopList() {
+		log.info("/Bodyshop/list.do 실행");
 		return service.getBodyshoplist();
 	}
 	
 	@RequestMapping(value = "/Bodyshop/findinfo.do", method = RequestMethod.POST)
 	public String getMyInfo(@RequestBody Map<String, String> map){
-		log.info(map.toString());
+		log.info("/Bodyshop/findinfo.do 실행");
 		if (map.get("bodyshop_id").equals("NO")) {
 			return service.findBodyshopID(map);
 		} else {
@@ -85,11 +83,13 @@ public class BodyshopController {
 
 	@RequestMapping(value = "/Bodyshop/blist.do", method = RequestMethod.POST)
 	public List<ReservationListVO> getReservationList(@RequestBody Map<String, String> map) {
+		log.info("/Bodyshop/blist.do 실행");
 		return service.getReservationList(Integer.parseInt(map.get("bodyshop_no")));
 	}
 
 	@ExceptionHandler(Exception.class)
 	public String Ex(Exception exception, Model model) {
+		log.info("BodyshopController Exception");
 		// BodyshopController 예외발생시 호출됨
 		model.addAttribute("exception", exception);
 		return "error";

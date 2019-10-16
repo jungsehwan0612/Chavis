@@ -60,4 +60,11 @@ public class NotificationVO {
 		this.contents = contents;
 	}
 
+	@Override
+	public String toString() {
+		return "NotificationVO [notification_no=" + notification_no + ", member_no=" + member_no
+				+ ", notification_time=" + notification_time + ", title=" + title + ", contents=" + contents + "]";
+	}
+	
+	
 }

@@ -27,7 +27,7 @@ public class ReservationServiceImpl implements ReservationService {
 	ApplicationContext context;
 
 	public ReservationServiceImpl() {
-		log.debug("ReservationService 시작");
+		log.info("ReservationService 시작");
 
 	}
 

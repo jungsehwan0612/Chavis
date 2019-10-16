@@ -3,21 +3,25 @@ package com.chavis.biz.dao;
 import java.util.List;
 import java.util.Map;
 
-import com.chavis.biz.vo.ReservationVO;
-import com.chavis.biz.vo.WebTableVO;
-
 import org.apache.ibatis.session.SqlSession;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import com.chavis.biz.vo.ReservationVO;
+import com.chavis.biz.vo.WebTableVO;
 
 @Component("reservationmybatis")
 public class ReservationDAO_MyBatis implements ReservationDAO {
 
+	public static Logger log = LoggerFactory.getLogger(ReservationDAO_MyBatis.class);
+	
 	@Autowired
 	SqlSession sqlSession;
 
 	public ReservationDAO_MyBatis() {
-		System.out.println("ReservationDAO 시작");
+		log.info("ReservationDAO 시작");
 	}
 
 	@Override

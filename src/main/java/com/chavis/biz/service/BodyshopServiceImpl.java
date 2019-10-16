@@ -6,17 +6,22 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
 import com.chavis.biz.dao.BodyshopDAO;
+import com.chavis.biz.dao.CarDAO_MyBatis;
 import com.chavis.biz.vo.BodyshopVO;
 import com.chavis.biz.vo.ReservationListVO;
 
 @Service("bodyshopservice")
 public class BodyshopServiceImpl implements BodyshopService {
 
+	public static Logger log = LoggerFactory.getLogger(BodyshopServiceImpl.class);
+	
 	@Resource(name = "bodyshopmybatis")
 	BodyshopDAO dao;
 
@@ -24,7 +29,7 @@ public class BodyshopServiceImpl implements BodyshopService {
 	ApplicationContext context;
 
 	public BodyshopServiceImpl() {
-		System.out.println("BodyshopService 시작");
+		log.info("BodyshopService 시작");
 	}
 
 	public BodyshopServiceImpl(BodyshopDAO dao) {
