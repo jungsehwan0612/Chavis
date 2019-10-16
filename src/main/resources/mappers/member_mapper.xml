@@ -97,5 +97,6 @@
 		m.member_no
 		where m.member_no = (select member_no from member where
 		member_id=#{member_id})
+		order by notification_time desc
 	</select>
 </mapper>

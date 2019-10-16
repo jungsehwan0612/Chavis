@@ -21,17 +21,23 @@
 	</insert>
 
 	<!-- getReservationByBodyshopNo -->
+<<<<<<< HEAD
 	<select id="getReservationByBodyshopNo"
 		resultType="ReservationVO">
 		SELECT *
+=======
+	<select id="getReservationByBodyshopNo" resultType="ReservationVO">
+		/* reservationMapper.getReservationByBodyshopNo */
+		SELECT * 
+>>>>>>> branch 'master' of https://github.com/jungsehwan0612/Chavis
 		FROM RESERVATION
 		WHERE BODYSHOP_NO = #{bodyshop_no}
 	</select>
 
-	<select id="getReservationForWeb"
-		resultType="com.chavis.biz.vo.WebTableVO">
-		SELECT reservation_time, member_mname, member_phonenumber,
-		car_id, car_type, key, repaired_person, repaired_time
+
+	<select id="getReservationForWeb" resultType="WebTableVO">
+		/* reservationMapper.getReservationForWeb */
+		SELECT reservation_time, member_mname, member_phonenumber, car_id, car_type, key, repaired_person, repaired_time
 		FROM member
 		JOIN
 		reservation

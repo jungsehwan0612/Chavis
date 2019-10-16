@@ -11,6 +11,7 @@
 		<typeAlias type="com.chavis.biz.vo.BodyshopVO"
 			alias="BodyshopVO" />
 		<typeAlias type="com.chavis.biz.vo.CarVO" alias="CarVO" />
+		
 	</typeAliases>
 	<mappers>
 		<mapper resource="./mappers/car_mapper.xml" />

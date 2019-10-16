@@ -29,14 +29,14 @@ public class BodyshopController {
 	public BodyshopVO loginProc(@RequestBody Map<String, String> map, HttpServletRequest request) throws Exception {
 		String bodyshop_id = map.get("id");
 		String bodyshop_pw = map.get("pw");
+		System.out.println("bodyshop id : " + bodyshop_id);
 		BodyshopVO Bodyshop = service.bodyshopLogin(bodyshop_id, bodyshop_pw);
 		if (Bodyshop != null) {
-			request.getSession().setAttribute("Bodyshop", Bodyshop);
-			request.getSession().setAttribute("Login", Bodyshop);
-			return service.bodyshopLogin(bodyshop_id, bodyshop_pw);
+			return Bodyshop;
 		} else {
-			request.setAttribute("msg", "로그인 정보를 다시 입력하세요.");
-			return service.bodyshopLogin(bodyshop_id, bodyshop_pw);
+			BodyshopVO tmp = new BodyshopVO();
+			tmp.setBodyshop_id("NO");
+			return tmp;
 		}
 	}
 
