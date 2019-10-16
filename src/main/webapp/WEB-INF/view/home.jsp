@@ -33,23 +33,21 @@
 </head>
 <link href="<c:url value="/resources/css/main.css"/>" rel="stylesheet">
 <body>
-	<h2>Chavis 로그인</h2>
-	<form name="form1" method="POST">
-		<table border="1" width="400px">
-			<tr>
-				<td>ID</td>
-				<td><input name="bodyshop_id" id="bodyshop_id" /></td>
-			</tr>
-			<tr>
-				<td>비밀번호</td>
-				<td><input type="password" name="bodyshop_pw" id="bodyshop_pw" /></td>
-			</tr>
-			<tr>
-				<td colspan="2" align="center">
-					<button type="button" id="btnLogin">로그인</button>
-				</td>
-			</tr>
-		</table>
-	</form>
+	<h2 style="text-align: center">Chavis 로그인</h2>
+	<div class="tab-content" style="display: table">
+		<form name="form1" method="POST" style="display: table-cell; vertical-align: center;">
+
+			<div class="position-relative form-group">
+				<label for="exampleEmail">ID</label> <input name="bodyshop_id"
+					id="bodyshop_id" class="form-control">
+			</div>
+			<div class="position-relative form-group">
+				<label for="examplePassword">Password</label> <input
+					name="bodyshop_pw" id="bodyshop_pw" type="password" class="form-control">
+			</div>
+
+			<button type="button" id="btnLogin">로그인</button>
+		</form>
+	</div>
 </body>
 </html>
