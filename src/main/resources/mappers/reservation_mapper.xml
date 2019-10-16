@@ -56,5 +56,12 @@
 		ON MEMBER.member_no = CAR.member_no
 		WHERE bodyshop_no = #{bodyshop_no}
 	</select>
+	
+	<select id="getRecentReservation" resultType="reservationVO">
+		/* reservationMapper.getRecentReservation */
+		SELECT * 
+		FROM RESERVATION
+		WHERE reservation_no = (SELECT MAX(reservation_no) FROM RESERVATION)
+	</select>
 
 </mapper>

@@ -98,4 +98,14 @@ public class MemberServiceImpl implements MemberService {
 		return dao.updateCar(map2);
 	}
 
+	@Override
+	public String findMemberID(Map<String, String> map) {
+		return dao.findMemberID(map);
+	}
+
+	@Override
+	public String findMemberPW(Map<String, String> map) {
+		return dao.findMemberPW(map);
+	}
+
 }

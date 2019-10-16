@@ -19,4 +19,5 @@ public interface ReservationDAO {
 	// ListReservationForWeb
 	List<WebTableVO> getReservationForWeb(int bodyshop_no);
 
+	ReservationVO getRecentReservation();
 }

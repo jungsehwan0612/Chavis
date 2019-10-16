@@ -44,4 +44,9 @@ public class ReservationDAO_MyBatis implements ReservationDAO {
 		return sqlSession.selectList("reservationMapper.listReservationByID", member_id);
 	}
 
+	@Override
+	public ReservationVO getRecentReservation() {
+		return sqlSession.selectOne("reservationMapper.getRecentReservation");
+	}
+
 }

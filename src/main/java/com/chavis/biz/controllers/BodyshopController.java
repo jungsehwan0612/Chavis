@@ -64,7 +64,7 @@ public class BodyshopController {
 		service.addBodyshop(vo);
 		return bodyshop_id;
 	}
-	// 이름을 주면 id, id랑 이름 주면 pw
+
 	@RequestMapping(value = "/Bodyshop/list.do", method = RequestMethod.POST)
 	public List<BodyshopVO> getCarBodyshopList() {
 		log.info("/Bodyshop/list.do 실행");
@@ -74,8 +74,13 @@ public class BodyshopController {
 	@RequestMapping(value = "/Bodyshop/findinfo.do", method = RequestMethod.POST)
 	public String getMyInfo(@RequestBody Map<String, String> map){
 		log.info("/Bodyshop/findinfo.do 실행");
+		// id를 찾을수가 없다면 no
 		if (map.get("bodyshop_id").equals("NO")) {
-			return service.findBodyshopID(map);
+			if (service.findBodyshopID(map) == null) {
+				return "NO";
+			}else {
+				return service.findBodyshopID(map);
+			}
 		} else {
 			return service.findBodyshopPW(map);
 		}
