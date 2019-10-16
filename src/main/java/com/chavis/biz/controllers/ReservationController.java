@@ -42,16 +42,25 @@ public class ReservationController {
 			e.printStackTrace();
 		}
 		return service.getReservationByID(map.get("member_id"));
-		
+
 	}
+
 	@RequestMapping(value = "/Reservation/add2.do", method = RequestMethod.POST)
-	public String addReservation2(@RequestBody Map<String, String> map) throws SQLException {
+	public String addReservation2(@RequestBody Map<String, String> map) {
 		log.info("/Reservation/add2.do 실행");
 		map.put("repaired_time", "NO");
-		if (service.addReservation(map) != 1) {
+		int result;
+		try {
+			result = service.addReservation(map);
+			if (result == 1) {
+				return "SUCCESS";
+
+			} else {
+				return "FAIL";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 			return "FAIL";
-		} else {
-			return "SUCCESS";
 		}
 	}
 
@@ -60,7 +69,7 @@ public class ReservationController {
 		log.info("ReservationController SQLException");
 		return "FAIL";
 	}
-	
+
 	@ExceptionHandler(Exception.class)
 	public String Ex(Exception exception, Model model) {
 		log.info("ReservationController Exception");
