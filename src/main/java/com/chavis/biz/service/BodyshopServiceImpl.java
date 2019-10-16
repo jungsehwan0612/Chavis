@@ -2,6 +2,7 @@ package com.chavis.biz.service;
 
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -67,6 +68,16 @@ public class BodyshopServiceImpl implements BodyshopService {
 	@Override
 	public int getNo() {
 		return dao.getNo();
+	}
+
+	@Override
+	public String findBodyshopID(Map<String, String> map) {
+		return dao.findBodyshopID(map);
+	}
+
+	@Override
+	public String findBodyshopPW(Map<String, String> map) {
+		return dao.findBodyshopPW(map);
 	}
 
 }

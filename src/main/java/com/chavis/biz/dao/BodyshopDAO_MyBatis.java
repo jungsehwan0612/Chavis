@@ -1,6 +1,7 @@
 package com.chavis.biz.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.chavis.biz.vo.BodyshopVO;
 import com.chavis.biz.vo.ReservationListVO;
@@ -20,7 +21,6 @@ public class BodyshopDAO_MyBatis implements BodyshopDAO {
 
 	@Override
 	public BodyshopVO bodyshopLogin(String bodyshop_id, String bodyshop_pw) {
-		System.out.println("BODYSHOP LOGIN");
 		BodyshopVO bodyshop = new BodyshopVO();
 		bodyshop.setBodyshop_id(bodyshop_id);
 		bodyshop.setBodyshop_pw(bodyshop_pw);
@@ -29,13 +29,11 @@ public class BodyshopDAO_MyBatis implements BodyshopDAO {
 
 	@Override
 	public void addBodyshop(BodyshopVO bodyshop) {
-		System.out.println("ADD BODYSHOP");
 		sqlSession.insert("bodyshopMapper.addBodyshop", bodyshop);
 	}
 
 	@Override
 	public List<BodyshopVO> getBodyshoplist() {
-		System.out.println("GET BODYSHOP LIST");
 		return sqlSession.selectList("bodyshopMapper.getBodyshoplist");
 	}
 
@@ -47,6 +45,16 @@ public class BodyshopDAO_MyBatis implements BodyshopDAO {
 	@Override
 	public int getNo() {
 		return sqlSession.selectOne("bodyshopMapper.getNo");
+	}
+
+	@Override
+	public String findBodyshopID(Map<String, String> map) {
+		return sqlSession.selectOne("bodyshopMapper.findBodyshopID", map.get("bodyshop_name"));
+	}
+
+	@Override
+	public String findBodyshopPW(Map<String, String> map) {
+		return sqlSession.selectOne("bodyshopMapper.findBodyshopPW", map);
 	}
 
 }

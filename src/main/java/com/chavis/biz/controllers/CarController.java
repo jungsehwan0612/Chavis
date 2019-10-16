@@ -2,9 +2,8 @@ package com.chavis.biz.controllers;
 
 import java.util.Map;
 
-import com.chavis.biz.service.CarService;
-import com.chavis.biz.vo.CarVO;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -14,9 +13,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.chavis.biz.service.CarService;
+import com.chavis.biz.vo.CarVO;
+
 @CrossOrigin("*")
 @RestController
 public class CarController {
+
+	public static Logger log = LoggerFactory.getLogger(CarController.class);
 
 	@Autowired
 	CarService service;
