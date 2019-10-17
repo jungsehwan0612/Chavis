@@ -82,7 +82,11 @@ public class BodyshopController {
 				return service.findBodyshopID(map);
 			}
 		} else {
-			return service.findBodyshopPW(map);
+			if (service.findBodyshopPW(map) == null) {
+				return "NO";
+			}else {
+				return service.findBodyshopPW(map);
+			}
 		}
 	}
 

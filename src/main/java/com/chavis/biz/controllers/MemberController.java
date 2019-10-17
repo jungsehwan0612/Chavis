@@ -127,7 +127,11 @@ public class MemberController {
 				return service.findMemberID(map);
 			}
 		} else {
-			return service.findMemberPW(map);
+			if(service.findMemberPW(map) == null) {
+				return "NO";
+			}else {
+				return service.findMemberPW(map);
+			}
 		}
 	}
 	
