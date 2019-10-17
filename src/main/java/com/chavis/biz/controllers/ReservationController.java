@@ -33,19 +33,6 @@ public class ReservationController {
 	BodyshopService bservice;
 
 	@RequestMapping(value = "/Reservation/add.do", method = RequestMethod.POST)
-	public List<ReservationVO> addReservation(@RequestBody Map<String, String> map) {
-		log.info("/Reservation/add.do 실행");
-		map.put("repaired_time", "NO");
-		try {
-			service.addReservation(map);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return service.getReservationByID(map.get("member_id"));
-
-	}
-
-	@RequestMapping(value = "/Reservation/add2.do", method = RequestMethod.POST)
 	public String addReservation2(@RequestBody Map<String, String> map) {
 		log.info("/Reservation/add2.do 실행");
 		map.put("repaired_time", "NO");
