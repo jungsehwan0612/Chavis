@@ -117,6 +117,24 @@ public class MemberController {
 		return service.getMemberReserveList(httpServletRequest.getParameter("id"));
 	}
 
+	@RequestMapping(method = RequestMethod.POST, value = "/Member/findinfo.do")
+	public String findInfo(@RequestBody Map<String, String> map) {
+		log.info("/Member/findinfo.do");
+		if (map.get("member_id").equals("NO")) {
+			if (service.findMemberID(map) == null) {
+				return "NO";
+			}else {
+				return service.findMemberID(map);
+			}
+		} else {
+			if(service.findMemberPW(map) == null) {
+				return "NO";
+			}else {
+				return service.findMemberPW(map);
+			}
+		}
+	}
+	
 	@ExceptionHandler(Exception.class)
 	public String Ex(Exception exception, Model model) {
 		log.info("MemberController 실행");

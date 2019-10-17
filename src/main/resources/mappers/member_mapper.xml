@@ -73,5 +73,19 @@
 		WHERE M.member_no = (SELECT member_no FROM MEMBER WHERE member_id = #{member_id})
 		ORDER BY notification_time DESC
 	</select>
+		
+	<select id="findMemberID" parameterType="map" resultType="String">
+		SELECT member_id 
+		FROM MEMBER
+		WHERE member_mname = #{member_mname}
+		AND member_phonenumber = #{member_phonenumber}
+	</select>
 	
+	<select id="findMemberPW" parameterType="map" resultType="String">
+		SELECT member_pw 
+		FROM MEMBER
+		WHERE member_mname = #{member_mname}
+		AND member_phonenumber = #{member_phonenumber}
+		AND member_id = #{member_id}
+	</select>
 </mapper>

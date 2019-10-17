@@ -21,4 +21,8 @@ public interface MemberService {
 	List<NotificationVO> getNotificationList(String member_id);
 
 	List<ReservationVO> getMemberReserveList(String id);
+	
+	String findMemberID(Map<String, String> map);
+	
+	String findMemberPW(Map<String, String> map);
 }

@@ -53,11 +53,20 @@ public class MemberDAO_MyBatis implements MemberDAO {
 	}
 
 	public List<ReservationVO> getMemberReserveList(String id) {
-		System.out.println(id);
 		return sqlSession.selectList("memberMapper.getMemberReserveList", id);
 	}
 
 	public int updateMember(Map<String, String> member) {
 		return sqlSession.update("memberMapper.updateMember", member);
+	}
+
+	@Override
+	public String findMemberID(Map<String, String> map) {
+		return sqlSession.selectOne("memberMapper.findMemberID", map);
+	}
+
+	@Override
+	public String findMemberPW(Map<String, String> map) {
+		return sqlSession.selectOne("memberMapper.findMemberPW", map);
 	}
 }
